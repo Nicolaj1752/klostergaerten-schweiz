@@ -190,22 +190,24 @@ body {
 
 @media (max-width: 700px) {
 
-  /* Menue-Blume kleiner und mit festem Abstand zum Rand */
+  /* Menue-Blume mit festem Abstand zum Rand, 25% groesser als vorher */
   .menu-blume {
-    width: 125px;
-    height: 125px;
+    width: 156px;
+    height: 156px;
     top: 12px;
     right: 12px;
   }
 
   .menu-links a {
-    font-size: 11px;
+    font-size: 14px;     /* waechst mit der groesseren Blume mit */
     line-height: 1.5;
   }
 
-  /* Auf dem Handy darf der Titel auf zwei Zeilen umbrechen */
+  /* Auf dem Handy bricht der Titel auf zwei Zeilen um.
+     9.8vw, damit das lange Wort "KLOSTERGAERTEN" ganz auf eine Zeile passt
+     und das N am Ende nicht abgeschnitten wird. */
   .hero-titel {
-    font-size: 11vw;
+    font-size: 9.8vw;
     white-space: normal;
     right: 1.5vw;
   }
