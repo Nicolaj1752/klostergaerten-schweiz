@@ -51,14 +51,19 @@ function animiere(zeit) {
   // Wert (-1 bis 1) in einen Drehwinkel umrechnen
   const winkel = wert * maxWinkel;
 
-  blume.style.transform = "rotate(" + winkel + "deg)";
+  // Auf den Unterseiten gibt es nur die rechte Blume, deshalb pruefen wir das.
+  if (blume) {
+    blume.style.transform = "rotate(" + winkel + "deg)";
+  }
 
   // Die rechte Blume liest den Noise an einer anderen Stelle (+50),
   // damit sich beide unabhaengig voneinander bewegen.
   const wertRechts = noise(zeit * tempo + 50);
   const winkelRechts = wertRechts * maxWinkel;
 
-  blumeRechts.style.transform = "rotate(" + winkelRechts + "deg)";
+  if (blumeRechts) {
+    blumeRechts.style.transform = "rotate(" + winkelRechts + "deg)";
+  }
 
   // Naechstes Bild anfordern
   requestAnimationFrame(animiere);

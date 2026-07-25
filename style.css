@@ -186,6 +186,118 @@ body {
 }
 
 
+/* ===== Unterseiten (wissen, projekte, ueber uns, kontakt) ===== */
+
+/* Eigener Hintergrund, etwas heller als die Startseite */
+body.unterseite {
+  background-color: #F7EDDD;
+}
+
+/* Schmaler Kopfbereich statt des grossen Fotos */
+.unter-kopf {
+  position: relative;
+  padding: 3vw 3vw 0 3vw;
+  min-height: 190px;
+}
+
+/* Zurueck zur Startseite */
+.zurueck {
+  display: inline-block;
+  color: var(--pink);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 4vw;
+}
+
+.zurueck:hover {
+  text-decoration: underline;
+}
+
+/* Titel der Unterseite */
+.unter-titel {
+  color: var(--pink);
+  font-size: 5vw;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0.005em;
+  margin-bottom: 1vw;
+}
+
+/* Inhaltsbereich mit der Blume unten rechts.
+   Der Bereich fuellt den Rest der Seite, damit die Blume
+   auch bei wenig Text unten in der Ecke sitzt. */
+.unter-inhalt {
+  position: relative;
+  padding: 2vw 3vw 6vw 3vw;
+  overflow: hidden;      /* Blume ragt nicht seitlich hinaus */
+
+  /* Seitenhoehe minus Kopfbereich */
+  min-height: calc(100vh - 190px);
+}
+
+/* Die Abschnitte in zwei Spalten */
+.unter-spalten {
+  position: relative;
+  z-index: 3;            /* liegt ueber der Blume */
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5vw;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Wenn es nur eine Spalte gibt, soll der Text nicht zu breit werden */
+.unter-spalten.einspaltig {
+  grid-template-columns: 1fr;
+  max-width: 760px;
+  margin-left: 0;
+}
+
+/* Ein einzelner Abschnitt */
+.abschnitt {
+  margin-bottom: 26px;
+}
+
+.abschnitt h2 {
+  color: var(--pink);
+  font-size: 17px;
+  font-weight: 600;
+  font-style: italic;
+  margin-bottom: 7px;
+}
+
+.abschnitt p {
+  color: var(--pink);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* Die Blume auf den Unterseiten sitzt unten rechts in der Ecke.
+   bottom/right auf 0, damit sie das Padding des Containers ignoriert. */
+.unterseite .deko-blume-rechts {
+  width: 26vw;
+  bottom: 0;
+  right: 0;
+  opacity: 0.9;
+}
+
+/* Kontaktangaben */
+.kontakt-block {
+  color: var(--pink);
+  font-size: 14px;
+  line-height: 1.8;
+  margin-top: 6px;
+}
+
+.kontakt-block a {
+  color: var(--pink);
+  font-weight: 600;
+}
+
+
 /* ===== Handy und kleine Bildschirme ===== */
 
 @media (max-width: 700px) {
@@ -232,5 +344,30 @@ body {
 
   .inhalt {
     padding: 22vw 6vw 60px 6vw;
+  }
+
+  /* ----- Unterseiten auf dem Handy ----- */
+
+  .unter-kopf {
+    padding: 5vw 6vw 0 6vw;
+    min-height: 150px;
+  }
+
+  .unter-titel {
+    font-size: 9vw;
+  }
+
+  .zurueck {
+    margin-bottom: 8vw;
+  }
+
+  .unter-inhalt {
+    padding: 4vw 6vw 60px 6vw;
+  }
+
+  /* Spalten untereinander */
+  .unter-spalten {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 }
