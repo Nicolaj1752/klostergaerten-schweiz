@@ -17,10 +17,11 @@
   <!-- ===== Oberer Bereich: Foto, Menue-Blume und Titel ===== -->
   <header class="hero">
 
-    <!-- Menue oben rechts: pinke Blume mit gelber Schrift darauf -->
+    <!-- Menue oben rechts: pinke Blume mit gelber Schrift darauf.
+         Die Punkte werden von inhalte.js aus Sanity ersetzt. -->
     <nav class="menu-blume">
       <img src="assets/flower_menu.png" alt="" class="menu-blume-bild">
-      <ul class="menu-links">
+      <ul class="menu-links" id="menu-links">
         <li><a href="#wissen">wissen</a></li>
         <li><a href="#projekte">projekte</a></li>
         <li><a href="#ueber-uns">über uns</a></li>
@@ -29,7 +30,7 @@
     </nav>
 
     <!-- Grosser Titel unten im Foto -->
-    <h1 class="hero-titel">Klostergärten Schweiz</h1>
+    <h1 class="hero-titel" id="hero-titel">Klostergärten Schweiz</h1>
   </header>
 
   <!-- ===== Textbereich mit der grossen Blume links ===== -->
@@ -43,22 +44,28 @@
 
     <div class="text-spalten">
 
-      <section class="spalte">
+      <!-- Linke Spalte. Texte kommen aus Sanity, der Inhalt hier
+           ist nur Ersatz, falls das Laden scheitert. -->
+      <section class="spalte" id="spalte-links">
         <h2>klostergärten schweiz</h2>
-        <p>Hier entsteht ein neues Projekt.</p>
-        <p>
-          Klostergärten Schweiz dokumentiert, erforscht und vermittelt die
-          Klostergärten der Schweiz als lebendige Archive von Wissen, Pflanzen-,
-          Sozialkultur, Ernährung und Spiritualität. In einem historischen
-          Zeitfenster sichern wir gefährdetes Erfahrungswissen, vernetzen
-          Menschen und Institutionen und machen dieses kulturelle Erbe für
-          kommende Generationen zugänglich.
-        </p>
-        <p><a href="#kontakt" class="text-link">schreiben Sie uns!</a></p>
+        <div class="absaetze">
+          <p>Hier entsteht ein neues Projekt.</p>
+          <p>
+            Klostergärten Schweiz dokumentiert, erforscht und vermittelt die
+            Klostergärten der Schweiz als lebendige Archive von Wissen, Pflanzen-,
+            Sozialkultur, Ernährung und Spiritualität. In einem historischen
+            Zeitfenster sichern wir gefährdetes Erfahrungswissen, vernetzen
+            Menschen und Institutionen und machen dieses kulturelle Erbe für
+            kommende Generationen zugänglich.
+          </p>
+        </div>
+        <p><a href="#kontakt" class="text-link" id="kontakt-link">schreiben Sie uns!</a></p>
       </section>
 
-      <section class="spalte">
+      <!-- Rechte Spalte, ebenfalls aus Sanity -->
+      <section class="spalte" id="spalte-rechts">
         <h2>unsere vision</h2>
+        <div class="absaetze">
         <p>
           Klostergärten gehören zu den ältesten Kulturräumen der Schweiz.
         </p>
@@ -83,11 +90,16 @@
           Kooperationen angeregt und Impulse für den Erhalt und die
           Weiterentwicklung dieses einzigartigen Kulturerbes gegeben.
         </p>
+        </div>
       </section>
 
     </div>
   </main>
 
+  <!-- Holt die Texte aus dem Sanity CMS -->
+  <script src="inhalte.js"></script>
+
+  <!-- Animation der Blumen -->
   <script src="script.js"></script>
 </body>
 </html>

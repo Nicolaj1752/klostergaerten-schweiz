@@ -3,3 +3,8 @@
 
 # Interne Notizen, nicht veroeffentlichen
 CLAUDE.md
+
+# Sanity Studio
+node_modules/
+studio/dist/
+studio/.sanity/

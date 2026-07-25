@@ -1,0 +1,23 @@
+{
+  "name": "klostergaerten-studio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Sanity Studio für Klostergärten Schweiz",
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sanity": "^4.10.1",
+    "styled-components": "^6.1.19"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "typescript": "^5.9.2"
+  }
+}
