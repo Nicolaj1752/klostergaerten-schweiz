@@ -38,12 +38,16 @@ body {
   position: relative;
 }
 
-/* Grosser Titel unten links im Foto */
+/* Grosser Titel direkt unter dem Foto.
+   Steht im normalen Fluss, damit er das Bild nicht ueberdeckt. */
 .hero-titel {
-  position: absolute;
-  bottom: 1vw;
-  left: 1.5vw;
+  position: relative;
   z-index: 5;            /* liegt vor den grossen Blumen */
+
+  /* Buendig mit dem Bild: dieses geht randlos bis an den Fensterrand */
+  margin: 0;
+  padding: 0.4vw 0 0.6vw 0;
+  text-align: center;
 
   color: var(--pink);
   font-weight: 600;
@@ -116,7 +120,7 @@ body {
 
 .inhalt {
   position: relative;    /* Bezugspunkt fuer die grossen Blumen */
-  padding: 14vw 3vw 6vw 3vw;
+  padding: 7vw 3vw 6vw 3vw;
 
   /* Fuellt den Rest der Seite, damit die rechte Blume wirklich
      in der unteren Ecke der Seite sitzt und kein Streifen frei bleibt. */
@@ -128,7 +132,7 @@ body {
 .deko-blume {
   position: absolute;
   left: -6vw;
-  top: -14vw;            /* negativer Wert: reicht ins Foto hinein */
+  top: -7vw;             /* negativer Wert: reicht bis zum Titel hoch */
   width: 46vw;
 
   z-index: 2;            /* liegt ueber dem Foto, aber hinter dem Text */
@@ -321,7 +325,7 @@ body.unterseite {
   .hero-titel {
     font-size: 9.8vw;
     white-space: normal;
-    right: 1.5vw;
+    padding: 2vw 0 2vw 0;
   }
 
   /* Spalten untereinander statt nebeneinander */
@@ -343,7 +347,7 @@ body.unterseite {
   }
 
   .inhalt {
-    padding: 22vw 6vw 60px 6vw;
+    padding: 14vw 6vw 60px 6vw;
   }
 
   /* ----- Unterseiten auf dem Handy ----- */
