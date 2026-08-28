@@ -326,6 +326,34 @@ body.unterseite {
   font-weight: 600;
 }
 
+/* ===== Knopf zur neuen Website ===== */
+
+/* Fuehrt von der alten Kontaktseite zum Redesign. Pinke Flaeche mit
+   cremefarbener Schrift - die Umkehrung des uebrigen Textbereichs,
+   damit der Knopf klar als solcher zu erkennen ist. */
+.neue-seite {
+  margin-top: 34px;
+}
+
+.neue-seite-knopf {
+  display: inline-block;
+
+  background-color: var(--pink);
+  color: var(--creme);
+
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+
+  padding: 12px 20px;
+}
+
+.neue-seite-knopf:hover {
+  /* Beim Darueberfahren etwas heller, ohne eine dritte Farbe */
+  background-color: color-mix(in srgb, var(--pink) 85%, var(--creme));
+}
+
 
 /* ===== Handy und kleine Bildschirme ===== */
 
