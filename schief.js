@@ -25,8 +25,11 @@ const KNOPF_MAX = 0.08;   // mehr wuerde der Typografie in die Quere kommen
 const BILD_MIN = 8;       // Pixel
 const BILD_MAX = 11;
 
-const BAND_MIN = 20;      // Pixel
-const BAND_MAX = 24;
+// Grosse Flaechen: 20 % zurueckgenommen (war 20 bis 24). Auf dem Handy
+// sind die Abschnitte schmaler, dort kam die Schraege der Schrift in den
+// Ecken sonst gefaehrlich nahe.
+const BAND_MIN = 16;      // Pixel
+const BAND_MAX = 19;
 
 
 /* ===== Die Regel ===== */
