@@ -500,13 +500,12 @@ body {
 /* Textzeile unter dem Bild. Dasselbe Raster wie .zwei-spalten, damit die
    Angaben rechts genau ueber den Fliesstexten weiter unten beginnen. */
 /* Links die Angaben zum Bild, rechts der Satz dazu.
-   Die Spalten stehen hier umgekehrt zum uebrigen Raster: die Angaben
-   sind kurz und brauchen die schmale Spalte, der Satz die breite.
-   Dadurch beginnt der Satz auf derselben Kante wie die Fliesstexte
-   weiter unten. */
+   Dasselbe Raster wie ueberall sonst auf der Seite: dadurch beginnt der
+   Satz rechts genau auf der Kante, auf der auch die Fliesstexte in den
+   Abschnitten darunter beginnen. */
 .schau-fuss {
   display: grid;
-  grid-template-columns: 1fr 1.35fr;
+  grid-template-columns: var(--spalten);
   gap: var(--spalten-abstand);
   align-items: start;
 
@@ -830,10 +829,17 @@ body {
 }
 
 /* Der TWINT-Block: gruene Flaeche mit Logo und Code.
-   schief.js schneidet ihm als .band eine Ecke schraeg ab. */
+   schief.js schneidet ihm als .band eine Ecke schraeg ab.
+
+   Er steht direkt unter dem Formular und ist gleich breit - so bilden
+   Anmeldung und Zahlung optisch einen Vorgang. Alles darin ist links
+   ausgerichtet, buendig mit den Formularfeldern darueber. */
 .twint {
-  margin-top: 4vw;
-  padding: 4vw var(--seitenrand);
+  margin-top: 3vw;
+  padding: 34px 32px 38px;
+
+  max-width: 46em;
+  text-align: left;
 }
 
 .twint-titel {
@@ -850,7 +856,7 @@ body {
   display: block;
   width: 132px;
   height: auto;
-  margin: 0 auto 28px;
+  margin: 0 0 28px;
 
   mix-blend-mode: screen;
 }
@@ -862,7 +868,7 @@ body {
   line-height: var(--text-zeile);
 
   max-width: 42ch;
-  margin: 26px auto 0;
+  margin: 26px 0 0;
 }
 
 /* Der Code bleibt klein: gescannt wird er vom Handy aus naechster Naehe,
@@ -878,7 +884,7 @@ body {
   width: 160px;
   height: auto;
 
-  margin: 0 auto;
+  margin: 0;
   filter: invert(1);
   mix-blend-mode: screen;
 }
