@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intern – Klostergärten Schweiz</title>
+
+  <!-- Haelt die Seite aus Google und anderen Suchmaschinen heraus -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- Kein data-seite: diese Seite holt nichts aus Sanity -->
+<body class="unterseite">
+
+  <header class="unter-kopf">
+    <a href="index.html" class="zurueck">← Klostergärten Schweiz</a>
+    <h1 class="unter-titel">intern</h1>
+  </header>
+
+  <main class="unter-inhalt">
+
+    <img src="assets/flower_big_rechts.png" alt="" class="deko-blume-rechts" id="deko-blume-rechts">
+
+    <div class="unter-spalten">
+
+      <div>
+        <!-- Hinweis, damit sofort klar ist, wo man gelandet ist -->
+        <div class="intern-hinweis">
+          Interner Arbeitsbereich – nicht im Menü verlinkt und nicht für
+          Kundinnen und Kunden gedacht.
+        </div>
+
+        <div class="abschnitt">
+          <h2>Redesign 2026</h2>
+          <p>
+            <a href="redesign.html" class="text-link">Neue Startseite ansehen</a><br>
+            Klick auf das Visual zeichnet eine neue Variante.
+          </p>
+        </div>
+
+        <div class="abschnitt">
+          <h2>Alle Seiten</h2>
+          <p>
+            <a href="index.html" class="text-link">Startseite</a><br>
+            <a href="wissen.html" class="text-link">wissen</a><br>
+            <a href="projekte.html" class="text-link">projekte</a><br>
+            <a href="ueber-uns.html" class="text-link">über uns</a><br>
+            <a href="kontakt.html" class="text-link">kontakt</a>
+          </p>
+        </div>
+
+        <div class="abschnitt">
+          <h2>Inhalte bearbeiten</h2>
+          <p>
+            Die Texte der Unterseiten liegen im Sanity Studio.
+            Siehe <span class="intern-code">SANITY.md</span> im Projektordner.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <div class="abschnitt">
+          <h2>Notizen</h2>
+          <p>
+            Platz für offene Punkte. Einfach hier im HTML ergänzen.
+          </p>
+        </div>
+
+        <div class="abschnitt">
+          <h2>Zugang</h2>
+          <p>
+            Diese Seite erreicht man von jeder anderen Seite aus mit der
+            Taste <span class="intern-code">i</span>.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Animation der Blume. intern.js fehlt hier absichtlich:
+       auf dieser Seite braucht es die Taste "i" nicht mehr. -->
+  <script src="script.js"></script>
+</body>
+</html>

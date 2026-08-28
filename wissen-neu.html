@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wissen – Klostergärten Schweiz</title>
+
+    <!-- Noch nicht oeffentlich: haelt die Seite aus Suchmaschinen heraus -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="stylesheet" href="redesign.css" />
+  </head>
+  <body>
+    <!-- ===== Kopfzeile =====
+         Wie auf der Startseite, aber ohne Keyvisual: das grosse Visual
+         gehoert der Startseite. Deshalb "hero-innen" statt "hero".
+         Ohne Titel - die Untertitel gliedern die Seite allein. -->
+    <section class="hero-innen hero-ohne-titel">
+      <header class="kopf">
+        <div class="kopf-name">
+          <a href="redesign.html">Verein Klostergärten Schweiz</a>
+        </div>
+
+        <!-- Nur auf dem Handy sichtbar. Die drei Balken schneidet
+             schief.js leicht schraeg an, wie alles andere auch. -->
+        <button
+          class="burger"
+          id="burger"
+          aria-expanded="false"
+          aria-controls="hauptmenue"
+          aria-label="Menü öffnen"
+        >
+          <span class="burger-balken"></span>
+          <span class="burger-balken"></span>
+          <span class="burger-balken"></span>
+        </button>
+
+        <nav id="hauptmenue" class="hauptmenue">
+          <ul class="kopf-menue">
+            <!-- Nur im Burger-Menue sichtbar: auf breiten Schirmen fuehrt
+                 der Vereinsname links zurueck auf die Startseite. -->
+            <li class="nur-menue">
+              <a href="redesign.html" class="knopf"
+                ><span class="knopf-text">Startseite</span></a
+              >
+            </li>
+            <li>
+              <a href="wissen-neu.html" class="knopf"
+                ><span class="knopf-text">Wissen</span></a
+              >
+            </li>
+            <li>
+              <a href="mitgliedschaft-neu.html" class="knopf"
+                ><span class="knopf-text">Mitgliedschaft</span></a
+              >
+            </li>
+            <li>
+              <a href="kontakt-neu.html" class="knopf"
+                ><span class="knopf-text">Kontakt</span></a
+              >
+            </li>
+            <li>
+              <a href="ueber-uns-neu.html" class="knopf"
+                ><span class="knopf-text">Über uns</span></a
+              >
+            </li>
+          </ul>
+
+          <!-- Nur im offenen Burger-Menue sichtbar -->
+          <div class="menue-kontakt">
+            <p>Verein Klostergärten Schweiz</p>
+            <p>Strasse und Nummer</p>
+            <p>PLZ Ort</p>
+            <p>
+              <a href="mailto:info@klostergärten.ch">info@klostergärten.ch</a>
+            </p>
+          </div>
+        </nav>
+      </header>
+
+    </section>
+
+    <!-- ===== Einleitung ===== -->
+    <section class="block">
+      <div class="zwei-spalten">
+        <h2 class="aussage">
+          Hier entsteht ein Inventar zu den Klostergärten in der Schweiz sowie
+          eine Sammlung der hiermit verbundenen Wissensfelder.
+        </h2>
+
+        <p class="fliesstext tief">
+          Ästhetik &amp; Spiritualität, Klosterbotanik &amp; Heilpflanzen sowie
+          Kulinarik &amp; Klosterküche.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Wissensgeschichte (dunkles Band) =====
+         Der Leitsatz steht als grosse Aussage, wie das "Wandel"-Band auf
+         der Startseite. -->
+    <section class="band block dunkel">
+      <p class="marke">Wissensgeschichte</p>
+
+      <h2 class="aussage aussage-halb">
+        Klostergärten sind Orte der Wissensspeicherung und Wissensvermittlung.
+      </h2>
+
+      <p class="fliesstext fliesstext-breit">
+        Über Jahrhunderte wurden hier Kenntnisse über Pflanzen, Ernährung,
+        Heilkunst, Landwirtschaft und Spiritualität bewahrt, weiterentwickelt
+        und weitergegeben.
+      </p>
+    </section>
+
+    <!-- ===== Klostergärten-Inventar ===== -->
+    <section class="block">
+      <p class="marke">Klostergärten-Inventar</p>
+
+      <div class="zwei-spalten">
+        <h2 class="aussage">
+          Das lebendige Inventar dokumentiert die Klostergärten der Schweiz als
+          kulturelle, ökologische und historische Räume.
+        </h2>
+
+        <p class="fliesstext tief">
+          Es macht ihre Vielfalt für Gegenwart und Zukunft sichtbar.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Die drei Wissensfelder =====
+         Drei gleich gebaute Felder nebeneinander. Jedes hat eine Nummer,
+         einen Titel und einen kurzen Text. -->
+    <section class="block">
+      <p class="marke">Wissensfelder</p>
+
+      <div class="felder">
+        <article class="feld">
+          <h2 class="feld-titel">Ästhetik &amp; Spiritualität</h2>
+          <p class="fliesstext">
+            Klostergärten verbinden Schönheit, Ordnung und Kontemplation. Sie
+            sind Ausdruck einer Gartenkultur, in der Natur, Symbolik und
+            Spiritualität seit Jahrhunderten miteinander verwoben sind.
+          </p>
+        </article>
+
+        <article class="feld">
+          <h2 class="feld-titel">Klosterbotanik &amp; Heilpflanzen</h2>
+          <p class="fliesstext">
+            Klostergärten bewahren ein einzigartiges Wissen über Heilpflanzen,
+            Kräuter, Kulturpflanzen und Biodiversität. Sie sind lebendige
+            Archive botanischer Erfahrung und pflanzlicher Vielfalt.
+          </p>
+        </article>
+
+        <article class="feld">
+          <h2 class="feld-titel">Kulinarik &amp; Klosterküche</h2>
+          <p class="fliesstext">
+            Von Heilkräutern über Fastenspeisen bis zu regionalen
+            Spezialitäten: Die Klosterküchen der Schweiz erzählen eine
+            Geschichte von Ernährung, Genuss, Selbstversorgung und kulturellem
+            Wissen.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Fusszeile (dunkles Band) =====
+         Von oben nach unten: Menue, Projektbeteiligte, Gestaltung,
+         zuunterst das Copyright. -->
+    <footer class="band dunkel fusszeile">
+      <nav class="fuss-menue">
+        <a href="wissen-neu.html">Wissen</a>
+        <a href="mitgliedschaft-neu.html">Mitgliedschaft</a>
+        <a href="ueber-uns-neu.html">Über uns</a>
+        <a href="kontakt-neu.html">Kontakt</a>
+        <a href="#">Projekte</a>
+      </nav>
+
+      <div class="fuss-angaben">
+        <p>
+          Projekt von: Iris Becher, Barbara van der Meulen, Nicolaj van der
+          Meulen
+        </p>
+        <p>Konzept und Design: nicolasbirrer.ch</p>
+        <p class="fuss-recht">© 2026 Klostergärten Schweiz. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Das Burger-Menue auf dem Handy -->
+    <script src="menue.js"></script>
+
+    <!-- Ganz zum Schluss: schneidet die schiefen Kanten, wenn alles steht -->
+    <script src="schief.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1118 @@
+/* Styling fuer das Redesign 2026.
+   Die alte style.css bleibt unberuehrt, bis das Redesign uebernommen wird. */
+
+/* ===== Schrift ===== */
+
+/* Satoshi ist eine Variable Font: eine Datei deckt alle Staerken
+   von 300 bis 900 ab. */
+@font-face {
+  font-family: "Satoshi";
+  src: url("assets/fonts/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===== Farben und Grundeinstellungen ===== */
+
+:root {
+  --gruen: #082302; /* Mauer, Schrift, Menue-Kaestchen */
+  --creme: #fdffea; /* Hintergrund und die vier Eingaenge */
+
+  --seitenrand: 3vw; /* an dieser Kante haengt alles */
+  --rand-oben: 1vw; /* knapper als die Seiten, damit der Garten mehr Hoehe bekommt */
+
+  /* Das Spaltenraster der Seite. Beide zweispaltigen Abschnitte greifen
+     darauf zu, damit ihre rechte Spalte auf derselben Kante beginnt. */
+  --spalten: 1.35fr 1fr;
+  --spalten-abstand: 5vw;
+
+  /* ===== Typografie =====
+
+     Saemtliche Schriftgroessen, Staerken und Zeilenabstaende der Seite
+     stehen hier. Weiter unten wird nur noch darauf verwiesen, nirgends
+     mehr eine feste Zahl gesetzt. Zum Anpassen genuegt dieser Block.
+
+     Satoshi ist eine Variable Font, deshalb sind auch Zwischenwerte wie
+     550 echte Staerken und keine Notloesung des Browsers. */
+
+  --schrift: "Satoshi", "Helvetica Neue", Arial, sans-serif;
+
+  /* Der grosse Seitentitel */
+  --titel-groesse: 8.5vw;
+
+  /* Der Titel einer Unterseite. Er besteht nur aus einem kurzen Wort und
+     braucht darum eine groessere Zahl, damit die Zeile ebenfalls bis an
+     den Rand reicht. Der Wert passt auf "Wissen" (sechs Zeichen). */
+  --titel-innen: 27vw;
+  --titel-staerke: 900;
+  --titel-zeile: 1;
+  --titel-sperrung: -0.02em;
+
+  /* Die grossen Aussagesaetze in den Abschnitten */
+  --aussage-groesse: clamp(24px, 2.7vw, 46px);
+  --aussage-staerke: 700;
+  --aussage-zeile: 1.14;
+  --aussage-sperrung: -0.01em;
+
+  /* Der kleinere Begleittext daneben */
+  --text-groesse: 16px;
+  --text-staerke: 500;
+  --text-zeile: 1.55;
+  --text-breite: 32ch; /* rund fuenf deutsche Woerter pro Zeile */
+
+  /* Menue-Knoepfe */
+  --knopf-groesse: 15px;
+  --knopf-staerke: 500;
+
+  /* Der Vereinsname links in der Kopfzeile: 5 % groesser und 10 % fetter
+     als die Knoepfe. Hell auf dunkel traegt optisch auf, gleiche Werte
+     wuerden ungleich wirken. */
+  --name-groesse: 18px;
+  --name-staerke: 600;
+
+  /* Der grosse Aufruf-Knopf */
+  --knopf-gross-groesse: clamp(18px, 1.7vw, 28px);
+  --knopf-gross-staerke: 600;
+
+  /* Der zentrierte Aufruf: Groesse und Staerke kommen von der Aussage,
+     nur der Zeilenabstand ist grosszuegiger, weil der Text mittig steht. */
+  --aufruf-zeile: 1.3;
+
+  /* Alle kleinen Textelemente: Untertitel ueber den Abschnitten,
+     Bildunterschrift und Angaben.
+
+     Sie erben Groesse und Staerke vom Vereinsnamen oben, sind also
+     standardmaessig identisch. Willst du sie einmal unabhaengig davon
+     einstellen, ersetzt du das var(...) hier durch eine feste Zahl -
+     die Kopfzeile bleibt dann unberuehrt. */
+  --klein-groesse: var(--name-groesse);
+  --klein-staerke: var(--name-staerke);
+  --klein-zeile: 1.45;
+
+  /* Fusszeile */
+  --fuss-groesse: 13px;
+  --fuss-staerke: 500;
+  --fuss-zeile: 1.5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--schrift);
+  background-color: var(--creme);
+  color: var(--gruen);
+
+  /* Kein seitliches Scrollen, die Baender gehen bis an den Rand */
+  overflow-x: hidden;
+}
+
+/* ===== Startbild ===== */
+
+/* Kopf, Visual und Titel sollen zusammen ins Fenster passen.
+   Untereinander gestapelt, das Visual nimmt sich, was uebrig bleibt. */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  padding: var(--rand-oben) var(--seitenrand) var(--seitenrand);
+}
+
+.kopf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  flex-shrink: 0; /* die Kopfzeile wird nie zusammengedrueckt */
+  margin-bottom: 1vw;
+}
+
+/* Hell auf dunkel traegt optisch auf: die Knoepfe rechts wirken kraeftiger
+   als der Vereinsname, obwohl beide gleich gesetzt waeren. Deshalb bekommt
+   der Name 5 % mehr Groesse und 10 % mehr Staerke als die 15px/500 der
+   Knoepfe - damit beide gleich wirken. */
+.kopf-name {
+  font-size: var(--name-groesse);
+  font-weight: var(--name-staerke);
+}
+
+.kopf-menue {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+}
+
+/* ===== Burger-Knopf =====
+
+   Auf breiten Schirmen ist er weg, dort stehen die Knoepfe nebeneinander.
+   Eingeblendet wird er erst in der Handy-Ansicht ganz unten. */
+.burger {
+  display: none;
+
+  background: none;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+
+  flex-direction: column;
+  gap: 5px;
+  width: 30px;
+}
+
+/* Die drei Balken. schief.js schneidet jedem eine Ecke ab, dadurch steht
+   auch hier eine Kante leicht schief - wie bei Knoepfen und Baendern. */
+.burger-balken {
+  display: block;
+  width: 100%;
+  height: 5px;
+  background-color: var(--gruen);
+}
+
+/* Auf dunklem Grund umgekehrt */
+.dunkel .burger-balken {
+  background-color: var(--creme);
+}
+
+/* Der Startseiten-Knopf gehoert nur ins Burger-Menue. Auf breiten
+   Schirmen fuehrt der Vereinsname links zurueck, dort waere er doppelt. */
+.nur-menue {
+  display: none;
+}
+
+/* Die Kontaktdaten im offenen Menue. Ausserhalb bleiben sie verborgen. */
+.menue-kontakt {
+  display: none;
+
+  font-size: var(--klein-groesse);
+  font-weight: var(--klein-staerke);
+  line-height: var(--klein-zeile);
+}
+
+.menue-kontakt a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Das SVG nimmt die Hoehe, die zwischen Kopfzeile und Titel uebrig bleibt.
+   Die Zeichnung misst diese Flaeche selbst und fuellt sie ganz aus - deshalb
+   hier kein festes Seitenverhaeltnis.
+   Die Aussenkante der Mauer sitzt genau auf der Kante des SVG, deshalb ist
+   der Titel darunter automatisch buendig. */
+.keyvisual {
+  display: block;
+  width: 100%;
+
+  flex: 1 1 0;
+  min-height: 220px; /* ohne das wuerde es auf flachen Fenstern verschwinden */
+
+  cursor: pointer; /* Klick wuerfelt eine neue Variante */
+}
+
+/* Der Klostername neben dem Kreis im Keyvisual. Bei jedem Wuerfeln steht
+   dort ein anderes Kloster aus kloester.js.
+   Groesse und Staerke sind dieselben wie beim Vereinsnamen in der
+   Kopfzeile - deshalb dieselben Variablen. keyvisual.js liest die Groesse
+   von hier aus, um den Zeilenabstand zu berechnen.
+   SVG-Text wird ueber fill eingefaerbt, nicht ueber color. */
+.garten-name {
+  font-size: var(--name-groesse);
+  font-weight: var(--name-staerke);
+  fill: var(--gruen);
+}
+
+.titel {
+  /* Beide Woerter stehen auf einer Zeile. 8.5vw ist die Groesse, bei der
+     "Klostergärten Schweiz" genau in die Seitenbreite passt - deshalb hier
+     kein clamp, sonst wuerde die Zeile auf kleinen Schirmen ueberlaufen.
+     Weil der Titel nur noch eine Zeile hoch ist, bleibt dem Garten
+     darueber entsprechend mehr Platz. */
+  font-size: var(--titel-groesse);
+  font-weight: var(--titel-staerke);
+  line-height: var(--titel-zeile);
+  letter-spacing: var(--titel-sperrung);
+  white-space: nowrap;
+
+  flex-shrink: 0; /* der Titel wird nie zusammengedrueckt */
+  margin-top: 1.5vw;
+}
+
+/* ===== Kopf der Unterseiten ===== */
+
+/* Wie das Startbild, aber ohne Keyvisual: das grosse Visual bleibt der
+   Startseite vorbehalten. Ohne das Visual braucht es auch keine volle
+   Fensterhoehe - der Titel schliesst direkt an die Kopfzeile an. */
+.hero-innen {
+  padding: var(--rand-oben) var(--seitenrand) 2vw;
+}
+
+/* Der Titel einer Unterseite ist ein einzelnes kurzes Wort. Bei der
+   Groesse der Startseite (8.5vw) fuellt "Wissen" nur rund ein Drittel der
+   Zeile und wirkt dadurch viel kleiner als "Klostergärten Schweiz", das
+   die Zeile fast ganz ausfuellt.
+   Deshalb bekommt er eine eigene, deutlich groessere Zahl: die Zeile soll
+   auch hier bis an den Rand reichen. Fuer ein laengeres Wort als "Wissen"
+   muss die Zahl entsprechend kleiner werden - sie steht in --titel-innen.
+
+   Der Abstand nach oben ist ein Anteil der Schriftgroesse (em) und nicht
+   der Fensterbreite: bei line-height 1 ist der Zeilenkasten hoeher als die
+   Buchstaben, er wuerde sonst in die Kopfzeile ragen. Weil er mit der
+   Schrift mitwaechst, stimmt der Abstand in jeder Fenstergroesse. */
+.hero-innen .titel {
+  font-size: var(--titel-innen);
+  margin-top: 0.22em;
+}
+
+/* Eine Unterseite ohne Titel: dann tragen die Untertitel die Gliederung
+   allein. Ohne den Titel faellt die Kopfzeile direkt auf den Inhalt,
+   deshalb hier der Abstand, den sonst der Titel mitbringt. */
+.hero-ohne-titel {
+  padding-bottom: 0;
+}
+
+/* ===== Eine Seite, die ganz ins Fenster passt ===== */
+
+/* Fuer kurze Seiten wie den Kontakt: Kopf oben, Inhalt in der Mitte,
+   Fusszeile unten am Fensterrand - ohne Scrollen.
+   100svh statt 100vh: auf dem Handy meint svh die Hoehe MIT eingeblendeter
+   Adressleiste. Mit vh waere die Seite genau um diese Leiste zu hoch und
+   liesse sich doch scrollen. */
+.eine-seite {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dieser Abschnitt nimmt die Hoehe, die zwischen Kopf und Fusszeile
+   uebrig bleibt, und legt seinen Inhalt mittig hinein.
+   Oben und unten ohne festen Abstand: der Platz kommt hier aus der
+   Verteilung, nicht aus dem Polster. Sonst passte auf flachen Fenstern
+   nicht mehr alles hinein. */
+.block-fuellt {
+  flex: 1 1 auto;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Die Fusszeile wird nie zusammengedrueckt und bleibt unten stehen.
+   Sie faellt hier knapper aus als auf den langen Seiten, damit dem
+   Inhalt darueber genug Platz bleibt. Oben behaelt sie die 62px, sonst
+   schneidet die Schraege aus schief.js in die erste Zeile. */
+.eine-seite .fusszeile {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-bottom: 2vw;
+}
+
+.eine-seite .fuss-oben {
+  margin-bottom: 2vw;
+}
+
+/* Der Vereinsname fuehrt zurueck auf die Startseite. Er soll dabei
+   aussehen wie vorher, also keine Linie und dieselbe Farbe. */
+.kopf-name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===== Bausteine, die auf der ganzen Seite wiederkehren ===== */
+
+/* Ein normaler Abschnitt */
+.block {
+  padding: 7vw var(--seitenrand);
+}
+
+/* Ein farbiges Band. schief.js schneidet eine Ecke davon ab, dadurch
+   entsteht die schraege Kante zum naechsten Abschnitt. */
+.band {
+  position: relative;
+}
+
+.dunkel {
+  background-color: var(--gruen);
+  color: var(--creme);
+}
+
+/* Die kleine Ueberschrift ueber einem Abschnitt */
+.marke {
+  font-size: var(--klein-groesse);
+  font-weight: var(--klein-staerke);
+  margin-bottom: 22px;
+}
+
+/* Der grosse Aussagesatz */
+.aussage {
+  font-size: var(--aussage-groesse);
+  font-weight: var(--aussage-staerke);
+  line-height: var(--aussage-zeile);
+  letter-spacing: var(--aussage-sperrung);
+}
+
+/* Nimmt nur die halbe Breite ein */
+.aussage-halb {
+  max-width: 62%;
+}
+
+/* Der kleinere Begleittext daneben.
+   32ch entspricht rund fuenf deutschen Woertern pro Zeile - ch ist die
+   Breite einer Ziffer, waechst also mit der Schriftgroesse mit. */
+.fliesstext {
+  font-size: var(--text-groesse);
+  font-weight: var(--text-staerke);
+  line-height: var(--text-zeile);
+  max-width: var(--text-breite);
+}
+
+/* Beginnt oben, buendig mit der ersten Zeile der Aussage daneben.
+
+   align-self: start stellt schon beide Zeilenkaesten auf dieselbe Hoehe.
+   Uebrig bleibt nur der Unterschied, den die Schrift selbst mitbringt:
+   in der grossen Aussage ist ueber den Buchstaben mehr Luft als im
+   kleinen Text. Die 4px holen genau das zurueck.
+
+   Ein fester Wert und kein gerechneter: der Unterschied haengt an den
+   Metriken von Satoshi und der Zeilenhoehe der beiden Stile, nicht an
+   der Schriftgroesse - er bleibt in jeder Fenstergroesse gleich gross.
+   Nachgemessen bei 1440, 1024 und 800 px. */
+.fliesstext.tief {
+  align-self: start;
+  margin-top: -4px;
+}
+
+/* Ein Link mitten im Fliesstext. Er traegt die Linie von Anfang an -
+   im laufenden Text ist er sonst nicht als Link zu erkennen. */
+.fliesstext a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Steht allein unter einer Aussage statt in einer eigenen Spalte. Dort
+   sind 32ch zu schmal - der Text wirkt sonst wie eine vergessene Spalte. */
+.fliesstext-breit {
+  max-width: 52ch;
+  margin-top: 2.5vw;
+}
+
+/* Grosse Aussage links, schmalerer Text rechts */
+.zwei-spalten {
+  display: grid;
+  grid-template-columns: var(--spalten);
+  gap: var(--spalten-abstand);
+  align-items: start;
+}
+
+/* ===== Knoepfe ===== */
+
+/* Gruene Flaeche, cremefarbene Schrift, scharfe Ecken.
+   Eine Ecke wird von schief.js abgeschnitten. */
+.knopf {
+  display: inline-block;
+  position: relative;
+  background-color: var(--gruen);
+  color: var(--creme);
+
+  font-size: var(--knopf-groesse);
+  font-weight: var(--knopf-staerke);
+  text-decoration: none;
+
+  padding: 7px 12px;
+  transition: background-color 0.25s ease;
+}
+
+/* Beim Hover wird die Flaeche nur leicht heller - keine Kontur, kein
+   Farbwechsel der Schrift. Das Aufhellen macht color-mix: es mischt dem
+   Gruen einen Anteil Creme bei, so bleiben die beiden Farben der Seite
+   unter sich. */
+.knopf:hover {
+  background-color: color-mix(in srgb, var(--gruen) 88%, var(--creme));
+}
+
+/* Der Text muss ueber der Flaeche liegen */
+.knopf-text {
+  position: relative;
+}
+
+/* Auf dunklem Grund dreht sich das Ganze um: helle Flaeche, die beim
+   Hover einen Anteil Gruen bekommt und dadurch leicht abdunkelt. */
+.dunkel .knopf {
+  background-color: var(--creme);
+  color: var(--gruen);
+}
+
+.dunkel .knopf:hover {
+  background-color: color-mix(in srgb, var(--creme) 88%, var(--gruen));
+}
+
+/* Der grosse Aufruf-Knopf */
+.knopf-gross {
+  font-size: var(--knopf-gross-groesse);
+  font-weight: var(--knopf-gross-staerke);
+  padding: 16px 26px;
+}
+
+/* ===== Abschnitt "Was wir machen" ===== */
+
+/* Aussage links, Knopf rechts daneben.
+   end = der Knopf sitzt auf derselben Grundlinie wie die letzte Textzeile,
+   text-align rechts = er schliesst buendig mit dem Seitenrand ab. */
+.machen-reihe {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 5vw;
+  align-items: center;
+}
+
+.machen-knopf {
+  text-align: center;
+}
+
+/* ===== Bilderschau ===== */
+
+.schau {
+  padding: 0 var(--seitenrand) 4vw;
+}
+
+/* Alle Bilder liegen uebereinander, sichtbar ist immer nur eines */
+.schau-buehne {
+  position: relative;
+  aspect-ratio: 16 / 9;
+}
+
+.schau-bild {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.schau-bild.sichtbar {
+  opacity: 1;
+}
+
+/* Textzeile unter dem Bild. Dasselbe Raster wie .zwei-spalten, damit die
+   Angaben rechts genau ueber den Fliesstexten weiter unten beginnen. */
+/* Links die Angaben zum Bild, rechts der Satz dazu.
+   Die Spalten stehen hier umgekehrt zum uebrigen Raster: die Angaben
+   sind kurz und brauchen die schmale Spalte, der Satz die breite.
+   Dadurch beginnt der Satz auf derselben Kante wie die Fliesstexte
+   weiter unten. */
+.schau-fuss {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: var(--spalten-abstand);
+  align-items: start;
+
+  padding-top: 18px;
+}
+
+.schau-text,
+.schau-info {
+  font-size: var(--klein-groesse);
+  font-weight: var(--klein-staerke);
+  line-height: var(--klein-zeile);
+}
+
+.schau-text {
+  max-width: 300px;
+}
+
+/* ===== Bilder ===== */
+
+/* Die Fotos zeigen ihre eigenen Farben. Kein Hover-Effekt. */
+.bild {
+  position: relative;
+  overflow: hidden;
+}
+
+.bild img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Ladeanimation: ein heller Streifen wandert ueber die Flaeche, solange das
+   Foto noch nicht da ist. bilder.js nimmt die Klasse weg, sobald es geladen
+   ist. Nur im Raster - das grosse Bild steht weit oben und ist sofort da. */
+.bild-laedt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background: linear-gradient(100deg, #e6e9d2 30%, #f5f8e2 50%, #e6e9d2 70%);
+  background-size: 300% 100%;
+  animation: laden 1.4s linear infinite;
+}
+
+@keyframes laden {
+  from {
+    background-position: 150% 0;
+  }
+  to {
+    background-position: -150% 0;
+  }
+}
+
+/* Leichter Zoom beim Darueberfahren, nur im Raster */
+.bilder-raster .bild img {
+  transition: transform 0.6s ease;
+}
+
+.bilder-raster .bild:hover img {
+  transform: scale(1.05);
+}
+
+/* Wer im Betriebssystem weniger Bewegung eingestellt hat, bekommt keine */
+@media (prefers-reduced-motion: reduce) {
+  .bild-laedt::after {
+    animation: none;
+  }
+
+  .bilder-raster .bild:hover img {
+    transform: none;
+  }
+}
+
+/* Das Raster der Eindruecke */
+.bilder-raster {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.bilder-raster .bild {
+  aspect-ratio: 4 / 3;
+}
+
+/* Ein zweiter Untertitel weiter unten im selben Abschnitt. Er braucht
+   Luft nach oben, sonst klebt er am Block darueber. */
+.marke-weiter {
+  margin-top: 5vw;
+}
+
+/* ===== Anschrift auf der Kontaktseite ===== */
+
+/* Groesse und Staerke kommen von .aussage. Das <address>-Element steht in
+   Browsern von Haus aus kursiv - das wird hier zurueckgestellt. */
+.anschrift {
+  font-style: normal;
+}
+
+/* Die Mailadresse sieht aus wie der Text daneben und bekommt die Linie
+   erst beim Darueberfahren. */
+.anschrift a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.anschrift a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Wissensfelder ===== */
+
+/* Drei gleich breite Spalten nebeneinander. Auf dem Handy werden daraus
+   drei Zeilen (siehe ganz unten). */
+.felder {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spalten-abstand);
+}
+
+/* Der Titel eines Feldes - auch die Namen im Projektteam.
+   Er nimmt die grosse Schrift der Aussage: das Typografie-System kennt
+   nur drei Groessen (gross, Untertitel, Fliesstext), eine eigene Zwischen-
+   groesse waere die vierte. */
+.feld-titel {
+  font-size: var(--aussage-groesse);
+  font-weight: var(--aussage-staerke);
+  line-height: var(--aussage-zeile);
+  letter-spacing: var(--aussage-sperrung);
+
+  margin-bottom: 22px;
+}
+
+/* Namen stehen immer auf einer Zeile.
+
+   Die Groesse haengt hier an der SPALTENBREITE, nicht an der Fenster-
+   breite: cqw ist ein Prozent der Spalte. "Barbara van der Meulen" ist
+   der laengste Name und braucht rund 13.5 % der Spalte pro Zeichen -
+   daraus die 8.2cqw. Der Deckel var(--aussage-groesse) sorgt dafuer,
+   dass die Namen auf breiten Schirmen nicht groesser werden als die
+   uebrige grosse Schrift.
+
+   white-space: nowrap ist die Sicherung: sollte ein noch laengerer Name
+   dazukommen, bricht er trotzdem nicht um, sondern ragt sichtbar heraus -
+   dann gehoert die Zahl angepasst. */
+.feld-name {
+  font-size: min(8.2cqw, var(--aussage-groesse));
+  white-space: nowrap;
+}
+
+/* In der schmalen Spalte darf der Text die ganze Spaltenbreite nutzen */
+.feld .fliesstext {
+  max-width: none;
+}
+
+/* Macht die Spalte zur Bezugsgroesse fuer cqw weiter oben: die Namen
+   richten sich nach der Breite ihrer Spalte, nicht nach dem Fenster. */
+.feld {
+  container-type: inline-size;
+}
+
+/* ===== Mitgliedschaft ===== */
+
+/* Die Vorteile als Aufzaehlung, ohne Zeichen davor: der Abstand zwischen
+   den Punkten gliedert sie deutlich genug. */
+.vorteile {
+  list-style: none;
+
+  font-size: var(--aussage-groesse);
+  font-weight: var(--aussage-staerke);
+  line-height: var(--aussage-zeile);
+  letter-spacing: var(--aussage-sperrung);
+}
+
+/* Der Abstand ist ein Anteil der Schriftgroesse (em), waechst also mit
+   ihr mit. Zwischen den Punkten steht dadurch immer rund eine Leerzeile. */
+.vorteile li + li {
+  margin-top: 0.9em;
+}
+
+/* Die Beitraege: Art der Mitgliedschaft und Betrag nebeneinander, mit
+   einer Linie zwischen den Zeilen. */
+.beitraege {
+  border-top: 1px solid currentColor;
+  max-width: 46em;
+}
+
+.beitrag {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 14px 0;
+  border-bottom: 1px solid currentColor;
+
+  /* Die Groesse der Untertitel: die Beitraege sind eine Aufstellung,
+     keine Ueberschrift. Gross gesetzt truegen sie viel zu dick auf. */
+  font-size: var(--klein-groesse);
+  font-weight: var(--klein-staerke);
+  line-height: var(--klein-zeile);
+}
+
+/* Der Betrag steht rechts und wird nie umgebrochen */
+.beitrag dd {
+  white-space: nowrap;
+}
+
+/* ===== Anmeldeformular ===== */
+
+.formular {
+  margin-top: 4vw;
+  max-width: 46em;
+}
+
+/* Zwei Felder nebeneinander. Auf dem Handy untereinander (siehe unten). */
+.feld-reihe {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Beschriftung ueber dem Feld. label umschliesst beides, dadurch
+   springt der Cursor auch beim Klick auf die Beschriftung ins Feld. */
+.formular-feld {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.formular-name {
+  display: block;
+  font-size: var(--klein-groesse);
+  font-weight: var(--klein-staerke);
+  margin-bottom: 8px;
+}
+
+/* Die Eingabefelder. Browser setzen darin von Haus aus ihre eigene
+   Schrift - font: inherit holt Satoshi zurueck.
+   Nur eine Linie unten statt eines Kastens: das passt zu den geraden
+   Kanten der Seite und traegt weniger auf. */
+.formular input,
+.formular select,
+.formular textarea {
+  display: block;
+  width: 100%;
+
+  font: inherit;
+  font-size: var(--text-groesse);
+  color: inherit;
+
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--gruen);
+  border-radius: 0;
+
+  padding: 10px 0;
+}
+
+.formular textarea {
+  resize: vertical;
+}
+
+/* Das ausgewaehlte Feld wird deutlich dicker unterstrichen */
+.formular input:focus,
+.formular select:focus,
+.formular textarea:focus {
+  outline: none;
+  border-bottom-width: 4px;
+  padding-bottom: 8px; /* haelt die Hoehe gleich, nichts springt */
+}
+
+/* Der Knopf ist hier ein <button>, kein <a>. Browser geben Knoepfen
+   eigene Schrift und Raender - beides wird hier zurueckgestellt, damit
+   er wie die uebrigen Knoepfe der Seite aussieht. */
+.formular button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  margin-top: 1vw;
+}
+
+/* Der Honigtopf gegen Spam. Er muss im Seitenfluss unsichtbar sein, aber
+   fuer Roboter ausfuellbar bleiben - display: none wuerde ihn auch fuer
+   die unsichtbar machen, die er fangen soll. */
+.versteckt {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
+/* Der Hinweis nach dem Absenden */
+.formular-hinweis {
+  font-size: var(--text-groesse);
+  font-weight: var(--text-staerke);
+  line-height: var(--text-zeile);
+
+  max-width: 46ch;
+  margin-top: 2vw;
+}
+
+/* Der kleine Hinweis unter dem Aufruf-Knopf */
+.aufruf-fuss {
+  font-size: var(--klein-groesse);
+  font-weight: var(--klein-staerke);
+  margin-top: 2.5vw;
+}
+
+/* Der TWINT-Code unter dem Knopf */
+.twint {
+  margin-top: 4vw;
+}
+
+/* Der Code bleibt klein: gescannt wird er vom Handy aus naechster Naehe,
+   gross gesetzt truege er auf der Seite viel zu dick auf.
+   Kein schiefer Schnitt und kein Filter - ein QR-Code muss unveraendert
+   bleiben, sonst liest ihn die Kamera nicht mehr.
+   Das Weiss ringsum gehoert dazu (Quiet Zone): ohne diesen Rand findet
+   die Kamera den Code nicht. Deshalb liegt er auf weissem Grund und
+   nicht auf dem Creme der Seite. */
+.twint-code {
+  display: block;
+  width: 160px;
+  height: auto;
+
+  margin: 18px auto 0;
+  padding: 12px;
+  background-color: #fff;
+}
+
+/* ===== Aufruf ===== */
+
+.aufruf {
+  text-align: center;
+  padding-top: 9vw;
+  padding-bottom: 9vw;
+}
+
+/* Groesse und Staerke kommen von .aussage */
+.aufruf-text {
+  line-height: var(--aufruf-zeile);
+  margin-bottom: 4vw;
+}
+
+/* ===== Fusszeile ===== */
+
+/* Oben muss mindestens die tiefste Schraege aus schief.js Platz haben
+   (BAND_MAX = 48px), sonst schneidet die Kante in die erste Textzeile.
+   6vw allein reicht dafuer nur auf breiten Fenstern: auf dem Handy sind
+   das noch 23px. Darum der max()-Wert mit etwas Luft. */
+.fusszeile {
+  padding: max(6vw, 62px) var(--seitenrand) 2.5vw;
+
+  font-size: var(--fuss-groesse);
+  font-weight: var(--fuss-staerke);
+  line-height: var(--fuss-zeile);
+}
+
+/* Die Angaben stehen untereinander: Projektbeteiligte, Gestaltung,
+   zuunterst das Copyright. */
+.fuss-angaben {
+  margin-top: 3vw;
+}
+
+/* Das Copyright bekommt etwas Luft nach oben - es gehoert nicht mehr zu
+   den Angaben darueber, sondern schliesst die Seite ab. */
+.fuss-recht {
+  margin-top: 1.5em;
+}
+
+/* Die Links stehen in einer Reihe. Auf schmalen Handys passen die fuenf
+   nicht mehr nebeneinander - dann rutschen sie in eine zweite Zeile,
+   statt die Seite breiter zu machen. */
+.fuss-menue {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px;
+}
+
+.fuss-menue a {
+  color: var(--creme);
+  text-decoration: none;
+  font-weight: var(--klein-staerke);
+}
+
+.fuss-menue a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Handy und kleine Bildschirme ===== */
+
+@media (max-width: 700px) {
+  :root {
+    --seitenrand: 6vw;
+    --rand-oben: 4vw; /* auf dem Handy nicht ganz so knapp */
+
+    /* Auf dem Handy stehen die beiden Woerter des Titels untereinander
+       (siehe .titel weiter unten). Jede Zeile hat damit die ganze Breite
+       fuer sich, deshalb darf die Schrift deutlich groesser werden als
+       die 8.5vw der breiten Ansicht.
+       Die Grenze setzt das laengere Wort "Klostergärten": ab 13.9vw ragt
+       es aus der Seite. 13.5vw laesst etwas Luft. */
+    --titel-groesse: 13.5vw;
+    --titel-innen: 25vw;
+  }
+
+  /* ===== Kopfzeile mit Burger-Menue =====
+
+     Vereinsname links, Burger-Knopf rechts daneben. Das Menue selbst
+     klappt darunter auf.
+
+     Die Kopfzeile klebt oben am Fensterrand und bleibt beim Scrollen
+     stehen. Beim Runterscrollen faehrt sie weg, beim Hochscrollen kommt
+     sie zurueck - so ist das Menue jederzeit erreichbar, ohne dauernd
+     Platz wegzunehmen. Das Umschalten macht menue.js ueber die Klasse
+     "kopf-weg" am body.
+
+     Der Hintergrund muss sein: der Inhalt scrollt darunter durch. */
+  .kopf {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+
+    /* fixed und nicht sticky: sticky wuerde nur innerhalb des eigenen
+       Abschnitts kleben und beim Verlassen des Startbilds mitscrollen.
+       Die Kopfzeile soll aber ueber der ganzen Seite stehen bleiben. */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+
+    background-color: var(--creme);
+    padding: var(--rand-oben) var(--seitenrand) 10px;
+    margin-bottom: 0;
+
+    transition: transform 0.3s ease;
+  }
+
+  /* Die Kopfzeile ist aus dem Fluss genommen und wuerde den Inhalt
+     ueberdecken. Der obere Rand der Seite haelt den Platz dafuer frei. */
+  .hero,
+  .hero-innen {
+    padding-top: 74px;
+  }
+
+  /* Weggefahren. 130 % statt 100 %, damit auch das aufgeklappte Menue
+     mit nach oben verschwindet und nicht am Rand hervorlugt. */
+  .kopf-weg .kopf {
+    transform: translateY(-130%);
+  }
+
+  /* Die Kopfzeile liegt jetzt ueber der ganzen Seite und gehoert zu
+     keinem Abschnitt mehr. Sie bleibt darum immer cremefarben, auch
+     ueber einem dunklen Band - eine mitwandernde Farbe waere beim
+     Scrollen ein staendiges Umspringen. */
+
+  .burger {
+    display: flex; /* auf dem Handy sichtbar */
+    flex-shrink: 0;
+  }
+
+  /* Zugeklappt: das Menue ist weg. Kein display:none, sondern Hoehe 0 -
+     so laesst es sich weich auf- und zuklappen.
+
+     Der Hintergrund ist leicht durchscheinend und verschwimmt, was
+     darunter liegt: das Keyvisual bleibt zu ahnen, stoert die Schrift
+     aber nicht mehr.
+     92 % Deckkraft klingt nach wenig Unterschied, genuegt zusammen mit
+     dem Weichzeichner aber - bei weniger wird die Schrift unruhig.
+     z-index haelt das Menue ueber dem Visual, das sonst darueber laege. */
+  .hauptmenue {
+    position: absolute;
+    top: 100%;
+    z-index: 10;
+
+    /* Die Kopfzeile ist fixed und schon fensterbreit. Das Menue spannt
+       sich darin ueber die volle Breite und setzt den Seitenrand selbst:
+       ihr padding wirkt auf absolut liegende Kinder nicht.
+       So steht der Hintergrund von Rand zu Rand, Knoepfe und Kontakt
+       aber auf derselben Kante wie der Vereinsname darueber. */
+    left: 0;
+    right: 0;
+    padding-left: var(--seitenrand);
+    padding-right: var(--seitenrand);
+
+    background-color: color-mix(in srgb, var(--creme) 92%, transparent);
+    backdrop-filter: blur(14px);
+
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+  }
+
+  /* Wo backdrop-filter fehlt, deckt der Hintergrund voll - sonst laege
+     die Schrift auf dem ungefilterten Inhalt und waere schwer zu lesen. */
+  @supports not (backdrop-filter: blur(1px)) {
+    .hauptmenue {
+      background-color: var(--creme);
+    }
+  }
+
+  /* Aufgeklappt. Der Wert ist bewusst grosszuegig: max-height laesst sich
+     nur zu einer festen Zahl hin weich bewegen, nicht zu "auto". Er muss
+     also groesser sein als das Menue je wird. */
+  .menue-offen .hauptmenue {
+    max-height: 80vh;
+  }
+
+  /* Die Knoepfe untereinander, jeder ueber die ganze Breite */
+  .kopf-menue {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+
+    padding-top: 18px;
+  }
+
+  .kopf-menue .knopf {
+    text-align: center;
+  }
+
+  /* Im Burger-Menue kommt der Startseiten-Knopf dazu */
+  .nur-menue {
+    display: block;
+  }
+
+  /* Die Kontaktdaten unter den Knoepfen */
+  .menue-kontakt {
+    display: block;
+    padding: 22px 0 24px;
+  }
+
+  .block {
+    padding: 14vw var(--seitenrand);
+  }
+
+  /* Alles untereinander statt nebeneinander */
+  .zwei-spalten,
+  .machen-reihe,
+  .felder {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  /* Untereinander stehen die Felder naeher zusammen als nebeneinander */
+  .felder {
+    gap: 40px;
+  }
+
+  .machen-knopf {
+    text-align: left;
+  }
+
+  .aussage-halb {
+    max-width: none;
+  }
+
+  /* Zwei statt drei Spalten */
+  .bilder-raster {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  /* Angaben unter den Text */
+  .schau-fuss {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Beitrag und Betrag untereinander statt nebeneinander: nebeneinander
+     bliebe fuer die langen Bezeichnungen zu wenig Platz. */
+  .beitrag {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* Formularfelder untereinander */
+  .feld-reihe {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* Der Titel bricht auf dem Handy um: "Klostergärten" und "Schweiz"
+     stehen untereinander. Nebeneinander muesste die Schrift so klein
+     werden, dass die Zeile ihre Wirkung verliert.
+     nowrap wird dafuer aufgehoben, den Umbruch erzwingt der Zeilenumbruch
+     im HTML nicht - er kommt von allein, weil eine Zeile zu breit waere. */
+  .titel {
+    white-space: normal;
+  }
+
+  /* Die Links der Fusszeile untereinander statt in einer Reihe */
+  .fuss-menue {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1em;
+  }
+
+  .fuss-unten {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -288,6 +288,31 @@ body.unterseite {
   opacity: 0.9;
 }
 
+/* ===== Interne Seite (intern.html) ===== */
+
+/* Deutlich sichtbarer Hinweis, damit die Seite nie mit einer
+   oeffentlichen verwechselt wird. */
+.intern-hinweis {
+  border: 1px solid var(--pink);
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin-bottom: 26px;
+
+  color: var(--pink);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Dateinamen und Tasten im Fliesstext */
+.intern-code {
+  font-family: monospace;
+  font-size: 13px;
+  background-color: #EFE2CC;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
 /* Kontaktangaben */
 .kontakt-block {
   color: var(--pink);

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Über uns – Klostergärten Schweiz</title>
+
+    <!-- Noch nicht oeffentlich: haelt die Seite aus Suchmaschinen heraus -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="stylesheet" href="redesign.css" />
+  </head>
+  <body>
+    <!-- ===== Kopfzeile =====
+         Wie auf den anderen Unterseiten: ohne Keyvisual und ohne Titel,
+         die Untertitel gliedern die Seite allein. -->
+    <section class="hero-innen hero-ohne-titel">
+      <header class="kopf">
+        <div class="kopf-name">
+          <a href="redesign.html">Verein Klostergärten Schweiz</a>
+        </div>
+
+        <!-- Nur auf dem Handy sichtbar. Die drei Balken schneidet
+             schief.js leicht schraeg an, wie alles andere auch. -->
+        <button
+          class="burger"
+          id="burger"
+          aria-expanded="false"
+          aria-controls="hauptmenue"
+          aria-label="Menü öffnen"
+        >
+          <span class="burger-balken"></span>
+          <span class="burger-balken"></span>
+          <span class="burger-balken"></span>
+        </button>
+
+        <nav id="hauptmenue" class="hauptmenue">
+          <ul class="kopf-menue">
+            <!-- Nur im Burger-Menue sichtbar: auf breiten Schirmen fuehrt
+                 der Vereinsname links zurueck auf die Startseite. -->
+            <li class="nur-menue">
+              <a href="redesign.html" class="knopf"
+                ><span class="knopf-text">Startseite</span></a
+              >
+            </li>
+            <li>
+              <a href="wissen-neu.html" class="knopf"
+                ><span class="knopf-text">Wissen</span></a
+              >
+            </li>
+            <li>
+              <a href="mitgliedschaft-neu.html" class="knopf"
+                ><span class="knopf-text">Mitgliedschaft</span></a
+              >
+            </li>
+            <li>
+              <a href="kontakt-neu.html" class="knopf"
+                ><span class="knopf-text">Kontakt</span></a
+              >
+            </li>
+            <li>
+              <a href="ueber-uns-neu.html" class="knopf"
+                ><span class="knopf-text">Über uns</span></a
+              >
+            </li>
+          </ul>
+
+          <!-- Nur im offenen Burger-Menue sichtbar -->
+          <div class="menue-kontakt">
+            <p>Verein Klostergärten Schweiz</p>
+            <p>Strasse und Nummer</p>
+            <p>PLZ Ort</p>
+            <p>
+              <a href="mailto:info@klostergärten.ch">info@klostergärten.ch</a>
+            </p>
+          </div>
+        </nav>
+      </header>
+    </section>
+
+    <!-- ===== Der Verein ===== -->
+    <section class="block">
+      <p class="marke">Der Verein</p>
+
+      <div class="zwei-spalten">
+        <h2 class="aussage">
+          Klostergärten Schweiz ist eine Initiative zur Erforschung,
+          Dokumentation, Vernetzung und Vermittlung der Schweizer
+          Klostergärten.
+        </h2>
+
+        <p class="fliesstext tief">
+          Der Verein Klostergärten der Schweiz ist aktuell im Aufbau. Er bildet
+          die Trägerschaft und schafft die Grundlage für eine langfristige
+          Zusammenarbeit von Klöstern, Fachpersonen und Interessierten.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Die drei Personen =====
+         Gleicher Aufbau wie die Wissensfelder: drei Spalten nebeneinander,
+         auf dem Handy untereinander. -->
+    <section class="block">
+      <p class="marke">Projektteam</p>
+
+      <div class="felder">
+        <article class="feld">
+          <h2 class="feld-titel feld-name">Iris Becher</h2>
+          <p class="fliesstext">
+            Kunsthistorikerin und Literaturwissenschaftlerin in Basel, seit
+            vielen Jahren im Schweizer Verlagswesen tätig. Als Autorin und
+            Herausgeberin verbindet sie kulturhistorische Recherche mit
+            journalistischer Vermittlung und bringt ihre Erfahrung mit
+            publikumsnahen Buchkonzepten ins Projekt ein.
+          </p>
+        </article>
+
+        <article class="feld">
+          <h2 class="feld-titel feld-name">Barbara van der Meulen</h2>
+          <p class="fliesstext">
+            Kunsthistorikerin, Kuratorin und Kulturvermittlerin. Seit 2015
+            leitet sie den Kulturbereich im Kloster Dornach und seit 2019
+            dessen Klostergarten – sie verbindet damit kunsthistorische
+            Forschung mit praktischer Erfahrung im Umgang mit klösterlichem
+            Kulturerbe.
+          </p>
+        </article>
+
+        <article class="feld">
+          <h2 class="feld-titel feld-name">Nicolaj van der Meulen</h2>
+          <p class="fliesstext">
+            Kunstwissenschaftler und Professor an der Hochschule für Gestaltung
+            und Kunst Basel FHNW. Er forscht zu Sakralkunst, Bildtheorie und
+            kulinarischer Ästhetik und verbindet die Geschichte sakraler Räume
+            mit Fragen der Ernährung, Pflanzenkultur und materiellen Kultur.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Aufruf ===== -->
+    <section class="block aufruf">
+      <p class="aussage aufruf-text">
+        Wenn Sie an näheren Informationen<br />
+        oder Mitwirkung interessiert sind,<br />
+        schreiben Sie uns.
+      </p>
+
+      <a
+        href="mailto:info@klostergärten.ch?subject=Klostergärten Schweiz"
+        class="knopf knopf-gross"
+        ><span class="knopf-text">Schreiben Sie uns</span></a
+      >
+    </section>
+
+    <!-- ===== Fusszeile (dunkles Band) =====
+         Von oben nach unten: Menue, Projektbeteiligte, Gestaltung,
+         zuunterst das Copyright. -->
+    <footer class="band dunkel fusszeile">
+      <nav class="fuss-menue">
+        <a href="wissen-neu.html">Wissen</a>
+        <a href="mitgliedschaft-neu.html">Mitgliedschaft</a>
+        <a href="ueber-uns-neu.html">Über uns</a>
+        <a href="kontakt-neu.html">Kontakt</a>
+        <a href="#">Projekte</a>
+      </nav>
+
+      <div class="fuss-angaben">
+        <p>
+          Projekt von: Iris Becher, Barbara van der Meulen, Nicolaj van der
+          Meulen
+        </p>
+        <p>Konzept und Design: nicolasbirrer.ch</p>
+        <p class="fuss-recht">© 2026 Klostergärten Schweiz. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Das Burger-Menue auf dem Handy -->
+    <script src="menue.js"></script>
+
+    <!-- Ganz zum Schluss: schneidet die schiefen Kanten, wenn alles steht -->
+    <script src="schief.js"></script>
+  </body>
+</html>

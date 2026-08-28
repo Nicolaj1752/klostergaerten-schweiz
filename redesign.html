@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Klostergärten Schweiz</title>
+
+    <!-- Noch nicht oeffentlich: haelt die Seite aus Suchmaschinen heraus -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="stylesheet" href="redesign.css" />
+  </head>
+  <body>
+    <!-- ===== Startbild: Kopfzeile, Keyvisual, Titel ===== -->
+    <section class="hero">
+      <header class="kopf">
+        <div class="kopf-name">Verein Klostergärten Schweiz</div>
+
+        <!-- Nur auf dem Handy sichtbar. Die drei Balken schneidet
+             schief.js leicht schraeg an, wie alles andere auch. -->
+        <button
+          class="burger"
+          id="burger"
+          aria-expanded="false"
+          aria-controls="hauptmenue"
+          aria-label="Menü öffnen"
+        >
+          <span class="burger-balken"></span>
+          <span class="burger-balken"></span>
+          <span class="burger-balken"></span>
+        </button>
+
+        <nav id="hauptmenue" class="hauptmenue">
+          <ul class="kopf-menue">
+            <!-- Nur im Burger-Menue sichtbar: auf breiten Schirmen fuehrt
+                 der Vereinsname links zurueck auf die Startseite. -->
+            <li class="nur-menue">
+              <a href="redesign.html" class="knopf"
+                ><span class="knopf-text">Startseite</span></a
+              >
+            </li>
+            <li>
+              <a href="wissen-neu.html" class="knopf"
+                ><span class="knopf-text">Wissen</span></a
+              >
+            </li>
+            <li>
+              <a href="mitgliedschaft-neu.html" class="knopf"
+                ><span class="knopf-text">Mitgliedschaft</span></a
+              >
+            </li>
+            <li>
+              <a href="kontakt-neu.html" class="knopf"
+                ><span class="knopf-text">Kontakt</span></a
+              >
+            </li>
+            <li>
+              <a href="ueber-uns-neu.html" class="knopf"
+                ><span class="knopf-text">Über uns</span></a
+              >
+            </li>
+          </ul>
+
+          <!-- Nur im offenen Burger-Menue sichtbar -->
+          <div class="menue-kontakt">
+            <p>Verein Klostergärten Schweiz</p>
+            <p>Strasse und Nummer</p>
+            <p>PLZ Ort</p>
+            <p>
+              <a href="mailto:info@klostergärten.ch">info@klostergärten.ch</a>
+            </p>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Leer im HTML: keyvisual.js zeichnet bei jedem Laden eine neue Variante -->
+      <svg
+        class="keyvisual"
+        role="img"
+        aria-label="Abstrakter Klostergarten von oben"
+      ></svg>
+
+      <h1 class="titel">Klostergärten Schweiz</h1>
+    </section>
+
+    <!-- ===== Was wir machen ===== -->
+    <section class="block was-wir-machen">
+      <p class="marke">Was wir machen</p>
+
+      <div class="machen-reihe">
+        <h2 class="aussage">
+          Klostergärten Schweiz dokumentiert, erforscht und vermittelt die
+          Klostergärten der Schweiz als lebendige Archive von Wissen, Pflanzen-,
+          Sozialkultur, Ernährung und Spiritualität.
+        </h2>
+
+        <div class="machen-knopf">
+          <a href="mitgliedschaft-neu.html" class="knopf knopf-gross"
+            ><span class="knopf-text">Werde Mitglied</span></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Grosses Bild mit Angaben ===== -->
+    <section class="schau">
+      <div class="schau-buehne bild">
+        <img
+          src="assets/bilder/garten-gross.jpg"
+          alt="Klostergarten in voller Blüte"
+        />
+      </div>
+
+      <!-- Zwei Spalten, damit die Angaben rechts auf derselben Kante
+         beginnen wie die Fliesstexte weiter unten. -->
+      <div class="schau-fuss">
+        <div class="schau-info">
+          <div>Kloster Dornach, SO</div>
+          <div>Orden: Kapuziner</div>
+          <div>Stiftung 1972</div>
+        </div>
+
+        <p class="schau-text">
+          Klostergärten gehören zu den ältesten Kulturräumen der Schweiz.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Vision (dunkles Band) ===== -->
+    <section class="band block dunkel">
+      <p class="marke">Vision</p>
+
+      <div class="zwei-spalten">
+        <h2 class="aussage">
+          Das Projekt dokumentiert Klostergärten, ihre Geschichte und ihre
+          gegenwärtige Entwicklung.
+        </h2>
+
+        <p class="fliesstext">
+          Zugleich schafft es einen Ort der Begegnung für Menschen, die sich für
+          Gartenkultur, Biodiversität, Kulinarik, Heilpflanzen, Spiritualität
+          und klösterliche Wissensgeschichte interessieren. So werden bestehende
+          Initiativen sichtbar gemacht, neue Kooperationen angeregt und Impulse
+          für den Erhalt und die Weiterentwicklung dieses einzigartigen
+          Kulturerbes gegeben.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Plattform ===== -->
+    <section class="block">
+      <p class="marke">Plattform</p>
+
+      <div class="zwei-spalten">
+        <h2 class="aussage">
+          Hier entsteht ein lebendiges Inventar und Kulturportal, das Forschung,
+          Vermittlung, Vernetzung und gesellschaftliches Engagement
+          zusammenführt.
+        </h2>
+
+        <p class="fliesstext tief">
+          Über Jahrhunderte wurden hier Heilpflanzen kultiviert, Nahrung
+          produziert, Wissen bewahrt und Erfahrungen weitergegeben. Heute
+          befindet sich dieses kulturelle Erbe in einem tiefgreifenden Wandel.
+          Einige Klostergärten sind bereits verschwunden, andere haben sich über
+          Jahrhunderte immer wieder neu erfunden.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Eindruecke ===== -->
+    <section class="block">
+      <p class="marke">Eindrücke</p>
+
+      <div class="bilder-raster">
+        <div class="bild bild-laedt">
+          <img
+            loading="lazy"
+            src="assets/bilder/eindruck-1.jpg"
+            alt="Eindruck aus einem Klostergarten"
+          />
+        </div>
+        <div class="bild bild-laedt">
+          <img
+            loading="lazy"
+            src="assets/bilder/eindruck-2.jpg"
+            alt="Eindruck aus einem Klostergarten"
+          />
+        </div>
+        <div class="bild bild-laedt">
+          <img
+            loading="lazy"
+            src="assets/bilder/eindruck-3.jpg"
+            alt="Eindruck aus einem Klostergarten"
+          />
+        </div>
+        <div class="bild bild-laedt">
+          <img
+            loading="lazy"
+            src="assets/bilder/eindruck-4.jpg"
+            alt="Eindruck aus einem Klostergarten"
+          />
+        </div>
+        <div class="bild bild-laedt">
+          <img
+            loading="lazy"
+            src="assets/bilder/hauterive-1.jpg"
+            alt="Klostergarten Hauterive"
+          />
+        </div>
+        <div class="bild bild-laedt">
+          <img
+            loading="lazy"
+            src="assets/bilder/hauterive-2.jpg"
+            alt="Klostergarten Hauterive"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Wandel (dunkles Band) ===== -->
+    <section class="band block dunkel">
+      <p class="marke">Wandel</p>
+
+      <h2 class="aussage aussage-halb">
+        Einige Klostergärten sind bereits verschwunden, andere müssen sich an
+        veränderte klimatische und gesellschaftliche Bedingungen anpassen.
+      </h2>
+    </section>
+
+    <!-- ===== Aufruf ===== -->
+    <section class="block aufruf">
+      <p class="aussage aufruf-text">
+        Klostergärten sind gefährdetes Kulturerbe.<br />
+        Wir dokumentieren sie erstmals<br />
+        umfassend, in einem Buch (2028).<br />
+        Mitglieder finanzieren, tragen und<br />
+        vernetzen dieses Projekt.
+      </p>
+
+      <a href="mitgliedschaft-neu.html" class="knopf knopf-gross"
+        ><span class="knopf-text">Werde Mitglied</span></a
+      >
+    </section>
+
+    <!-- ===== Fusszeile (dunkles Band) =====
+         Von oben nach unten: Menue, Projektbeteiligte, Gestaltung,
+         zuunterst das Copyright. -->
+    <footer class="band dunkel fusszeile">
+      <nav class="fuss-menue">
+        <a href="wissen-neu.html">Wissen</a>
+        <a href="mitgliedschaft-neu.html">Mitgliedschaft</a>
+        <a href="ueber-uns-neu.html">Über uns</a>
+        <a href="kontakt-neu.html">Kontakt</a>
+        <a href="#">Projekte</a>
+      </nav>
+
+      <div class="fuss-angaben">
+        <p>
+          Projekt von: Iris Becher, Barbara van der Meulen, Nicolaj van der
+          Meulen
+        </p>
+        <p>Konzept und Design: nicolasbirrer.ch</p>
+        <p class="fuss-recht">© 2026 Klostergärten Schweiz. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Zuerst die Klosterliste, keyvisual.js greift darauf zu -->
+    <script src="kloester.js"></script>
+    <script src="keyvisual.js"></script>
+    <script src="bilder.js"></script>
+
+    <!-- Das Burger-Menue auf dem Handy -->
+    <script src="menue.js"></script>
+
+    <!-- Ganz zum Schluss: schneidet die schiefen Kanten, wenn alles steht -->
+    <script src="schief.js"></script>
+  </body>
+</html>

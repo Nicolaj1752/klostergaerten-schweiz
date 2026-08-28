@@ -12,3 +12,9 @@ a_LucaYuri_Logo.PNG
 node_modules/
 studio/dist/
 studio/.sanity/
+
+# Originalfotos: nur die verkleinerten aus assets/bilder/ gehoeren ins Repo
+assets/images/
+
+# Rohmaterial aus Figma
+new assets/
