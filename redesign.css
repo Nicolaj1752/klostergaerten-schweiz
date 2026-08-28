@@ -185,20 +185,6 @@ body {
   display: none;
 }
 
-/* Die Kontaktdaten im offenen Menue. Ausserhalb bleiben sie verborgen. */
-.menue-kontakt {
-  display: none;
-
-  font-size: var(--klein-groesse);
-  font-weight: var(--klein-staerke);
-  line-height: var(--klein-zeile);
-}
-
-.menue-kontakt a {
-  color: inherit;
-  text-decoration: underline;
-}
-
 /* Das SVG nimmt die Hoehe, die zwischen Kopfzeile und Titel uebrig bleibt.
    Die Zeichnung misst diese Flaeche selbst und fuellt sie ganz aus - deshalb
    hier kein festes Seitenverhaeltnis.
@@ -477,14 +463,23 @@ body {
 
 /* ===== Bilderschau ===== */
 
+/* Nur unten und an den Seiten Rand - das Bild selbst geht randabfallend
+   ueber die ganze Breite (siehe .schau-buehne). */
 .schau {
   padding: 0 var(--seitenrand) 4vw;
 }
 
-/* Alle Bilder liegen uebereinander, sichtbar ist immer nur eines */
+/* Alle Bilder liegen uebereinander, sichtbar ist immer nur eines.
+
+   Das Bild faellt links und rechts ueber den Seitenrand hinaus bis an
+   den Fensterrand: die negativen Raender heben das padding des
+   Abschnitts genau auf. Die Angaben darunter behalten den Rand. */
 .schau-buehne {
   position: relative;
   aspect-ratio: 16 / 9;
+
+  margin-left: calc(var(--seitenrand) * -1);
+  margin-right: calc(var(--seitenrand) * -1);
 }
 
 .schau-bild {
@@ -819,26 +814,50 @@ body {
   margin-top: 2.5vw;
 }
 
-/* Der TWINT-Code unter dem Knopf */
+/* Der TWINT-Block: gruene Flaeche mit Logo und Code.
+   schief.js schneidet ihm als .band eine Ecke schraeg ab. */
 .twint {
   margin-top: 4vw;
+  padding: 4vw var(--seitenrand);
+}
+
+.twint-titel {
+  font-size: var(--klein-groesse);
+  font-weight: var(--klein-staerke);
+  margin-bottom: 26px;
+}
+
+/* Das TWINT-Logo. Es bringt seine eigene schwarze Flaeche mit, deshalb
+   steht es fuer sich und bekommt keinen weiteren Hintergrund. */
+.twint-logo {
+  display: block;
+  width: 132px;
+  height: auto;
+  margin: 0 auto 24px;
 }
 
 /* Der Code bleibt klein: gescannt wird er vom Handy aus naechster Naehe,
    gross gesetzt truege er auf der Seite viel zu dick auf.
-   Kein schiefer Schnitt und kein Filter - ein QR-Code muss unveraendert
-   bleiben, sonst liest ihn die Kamera nicht mehr.
-   Das Weiss ringsum gehoert dazu (Quiet Zone): ohne diesen Rand findet
-   die Kamera den Code nicht. Deshalb liegt er auf weissem Grund und
-   nicht auf dem Creme der Seite. */
+
+   Kein weisser Kasten mehr, der Code steht direkt auf dem Gruen:
+   invert() dreht das Bild um (schwarz wird weiss, weiss wird schwarz),
+   und mix-blend-mode: screen laesst alles Schwarze verschwinden - uebrig
+   bleiben die hellen Module auf der gruenen Flaeche.
+   Keine Schraege und keine Verzerrung, sonst wird der Code unlesbar. */
 .twint-code {
   display: block;
   width: 160px;
   height: auto;
 
-  margin: 18px auto 0;
-  padding: 12px;
-  background-color: #fff;
+  margin: 0 auto;
+  filter: invert(1);
+  mix-blend-mode: screen;
+}
+
+/* Der Knopf ersetzt den Code auf dem Handy (siehe ganz unten) */
+.twint-knopf {
+  display: none;
+  margin-top: 4px;
 }
 
 /* ===== Aufruf ===== */
@@ -1039,12 +1058,6 @@ body {
     display: block;
   }
 
-  /* Die Kontaktdaten unter den Knoepfen */
-  .menue-kontakt {
-    display: block;
-    padding: 22px 0 24px;
-  }
-
   .block {
     padding: 14vw var(--seitenrand);
   }
@@ -1093,6 +1106,37 @@ body {
   .feld-reihe {
     grid-template-columns: 1fr;
     gap: 0;
+  }
+
+  /* Auf dem Handy laesst sich der Code nicht scannen - man haelt ja das
+     Geraet in der Hand, das ihn anzeigt. Statt des Codes oeffnet ein
+     Knopf die TWINT-App direkt. */
+  .twint-code {
+    display: none;
+  }
+
+  .twint-knopf {
+    display: inline-block;
+  }
+
+  /* Der zentrierte Aufruf ganz unten.
+
+     Die <br> im HTML setzen die Zeilen fuer die breite Ansicht. Auf dem
+     Handy ist jede dieser Zeilen selbst zu breit und bricht ein zweites
+     Mal um - dabei bleibt jedes Mal ein einzelnes Wort allein stehen
+     ("Kulturerbe.", "erstmals", "(2028)."). Das sieht zerrissen aus.
+
+     Deshalb werden die festen Umbrueche hier abgeschaltet. Der Text
+     fliesst dann von allein, und die Breite unten bestimmt, wie viele
+     Woerter auf eine Zeile kommen. */
+  .aufruf-text br {
+    display: none;
+  }
+
+  .aufruf-text {
+    max-width: 17ch;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* Der Titel bricht auf dem Handy um: "Klostergärten" und "Schweiz"

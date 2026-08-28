@@ -27,7 +27,14 @@ const REFERENZ = 1400;
 // Die Strichstaerke der ganzen Zeichnung. Mauer und Kreis werden beide
 // damit gezeichnet - hier anpassen, wenn die Linien dicker oder duenner
 // werden sollen. Alle anderen Masse skalieren nicht mit.
-const STRICH = 17;
+const STRICH = 19.5;
+
+// Auf dem Handy ist die Zeichnung klein, die Linien wirken dort duenner.
+// Diese Zahl multipliziert STRICH, sobald das Fenster schmaler ist als
+// die Grenze darunter. 1 heisst: gleich dick wie auf dem Desktop.
+// Zum Justieren genuegt diese eine Zahl.
+const STRICH_HANDY = 1.35;
+const HANDY_BIS = 700; // ab dieser Fensterbreite gilt der Desktop-Wert
 
 const EINGANG = 105; // Breite der vier Eingaenge
 const RADIUS = 92; // Radius des Kreises
@@ -56,6 +63,14 @@ const RUHIG = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 // Zufallszahl zwischen min und max
 function zufall(min, max) {
   return min + Math.random() * (max - min);
+}
+
+// Die Strichstaerke fuer die aktuelle Fenstergroesse. Auf dem Handy wird
+// sie mit STRICH_HANDY verstaerkt, sonst wirkten die Linien im kleinen
+// Visual zu duenn.
+function strich() {
+  if (window.innerWidth <= HANDY_BIS) return STRICH * STRICH_HANDY;
+  return STRICH;
 }
 
 // Weiche Bremse: schnell los, sanft ankommen
@@ -109,7 +124,7 @@ function wuerfleForm() {
 // Fenstergroesse sind und sich sauber ineinander mischen lassen.
 function berechnePunkte(form, breite, hoehe) {
   const faktor = breite / REFERENZ;
-  const mauer = STRICH * faktor;
+  const mauer = strich() * faktor;
   const radius = RADIUS * faktor;
 
   // Das Viereck ist die AUSSENKANTE der Mauer und liegt genau auf dem Rand
@@ -362,13 +377,13 @@ function starteKeyvisual(svg) {
 
     // Doppelte Dicke, davon wird die aeussere Haelfte weggeschnitten.
     mauerWeg.setAttribute("d", weg);
-    mauerWeg.setAttribute("stroke-width", 2 * STRICH * faktor);
+    mauerWeg.setAttribute("stroke-width", 2 * strich() * faktor);
     schnittForm.setAttribute("d", weg);
 
     // Die Balken ragen ueber den Bildrand hinaus. Wuerden sie genau dort
     // enden wo die Mauer endet, blieben in den halb gedeckten Randpixeln
     // Reste der Mauer stehen - eine haarfeine Kante im Eingang.
-    const ueber = STRICH * faktor;
+    const ueber = strich() * faktor;
 
     balkenQuer.setAttribute("x1", -ueber);
     balkenQuer.setAttribute("y1", mitteY);
@@ -385,7 +400,7 @@ function starteKeyvisual(svg) {
     kreis.setAttribute("cx", mitteX);
     kreis.setAttribute("cy", mitteY);
     kreis.setAttribute("r", RADIUS * faktor);
-    kreis.setAttribute("stroke-width", STRICH * faktor);
+    kreis.setAttribute("stroke-width", strich() * faktor);
 
     // ===== Die Beschriftung beim Kreis =====
 
@@ -405,7 +420,7 @@ function starteKeyvisual(svg) {
 
     // Die Mauer waechst nach innen. Um diese Dicke bleibt die Schrift vom
     // Rand weg, sonst saesse sie bei langen Namen auf der gruenen Linie.
-    const wand = STRICH * faktor;
+    const wand = strich() * faktor;
 
     // Der Platz zwischen Kreis und Mauer, auf allen vier Seiten
     const platzRechts = breite - wand - (mitteX + radius + luecke);

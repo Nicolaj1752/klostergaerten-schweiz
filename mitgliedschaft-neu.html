@@ -65,15 +65,6 @@
             </li>
           </ul>
 
-          <!-- Nur im offenen Burger-Menue sichtbar -->
-          <div class="menue-kontakt">
-            <p>Verein Klostergärten Schweiz</p>
-            <p>Strasse und Nummer</p>
-            <p>PLZ Ort</p>
-            <p>
-              <a href="mailto:info@klostergärten.ch">info@klostergärten.ch</a>
-            </p>
-          </div>
         </nav>
       </header>
     </section>
@@ -315,16 +306,30 @@
       </form>
     </section>
 
-    <!-- ===== TWINT ===== -->
+    <!-- ===== TWINT =====
+         Der Code steht auf einer gruenen Flaeche. Auf dem Handy waere er
+         nutzlos - man kann ihn nicht mit demselben Geraet scannen, auf
+         dem er angezeigt wird. Dort erscheint stattdessen ein Knopf, der
+         die TWINT-App direkt oeffnet. -->
     <section class="block aufruf">
-      <div class="twint">
-        <p class="aufruf-fuss">Überweisungen und Spenden via TWINT</p>
+      <div class="twint band dunkel">
+        <p class="twint-titel">Überweisungen und Spenden via TWINT</p>
+
+        <img
+          class="twint-logo"
+          src="assets/bilder/twint-logo.png"
+          alt="TWINT"
+        />
 
         <img
           class="twint-code"
           src="assets/bilder/twint-qr.png"
           alt="TWINT-QR-Code des Vereins Klostergärten Schweiz zum Abscannen"
         />
+
+        <a class="knopf knopf-gross twint-knopf" href="twint://"
+          ><span class="knopf-text">TWINT öffnen</span></a
+        >
       </div>
     </section>
 
@@ -337,7 +342,6 @@
         <a href="mitgliedschaft-neu.html">Mitgliedschaft</a>
         <a href="ueber-uns-neu.html">Über uns</a>
         <a href="kontakt-neu.html">Kontakt</a>
-        <a href="#">Projekte</a>
       </nav>
 
       <div class="fuss-angaben">
