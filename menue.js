@@ -1,11 +1,15 @@
-// Das Burger-Menue auf dem Handy.
+// Das Burger-Menue und die mitfahrende Kopfzeile.
 //
 // Der Knopf mit den drei Balken klappt das Menue auf und zu. Auf breiten
 // Schirmen ist er ausgeblendet (siehe redesign.css), dort stehen die
 // Knoepfe wie bisher nebeneinander.
 //
-// Das Umschalten passiert ueber eine einzige Klasse am <body>. So muss
-// das Skript nichts ueber das Aussehen wissen - das steht alles im CSS.
+// Die Kopfzeile faehrt beim Runterscrollen weg und beim Hochscrollen
+// wieder ein - auf allen Bildschirmgroessen.
+//
+// Beides schaltet ueber je eine Klasse am <body>: "menue-offen" und
+// "kopf-weg". So muss das Skript nichts ueber das Aussehen wissen -
+// das steht alles im CSS.
 
 const burger = document.querySelector("#burger");
 const hauptmenue = document.querySelector("#hauptmenue");
@@ -57,11 +61,10 @@ if (burger) {
   // body haengen und stoert die breite Ansicht.
   const breit = window.matchMedia("(min-width: 701px)");
 
+  // Nur das Menue wird geschlossen. "kopf-weg" bleibt, wie es ist: die
+  // Kopfzeile faehrt auch auf breiten Schirmen mit dem Scrollen weg.
   breit.addEventListener("change", function (ereignis) {
-    if (ereignis.matches) {
-      schalte(false);
-      document.body.classList.remove("kopf-weg");
-    }
+    if (ereignis.matches) schalte(false);
   });
 
   /* ===== Kopfzeile beim Scrollen ===== */

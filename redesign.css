@@ -115,22 +115,59 @@ body {
 
 /* Kopf, Visual und Titel sollen zusammen ins Fenster passen.
    Untereinander gestapelt, das Visual nimmt sich, was uebrig bleibt. */
+/* 100dvh statt 100vh: auf dem Handy - vor allem in Chrome - meint vh die
+   Fensterhoehe OHNE Adressleiste. Die Seite wird dadurch hoeher als der
+   sichtbare Bereich, und der Titel unten wird angeschnitten.
+   dvh ("dynamic") misst, was gerade wirklich zu sehen ist, und waechst
+   mit, sobald die Leiste beim Scrollen verschwindet.
+   Die Zeile darueber ist der Rueckfall fuer aeltere Browser. */
 .hero {
   min-height: 100vh;
+  min-height: 100dvh;
+
   display: flex;
   flex-direction: column;
 
   padding: var(--rand-oben) var(--seitenrand) var(--seitenrand);
 }
 
+/* Die Kopfzeile bleibt beim Scrollen oben stehen - auf allen Groessen.
+   Beim Runterscrollen faehrt sie weg, beim Hochscrollen kommt sie
+   zurueck; das Umschalten macht menue.js ueber die Klasse "kopf-weg"
+   am body.
+
+   fixed und nicht sticky: sticky wuerde nur innerhalb des Startbilds
+   kleben und beim Verlassen mitscrollen. Der Hintergrund muss sein,
+   weil der Inhalt darunter durchlaeuft. */
 .kopf {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
 
-  flex-shrink: 0; /* die Kopfzeile wird nie zusammengedrueckt */
-  margin-bottom: 1vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+
+  background-color: var(--creme);
+  padding: var(--rand-oben) var(--seitenrand) 12px;
+
+  transition: transform 0.3s ease;
+}
+
+/* Weggefahren. 130 % statt 100 %, damit auch ein aufgeklapptes Menue
+   mit nach oben verschwindet und nicht am Rand hervorlugt. */
+.kopf-weg .kopf {
+  transform: translateY(-130%);
+}
+
+/* Die Kopfzeile ist aus dem Fluss genommen und wuerde den Inhalt
+   ueberdecken. Der obere Rand der Seite haelt den Platz dafuer frei. */
+.hero,
+.hero-innen {
+  padding-top: 84px;
 }
 
 /* Hell auf dunkel traegt optisch auf: die Knoepfe rechts wirken kraeftiger
@@ -509,18 +546,23 @@ body {
   gap: var(--spalten-abstand);
   align-items: start;
 
-  padding-top: 18px;
+  /* Deutlich Luft zum Bild darueber: die Angaben sollen als eigener
+     Block lesbar sein und nicht am Foto kleben. Auf dem Handy waeren
+     2.5vw nur rund 10 px, deshalb die Untergrenze. */
+  padding-top: max(2.5vw, 26px);
 }
 
+/* Angaben und Satz stehen in der Groesse des Fliesstexts: sie sind
+   Begleittext zum Bild, keine Ueberschrift. */
 .schau-text,
 .schau-info {
-  font-size: var(--klein-groesse);
-  font-weight: var(--klein-staerke);
-  line-height: var(--klein-zeile);
+  font-size: var(--text-groesse);
+  font-weight: var(--text-staerke);
+  line-height: var(--text-zeile);
 }
 
 .schau-text {
-  max-width: 300px;
+  max-width: var(--text-breite);
 }
 
 /* ===== Bilder ===== */
@@ -983,45 +1025,14 @@ body {
      "kopf-weg" am body.
 
      Der Hintergrund muss sein: der Inhalt scrollt darunter durch. */
+  /* Auf dem Handy sitzt der Burger-Knopf rechts oben, das Menue klappt
+     darunter auf. Die Kopfzeile selbst ist schon weiter oben fixiert. */
   .kopf {
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
     gap: 14px;
-
-    /* fixed und nicht sticky: sticky wuerde nur innerhalb des eigenen
-       Abschnitts kleben und beim Verlassen des Startbilds mitscrollen.
-       Die Kopfzeile soll aber ueber der ganzen Seite stehen bleiben. */
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 20;
-
-    background-color: var(--creme);
-    padding: var(--rand-oben) var(--seitenrand) 10px;
-    margin-bottom: 0;
-
-    transition: transform 0.3s ease;
   }
-
-  /* Die Kopfzeile ist aus dem Fluss genommen und wuerde den Inhalt
-     ueberdecken. Der obere Rand der Seite haelt den Platz dafuer frei. */
-  .hero,
-  .hero-innen {
-    padding-top: 74px;
-  }
-
-  /* Weggefahren. 130 % statt 100 %, damit auch das aufgeklappte Menue
-     mit nach oben verschwindet und nicht am Rand hervorlugt. */
-  .kopf-weg .kopf {
-    transform: translateY(-130%);
-  }
-
-  /* Die Kopfzeile liegt jetzt ueber der ganzen Seite und gehoert zu
-     keinem Abschnitt mehr. Sie bleibt darum immer cremefarben, auch
-     ueber einem dunklen Band - eine mitwandernde Farbe waere beim
-     Scrollen ein staendiges Umspringen. */
 
   .burger {
     display: flex; /* auf dem Handy sichtbar */
