@@ -13,9 +13,7 @@ const ABFRAGE = `*[_type == "startseite"][0]{
   heroTitel,
   menue,
   spalteLinks,
-  spalteRechts,
-  kontaktLinkText,
-  kontaktLinkZiel
+  spalteRechts
 }`;
 
 // Adresse zusammenbauen. encodeURIComponent sorgt dafuer, dass
@@ -72,16 +70,14 @@ function zeigeSpalte(spalte, bereichId) {
   });
 }
 
-// Setzt den kursiven Kontakt-Link unter der linken Spalte
-function zeigeKontaktLink(text, ziel) {
-  const link = document.querySelector("#kontakt-link");
-  if (!text) {
-    link.style.display = "none";
-    return;
-  }
-  link.textContent = text;
-  link.href = ziel || "#kontakt";
-}
+// Hinweis: Der kursive Kontakt-Link unter der linken Spalte kommt vorerst
+// NICHT mehr aus Sanity. Er fuehrt auf die neue Seite (redesign.html), und
+// ein alter Wert im Studio wuerde dieses Ziel wieder ueberschreiben.
+// Text und Ziel stehen jetzt fest in index.html.
+//
+// Soll er spaeter wieder aus dem Studio kommen: kontaktLinkText und
+// kontaktLinkZiel oben in die Abfrage aufnehmen und hier wieder eine
+// Funktion setzen, die #kontakt-link fuellt.
 
 
 /* ===== Daten laden ===== */
@@ -106,7 +102,6 @@ fetch(ADRESSE)
     zeigeMenue(inhalt.menue);
     zeigeSpalte(inhalt.spalteLinks, "#spalte-links");
     zeigeSpalte(inhalt.spalteRechts, "#spalte-rechts");
-    zeigeKontaktLink(inhalt.kontaktLinkText, inhalt.kontaktLinkZiel);
   })
   .catch(function (fehler) {
     // Wenn etwas schiefgeht, bleiben die Texte aus dem HTML stehen.
