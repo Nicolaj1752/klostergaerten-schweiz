@@ -207,8 +207,9 @@
         </h2>
 
         <p class="fliesstext tief">
-          Füllen Sie das Formular aus – wir melden uns bei Ihnen mit allen
-          weiteren Informationen. Oder schreiben Sie uns direkt an
+          Füllen Sie das Formular aus und überweisen Sie anschliessend den
+          Jahresbeitrag – die Mitgliedschaft gilt ab Zahlungseingang. Oder
+          schreiben Sie uns direkt an
           <a href="mailto:info@klostergärten.ch?subject=Mitgliedschaft"
             >info@klostergärten.ch</a
           >.
@@ -309,17 +310,14 @@
     <!-- ===== TWINT =====
          Der Code steht auf einer gruenen Flaeche. Auf dem Handy waere er
          nutzlos - man kann ihn nicht mit demselben Geraet scannen, auf
-         dem er angezeigt wird. Dort erscheint stattdessen ein Knopf, der
-         die TWINT-App direkt oeffnet. -->
-    <section class="block aufruf">
+         dem er angezeigt wird. Dort erscheint stattdessen ein Knopf mit
+         derselben Adresse, die auch im Code steckt: er oeffnet direkt
+         die Zahlung an den Verein, nicht nur die App. -->
+    <section class="block aufruf" id="twint">
       <div class="twint band dunkel">
-        <p class="twint-titel">Überweisungen und Spenden via TWINT</p>
+        <p class="twint-titel">Beitrag bezahlen</p>
 
-        <img
-          class="twint-logo"
-          src="assets/bilder/twint-logo.png"
-          alt="TWINT"
-        />
+        <img class="twint-logo" src="assets/bilder/twint-logo.webp" alt="TWINT" />
 
         <img
           class="twint-code"
@@ -327,9 +325,16 @@
           alt="TWINT-QR-Code des Vereins Klostergärten Schweiz zum Abscannen"
         />
 
-        <a class="knopf knopf-gross twint-knopf" href="twint://"
-          ><span class="knopf-text">TWINT öffnen</span></a
+        <a
+          class="knopf knopf-gross twint-knopf"
+          href="https://www.twint.ch/info-qr-code/?sbsQrCode=02%3Af82d0548b6ba45e7947090ee3c0569ff%23a0515225bd43bf30bd3eeacc907c0f79d7c6065b%23"
+          ><span class="knopf-text">Mit TWINT bezahlen</span></a
         >
+
+        <p class="twint-hinweis">
+          Die Mitgliedschaft gilt ab Eingang des Beitrags. Überweisungen und
+          Spenden sind auch unabhängig von einer Mitgliedschaft willkommen.
+        </p>
       </div>
     </section>
 

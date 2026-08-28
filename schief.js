@@ -91,3 +91,14 @@ schneidePixel(".band:not(.fusszeile)", BAND_MIN, BAND_MAX);
 
 // Die Fusszeile kippt nur oben, links oder rechts. Unten bleibt sie gerade.
 schneidePixel(".fusszeile", BAND_MIN, BAND_MAX, true);
+
+
+/* ===== Fuer spaeter dazugekommene Knoepfe ===== */
+
+// Dieses Skript laeuft einmal beim Laden. Ein Knopf, der erst danach
+// entsteht - etwa die Bestaetigung nach dem Absenden des Formulars -
+// bekommt seine schiefe Ecke ueber diese Funktion.
+window.schneideNach = function (element) {
+  const anteil = KNOPF_MIN + Math.random() * (KNOPF_MAX - KNOPF_MIN);
+  schiefeEcke(element, element.offsetHeight * anteil, false);
+};

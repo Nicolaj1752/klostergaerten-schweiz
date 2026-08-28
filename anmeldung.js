@@ -36,21 +36,23 @@ if (formular) {
 
     zeigeHinweis("");
 
+    const daten = new FormData(formular);
+
+    // Die gewaehlte Mitgliedschaft merken, BEVOR das Formular geleert wird -
+    // der Betrag steht spaeter in der Bestaetigung.
+    const art = daten.get("art");
+
     fetch(ZIEL, {
       method: "POST",
-      body: new FormData(formular),
+      body: daten,
     })
       .then(function (antwort) {
         return antwort.json();
       })
       .then(function (ergebnis) {
         if (ergebnis.success) {
-          // Formular leeren, damit nicht versehentlich zweimal gesendet wird
           formular.reset();
-          zeigeHinweis(
-            "Vielen Dank für Ihre Anmeldung. Wir melden uns bei Ihnen mit " +
-              "allen weiteren Informationen.",
-          );
+          zeigeDank(art);
         } else {
           // Der Dienst hat geantwortet, aber etwas stimmt nicht - meist ein
           // fehlender oder falscher Schluessel.
@@ -66,6 +68,51 @@ if (formular) {
         knopfText.textContent = beschriftung;
       });
   });
+
+  // Die Bestaetigung nach dem Absenden.
+  //
+  // Die Anmeldung allein macht noch kein Mitglied - der Beitrag muss noch
+  // ueberwiesen werden. Deshalb nennt die Bestaetigung den naechsten
+  // Schritt beim Namen, wiederholt den gewaehlten Betrag und fuehrt zur
+  // Zahlung. Ohne diesen Hinweis bliebe offen, dass noch etwas fehlt.
+  function zeigeDank(art) {
+    hinweis.textContent = "";
+    hinweis.hidden = false;
+
+    const dank = document.createElement("p");
+    dank.className = "dank-titel";
+    dank.textContent = "Vielen Dank für Ihre Anmeldung.";
+    hinweis.appendChild(dank);
+
+    const schritt = document.createElement("p");
+    schritt.textContent =
+      "Als Nächstes überweisen Sie den Jahresbeitrag" +
+      // Die Auswahl sieht so aus: "Paarmitgliedschaft – CHF 70.– pro Jahr".
+      // Fuer den Satz brauchen wir nur den Betrag hinter dem Gedankenstrich.
+      (art && art.indexOf("–") > -1
+        ? " (" + art.split("–").slice(1).join("–").trim() + ")"
+        : "") +
+      ". Die Mitgliedschaft gilt ab Zahlungseingang. " +
+      "Wir melden uns anschliessend bei Ihnen.";
+    hinweis.appendChild(schritt);
+
+    const knopfZuTwint = document.createElement("a");
+    knopfZuTwint.className = "knopf knopf-gross dank-knopf";
+    knopfZuTwint.href = "#twint";
+    const beschriftungTwint = document.createElement("span");
+    beschriftungTwint.className = "knopf-text";
+    beschriftungTwint.textContent = "Zur Zahlung";
+    knopfZuTwint.appendChild(beschriftungTwint);
+    hinweis.appendChild(knopfZuTwint);
+
+    // Der neue Knopf braucht seine schiefe Ecke wie alle anderen.
+    // schief.js lief schon, als es ihn noch nicht gab.
+    if (window.schneideNach) window.schneideNach(knopfZuTwint);
+
+    // Sanft zur Zahlung scrollen, damit der naechste Schritt sichtbar wird
+    const ziel = document.querySelector("#twint");
+    if (ziel) ziel.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 
   // Bei einem Fehler nennen wir die Mailadresse: so geht niemand verloren,
   // nur weil der Dienst gerade nicht erreichbar ist.
