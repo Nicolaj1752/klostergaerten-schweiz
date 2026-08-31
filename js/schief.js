@@ -83,17 +83,25 @@ function schneideAnteil(auswahl, kleinst, groesst) {
   });
 }
 
-schneideAnteil(".knopf", KNOPF_MIN, KNOPF_MAX);
+// Schneidet alles auf der Seite. Steht als Funktion am Fenster, damit
+// inhalt.js sie noch einmal aufrufen kann: nach dem Einsetzen der Texte
+// aus dem Studio sind Knoepfe und Baender anders hoch, und im Raster
+// stehen neue Bilder.
+window.schneideAlles = function () {
+  schneideAnteil(".knopf", KNOPF_MIN, KNOPF_MAX);
 
-// Die drei Balken des Burger-Knopfs. Sie sind nur wenige Pixel hoch, ein
-// Anteil ihrer Hoehe waere unsichtbar - deshalb feste Pixel, und sehr
-// wenige: mehr als 3 Pixel liessen den Balken spitz zulaufen.
-schneidePixel(".burger-balken", 1, 3);
-schneidePixel(".bild", BILD_MIN, BILD_MAX);
-schneidePixel(".band:not(.fusszeile)", BAND_MIN, BAND_MAX);
+  // Die drei Balken des Burger-Knopfs. Sie sind nur wenige Pixel hoch, ein
+  // Anteil ihrer Hoehe waere unsichtbar - deshalb feste Pixel, und sehr
+  // wenige: mehr als 3 Pixel liessen den Balken spitz zulaufen.
+  schneidePixel(".burger-balken", 1, 3);
+  schneidePixel(".bild", BILD_MIN, BILD_MAX);
+  schneidePixel(".band:not(.fusszeile)", BAND_MIN, BAND_MAX);
 
-// Die Fusszeile kippt nur oben, links oder rechts. Unten bleibt sie gerade.
-schneidePixel(".fusszeile", BAND_MIN, BAND_MAX, true);
+  // Die Fusszeile kippt nur oben, links oder rechts. Unten bleibt sie gerade.
+  schneidePixel(".fusszeile", BAND_MIN, BAND_MAX, true);
+};
+
+window.schneideAlles();
 
 
 /* ===== Fuer spaeter dazugekommene Knoepfe ===== */

@@ -1,56 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontakt – Klostergärten Schweiz</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontakt – Klostergärten Schweiz</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <!-- Noch nicht oeffentlich: haelt die Seite aus Suchmaschinen heraus -->
+    <meta name="robots" content="noindex, nofollow" />
 
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body class="unterseite" data-seite="kontakt">
-
-  <header class="unter-kopf">
-    <a href="index.html" class="zurueck">← Klostergärten Schweiz</a>
-    <h1 class="unter-titel" id="unter-titel">kontakt</h1>
-  </header>
-
-  <main class="unter-inhalt">
-
-    <img src="assets/flower_big_rechts.png" alt="" class="deko-blume-rechts" id="deko-blume-rechts">
-
-    <div class="unter-spalten einspaltig">
-      <div id="spalte-links">
-
-        <!-- Anschrift und E-Mail kommen aus Sanity -->
-        <div class="kontakt-block" id="kontakt-angaben">
-          <div>Verein Klostergärten Schweiz</div>
-          <div>Strasse und Nummer</div>
-          <div>PLZ Ort</div>
-          <div style="margin-top: 10px;">
-            <a href="mailto:info@klostergärten.ch">info@klostergärten.ch</a>
-          </div>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="eine-seite" data-seite="seite-kontakt">
+    <!-- ===== Kopfzeile =====
+         Wie auf der Wissen-Seite: ohne Keyvisual, das bleibt der
+         Startseite vorbehalten. Hier auch ohne Titel. -->
+    <section class="hero-innen hero-ohne-titel">
+      <header class="kopf">
+        <div class="kopf-name">
+          <a href="index.html" data-inhalt="vereinsname"
+            >Verein Klostergärten Schweiz</a
+          >
         </div>
 
-        <!-- Fuehrt auf die neue Seite -->
-        <p class="neue-seite">
-          <a href="redesign.html" class="neue-seite-knopf">
-            Zur neuen Website
-          </a>
+        <!-- Nur auf dem Handy sichtbar. Die drei Balken schneidet
+             schief.js leicht schraeg an, wie alles andere auch. -->
+        <button
+          class="burger"
+          id="burger"
+          aria-expanded="false"
+          aria-controls="hauptmenue"
+          aria-label="Menü öffnen"
+        >
+          <span class="burger-balken"></span>
+          <span class="burger-balken"></span>
+          <span class="burger-balken"></span>
+        </button>
+
+        <nav id="hauptmenue" class="hauptmenue">
+          <ul class="kopf-menue">
+            <!-- Nur im Burger-Menue sichtbar: auf breiten Schirmen fuehrt
+                 der Vereinsname links zurueck auf die Startseite. -->
+            <li class="nur-menue">
+              <a href="index.html" class="knopf"
+                ><span class="knopf-text">Startseite</span></a
+              >
+            </li>
+            <li>
+              <a href="wissen.html" class="knopf"
+                ><span class="knopf-text">Wissen</span></a
+              >
+            </li>
+            <li>
+              <a href="mitgliedschaft.html" class="knopf"
+                ><span class="knopf-text">Mitgliedschaft</span></a
+              >
+            </li>
+            <li>
+              <a href="kontakt.html" class="knopf"
+                ><span class="knopf-text">Kontakt</span></a
+              >
+            </li>
+            <li>
+              <a href="ueber-uns.html" class="knopf"
+                ><span class="knopf-text">Über uns</span></a
+              >
+            </li>
+          </ul>
+
+        </nav>
+      </header>
+
+    </section>
+
+    <!-- ===== Adresse und Mail =====
+         Ohne Seitentitel: die beiden Untertitel gliedern die Seite allein.
+         Beide Angaben stehen als grosse Aussage. -->
+    <section class="block block-fuellt">
+      <p class="marke" data-inhalt="adresseMarke">Adresse</p>
+
+      <address class="anschrift aussage" data-inhalt="anschrift">
+        Klostergärten Schweiz<br />
+        Emmenrainweg 7<br />
+        CH-4223 Blauen
+      </address>
+
+      <p class="marke marke-weiter" data-inhalt="mailMarke">Mail</p>
+
+      <address class="anschrift aussage">
+        <a
+          id="mail-link"
+          href="mailto:info@klostergärten.ch"
+          data-inhalt="mailAdresse"
+          >info@klostergärten.ch</a
+        >
+      </address>
+
+      <!-- Dieselbe Adresse wie im QR-Code auf der Mitgliedschaft-Seite:
+           sie oeffnet direkt die Zahlung an den Verein. -->
+      <p class="marke marke-weiter" data-inhalt="spendenMarke">Spenden</p>
+
+      <address class="anschrift aussage">
+        <a
+          href="https://www.twint.ch/info-qr-code/?sbsQrCode=02%3Af82d0548b6ba45e7947090ee3c0569ff%23a0515225bd43bf30bd3eeacc907c0f79d7c6065b%23"
+          data-ziel="spendenZiel"
+          data-inhalt="spendenText"
+          >Mit TWINT bezahlen</a
+        >
+      </address>
+    </section>
+
+    <!-- ===== Fusszeile (dunkles Band) =====
+         Von oben nach unten: Menue, Projektbeteiligte, Gestaltung,
+         zuunterst das Copyright. -->
+    <footer class="band dunkel fusszeile">
+      <nav class="fuss-menue">
+        <a href="wissen.html">Wissen</a>
+        <a href="mitgliedschaft.html">Mitgliedschaft</a>
+        <a href="ueber-uns.html">Über uns</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+
+      <div class="fuss-angaben">
+        <p data-inhalt="fussProjekt">
+          Projekt von: Iris Becher, Barbara van der Meulen, Nicolaj van der
+          Meulen
         </p>
-
+        <p data-inhalt="fussGestaltung">Konzept und Design: nicolasbirrer.ch</p>
+        <p class="fuss-recht" data-inhalt="fussRecht">
+          © 2026 Klostergärten Schweiz. All rights reserved.
+        </p>
       </div>
-    </div>
-  </main>
+    </footer>
 
-  <script src="unterseite.js"></script>
-  <script src="script.js"></script>
+    <!-- Das Burger-Menue auf dem Handy -->
+    <script src="js/menue.js"></script>
 
-  <!-- Taste "i" oeffnet die interne Seite -->
-  <script src="intern.js"></script>
-</body>
+    <!-- Die Taste P oeffnet die Praesentation -->
+    <script src="js/praesentation.js"></script>
+
+    <!-- Ganz zum Schluss: schneidet die schiefen Kanten, wenn alles steht -->
+    <script src="js/schief.js"></script>
+
+    <!-- Holt Texte und Bilder aus dem Sanity-Studio.
+         Muss nach schief.js und bilder.js stehen: inhalt.js ruft beide
+         noch einmal auf, sobald die Texte eingesetzt sind. -->
+    <script src="js/inhalt.js"></script>
+  </body>
 </html>

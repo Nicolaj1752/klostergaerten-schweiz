@@ -1,7 +1,7 @@
 /* Die Praesentation.
 
    Nur die Folien stehen hier. Schrift, Farben und der Reset kommen aus
-   redesign.css, das die Seite vorher laedt - so sieht die Praesentation
+   css/style.css, das die Seite vorher laedt - so sieht die Praesentation
    aus wie die Website. */
 
 /* ===== Die Buehne ===== */
@@ -37,7 +37,7 @@
 /* Der Rahmen schmiegt sich ans Bild, damit die schiefe Kante aus
    schief.js an der Bildkante sitzt und nicht im leeren Raum.
 
-   width und height muessen ausdruecklich auf "auto" stehen: redesign.css
+   width und height muessen ausdruecklich auf "auto" stehen: css/style.css
    fuellt sonst jedes Bild in einem .bild-Rahmen ganz aus (cover), und das
    Logo wuerde verzerrt und angeschnitten. */
 .folie-bild img {
@@ -205,7 +205,7 @@ button.knopf {
   max-width: 760px;
 }
 
-/* --- Neu: Satoshi, Dunkelgruen auf Creme. Werte aus redesign.css. --- */
+/* --- Neu: Satoshi, Dunkelgruen auf Creme. Werte aus css/style.css. --- */
 
 .typo-neu {
   color: var(--gruen);
@@ -235,7 +235,7 @@ button.knopf {
 
 /* ===== Das erklaerte Keyvisual (Folie 4) ===== */
 
-/* redesign.css laesst das Visual seinen Platz ausfuellen (flex: 1).
+/* css/style.css laesst das Visual seinen Platz ausfuellen (flex: 1).
    Auf der Folie soll es stattdessen eine feste Form haben. */
 .folie-visual {
   flex: none;
@@ -297,7 +297,7 @@ button.knopf {
   align-items: flex-start;
 }
 
-/* Der Reset in redesign.css nimmt der Liste schon Rand und Einzug weg,
+/* Der Reset in css/style.css nimmt der Liste schon Rand und Einzug weg,
    hier faellt nur noch der Punkt davor weg - das Kaestchen kommt unten. */
 .punkte {
   list-style: none;

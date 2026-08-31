@@ -7,7 +7,8 @@
    von 300 bis 900 ab. */
 @font-face {
   font-family: "Satoshi";
-  src: url("assets/fonts/Satoshi-Variable.woff2") format("woff2");
+  /* ../ weil dieses Stylesheet in css/ liegt, die Schrift aber in assets/ */
+  src: url("../assets/fonts/Satoshi-Variable.woff2") format("woff2");
   font-weight: 300 900;
   font-style: normal;
   font-display: swap;
@@ -272,6 +273,24 @@ body {
   font-size: var(--name-groesse);
   font-weight: var(--name-staerke);
   fill: var(--gruen);
+}
+
+/* Der Klosterindex zwischen Zeichnung und Titel. Auf breiten Schirmen
+   steht er in der Zeichnung neben dem Kreis - dort, wo der waagrechte
+   Balken die Mauer öffnet -, deshalb ist er hier unsichtbar. Erst auf
+   dem Handy tritt er an diese Stelle, siehe der Handy-Abschnitt unten.
+   Grösse und Stärke wie der Vereinsname, wie in der Zeichnung auch. */
+.garten-index {
+  display: none;
+
+  font-size: var(--name-groesse);
+  font-weight: var(--name-staerke);
+  line-height: 1.35;
+}
+
+/* Eine Zeile pro Angabe: Nummer, Name, Ort, Orden */
+.garten-index span {
+  display: block;
 }
 
 .titel {
@@ -684,6 +703,37 @@ body {
   text-decoration: underline;
 }
 
+/* ===== Bild auf der Wissen-Seite ===== */
+
+/* Es geht von Fensterrand zu Fensterrand, wie das grosse Bild auf der
+   Startseite. Das Format ist breiter als das Foto selbst - deshalb
+   deckt es die Fläche (cover) und wird oben und unten beschnitten.
+
+   Der negative Rand oben schiebt das Bild unter das Band darüber.
+   Grund: schief.js schneidet an einer zufälligen Ecke bis zu 19 px aus
+   dem Band und bis zu 11 px aus dem Bild. Trifft es die untere Kante des
+   Bandes und die obere des Bildes, klaffte dazwischen ein cremefarbener
+   Keil. 32 px decken beide Schnitte zusammen ab. */
+.wissen-bild {
+  padding: 0 var(--seitenrand) 4vw;
+  margin-top: -32px;
+}
+
+/* Damit die Überlappung wirkt, muss das Band oben liegen. Im HTML steht
+   es vor dem Bild und würde sonst von ihm überdeckt - beide sind
+   position: relative und werden dann in Dokumentreihenfolge gemalt.
+   Die 1 bleibt unter der Kopfzeile (20) und dem Burger-Menü (10). */
+.band-ueber-bild {
+  z-index: 1;
+}
+
+.wissen-bild .bild {
+  aspect-ratio: 16 / 9;
+
+  margin-left: calc(var(--seitenrand) * -1);
+  margin-right: calc(var(--seitenrand) * -1);
+}
+
 /* ===== Wissensfelder ===== */
 
 /* Drei gleich breite Spalten nebeneinander. Auf dem Handy werden daraus
@@ -692,6 +742,34 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--spalten-abstand);
+}
+
+/* Der Einleitungstext ueber den Feldern. Er steht dort, wo sonst gleich
+   die Felder beginnen, und braucht darum etwas Luft nach unten. */
+.felder-einleitung {
+  margin-bottom: 5vw;
+}
+
+/* Die vier Wissensfelder als Wegkreuz: eines oben in der Mitte, zwei
+   links und rechts daneben, eines unten in der Mitte. Die Mitte bleibt
+   frei - dort kreuzen sich die beiden Achsen.
+
+   Die Felder stehen im HTML in Lesereihenfolge (oben, links, rechts,
+   unten); erst diese vier Regeln setzen sie an ihren Platz. */
+.felder-kreuz .feld:nth-child(1) {
+  grid-area: 1 / 2;
+}
+
+.felder-kreuz .feld:nth-child(2) {
+  grid-area: 2 / 1;
+}
+
+.felder-kreuz .feld:nth-child(3) {
+  grid-area: 2 / 3;
+}
+
+.felder-kreuz .feld:nth-child(4) {
+  grid-area: 3 / 2;
 }
 
 /* Der Titel eines Feldes - auch die Namen im Projektteam.
@@ -1133,6 +1211,14 @@ body {
     padding: 14vw var(--seitenrand);
   }
 
+  /* Hier tritt der Klosterindex aus der Zeichnung heraus: er steht
+     zwischen ihr und dem Titel, bündig mit beiden. keyvisual.js lässt
+     die Beschriftung im Bild dann weg. */
+  .garten-index {
+    display: block;
+    margin-top: 5vw;
+  }
+
   /* Alles untereinander statt nebeneinander */
   .zwei-spalten,
   .machen-reihe,
@@ -1144,6 +1230,16 @@ body {
   /* Untereinander stehen die Felder naeher zusammen als nebeneinander */
   .felder {
     gap: 40px;
+  }
+
+  /* Das Wegkreuz loest sich auf: die vier Felder stehen einfach
+     untereinander. Ohne diese Zeile blieben die zugewiesenen Plaetze
+     bestehen und es entstuenden Luecken. */
+  .felder-kreuz .feld:nth-child(1),
+  .felder-kreuz .feld:nth-child(2),
+  .felder-kreuz .feld:nth-child(3),
+  .felder-kreuz .feld:nth-child(4) {
+    grid-area: auto;
   }
 
   .machen-knopf {

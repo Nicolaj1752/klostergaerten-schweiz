@@ -8,16 +8,18 @@
     <!-- Noch nicht oeffentlich: haelt die Seite aus Suchmaschinen heraus -->
     <meta name="robots" content="noindex, nofollow" />
 
-    <link rel="stylesheet" href="redesign.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
+  <body data-seite="seite-mitgliedschaft">
     <!-- ===== Kopfzeile =====
          Wie auf den anderen Unterseiten: ohne Keyvisual und ohne Titel,
          die Untertitel gliedern die Seite allein. -->
     <section class="hero-innen hero-ohne-titel">
       <header class="kopf">
         <div class="kopf-name">
-          <a href="redesign.html">Verein Klostergärten Schweiz</a>
+          <a href="index.html" data-inhalt="vereinsname"
+            >Verein Klostergärten Schweiz</a
+          >
         </div>
 
         <!-- Nur auf dem Handy sichtbar. Die drei Balken schneidet
@@ -39,27 +41,27 @@
             <!-- Nur im Burger-Menue sichtbar: auf breiten Schirmen fuehrt
                  der Vereinsname links zurueck auf die Startseite. -->
             <li class="nur-menue">
-              <a href="redesign.html" class="knopf"
+              <a href="index.html" class="knopf"
                 ><span class="knopf-text">Startseite</span></a
               >
             </li>
             <li>
-              <a href="wissen-neu.html" class="knopf"
+              <a href="wissen.html" class="knopf"
                 ><span class="knopf-text">Wissen</span></a
               >
             </li>
             <li>
-              <a href="mitgliedschaft-neu.html" class="knopf"
+              <a href="mitgliedschaft.html" class="knopf"
                 ><span class="knopf-text">Mitgliedschaft</span></a
               >
             </li>
             <li>
-              <a href="kontakt-neu.html" class="knopf"
+              <a href="kontakt.html" class="knopf"
                 ><span class="knopf-text">Kontakt</span></a
               >
             </li>
             <li>
-              <a href="ueber-uns-neu.html" class="knopf"
+              <a href="ueber-uns.html" class="knopf"
                 ><span class="knopf-text">Über uns</span></a
               >
             </li>
@@ -71,15 +73,15 @@
 
     <!-- ===== Mitglied werden ===== -->
     <section class="block">
-      <p class="marke">Mitglied werden</p>
+      <p class="marke" data-inhalt="werdenMarke">Mitglied werden</p>
 
       <div class="zwei-spalten">
-        <h2 class="aussage">
+        <h2 class="aussage" data-inhalt="werdenAussage">
           Werden Sie Mitglied des Vereins Klostergärten Schweiz und helfen Sie
           mit, ein gefährdetes Kulturerbe zu bewahren und sichtbar zu machen.
         </h2>
 
-        <p class="fliesstext tief">
+        <p class="fliesstext tief" data-inhalt="werdenFliesstext">
           Mit Ihrer Mitgliedschaft fördern Sie Projekte zur Erhaltung,
           Erforschung, Erschliessung und Vernetzung der Klostergärten in der
           Schweiz. Wir erinnern an verschwundene Anlagen, porträtieren
@@ -91,14 +93,14 @@
 
     <!-- ===== Publikation (dunkles Band) ===== -->
     <section class="band block dunkel">
-      <p class="marke">Publikation 2028</p>
+      <p class="marke" data-inhalt="publikationMarke">Publikation 2028</p>
 
-      <h2 class="aussage aussage-halb">
+      <h2 class="aussage aussage-halb" data-inhalt="publikationAussage">
         Aktuell dokumentieren wir erstmals umfassend die Klostergärten der
         Schweiz.
       </h2>
 
-      <p class="fliesstext fliesstext-breit">
+      <p class="fliesstext fliesstext-breit" data-inhalt="publikationFliesstext">
         Die Ergebnisse werden in einer Publikation zusammengeführt, die 2028
         erscheinen soll. Mit Ihrem Mitgliederbeitrag unterstützen Sie dieses
         wichtige Vorhaben.
@@ -109,7 +111,7 @@
          Die vier Punkte stehen als Liste, damit die Aufzaehlung auch
          vorgelesen als Aufzaehlung ankommt. -->
     <section class="block">
-      <p class="marke">Ihre Vorteile als Mitglied</p>
+      <p class="marke" data-inhalt="vorteileMarke">Ihre Vorteile als Mitglied</p>
 
       <div class="zwei-spalten">
         <ul class="vorteile">
@@ -126,9 +128,13 @@
             Sie können an unserer jährlichen Klostergarten-Exkursion
             teilnehmen.
           </li>
+          <li>
+            Sie können bei der Erhaltung und Entwicklung eines Klostergartens
+            auf unser Netzwerk und unser Fachwissen zurückgreifen.
+          </li>
         </ul>
 
-        <p class="fliesstext tief">
+        <p class="fliesstext tief" data-textlink="vorteileNebentext">
           Die erste Exkursion findet voraussichtlich im Herbst 2027 statt und
           führt zu einem oder mehreren Klostergärten in der Schweiz.<br /><br />
           <a href="mailto:info@klostergärten.ch?subject=Newsletter"
@@ -140,15 +146,15 @@
 
     <!-- ===== Gönnerinnen und Gönner ===== -->
     <section class="block">
-      <p class="marke">Gönnerinnen und Gönner</p>
+      <p class="marke" data-inhalt="goennerMarke">Gönnerinnen und Gönner</p>
 
       <div class="zwei-spalten">
-        <h2 class="aussage">
+        <h2 class="aussage" data-inhalt="goennerAussage">
           Für die Umsetzung unserer Projekte sind wir in besonderem Mass auf
           Gönnerbeiträge und Spenden angewiesen.
         </h2>
 
-        <p class="fliesstext tief">
+        <p class="fliesstext tief" data-inhalt="goennerFliesstext">
           Gönnerinnen und Gönner können die für 2028 geplante Publikation zu
           einem Vorzugspreis beziehen. Zudem profitieren sie von einem
           reduzierten Teilnahmebeitrag für die jährliche
@@ -161,7 +167,7 @@
          Eine Beschreibungsliste: links die Art der Mitgliedschaft,
          rechts der Betrag. -->
     <section class="block">
-      <p class="marke">Mitgliederbeiträge</p>
+      <p class="marke" data-inhalt="beitraegeMarke">Mitgliederbeiträge</p>
 
       <dl class="beitraege">
         <div class="beitrag">
@@ -199,14 +205,14 @@
          Der Schluessel unten ist oeffentlich sichtbar und darf das auch
          sein: er erlaubt nur, an die eine hinterlegte Adresse zu senden. -->
     <section class="block" id="anmeldung">
-      <p class="marke">Jetzt Mitglied werden</p>
+      <p class="marke" data-inhalt="anmeldungMarke">Jetzt Mitglied werden</p>
 
       <div class="zwei-spalten">
-        <h2 class="aussage">
+        <h2 class="aussage" data-inhalt="anmeldungAussage">
           Möchten Sie Mitglied des Vereins Klostergärten Schweiz werden?
         </h2>
 
-        <p class="fliesstext tief">
+        <p class="fliesstext tief" data-textlink="anmeldungFliesstext">
           Füllen Sie das Formular aus und überweisen Sie anschliessend den
           Jahresbeitrag – die Mitgliedschaft gilt ab Zahlungseingang. Oder
           schreiben Sie uns direkt an
@@ -253,7 +259,7 @@
 
         <div class="feld-reihe">
           <label class="formular-feld">
-            <span class="formular-name">Name und Vorname</span>
+            <span class="formular-name" data-inhalt="formularName">Name und Vorname</span>
             <input type="text" name="name" required autocomplete="name" />
           </label>
 
@@ -261,14 +267,14 @@
                setzt diese Adresse als Antwortadresse der Mail. Ein Klick
                auf Antworten geht dann direkt an die Person. -->
           <label class="formular-feld">
-            <span class="formular-name">E-Mail</span>
+            <span class="formular-name" data-inhalt="formularMail">E-Mail</span>
             <input type="email" name="email" required autocomplete="email" />
           </label>
         </div>
 
         <div class="feld-reihe">
           <label class="formular-feld">
-            <span class="formular-name">Strasse und Nummer</span>
+            <span class="formular-name" data-inhalt="formularStrasse">Strasse und Nummer</span>
             <input
               type="text"
               name="strasse"
@@ -277,13 +283,13 @@
           </label>
 
           <label class="formular-feld">
-            <span class="formular-name">PLZ und Ort</span>
+            <span class="formular-name" data-inhalt="formularOrt">PLZ und Ort</span>
             <input type="text" name="ort" autocomplete="postal-code" />
           </label>
         </div>
 
         <label class="formular-feld">
-          <span class="formular-name">Art der Mitgliedschaft</span>
+          <span class="formular-name" data-inhalt="formularArt">Art der Mitgliedschaft</span>
           <select name="art">
             <option>Einzelmitgliedschaft – CHF 45.– pro Jahr</option>
             <option>Paarmitgliedschaft – CHF 70.– pro Jahr</option>
@@ -294,12 +300,12 @@
         </label>
 
         <label class="formular-feld">
-          <span class="formular-name">Bemerkung (freiwillig)</span>
+          <span class="formular-name" data-inhalt="formularBemerkung">Bemerkung (freiwillig)</span>
           <textarea name="bemerkung" rows="4"></textarea>
         </label>
 
         <button type="submit" class="knopf knopf-gross">
-          <span class="knopf-text">Anmeldung senden</span>
+          <span class="knopf-text" data-inhalt="formularKnopf">Anmeldung senden</span>
         </button>
 
         <!-- Fuellt anmeldung.js nach dem Absenden -->
@@ -316,12 +322,18 @@
            erscheint stattdessen ein Knopf mit derselben Adresse, die
            auch im Code steckt. -->
       <div class="twint band dunkel" id="twint">
-        <p class="twint-titel">Beitrag bezahlen</p>
+        <p class="twint-titel" data-inhalt="twintTitel">Beitrag bezahlen</p>
 
-        <img class="twint-logo" src="assets/bilder/twint-logo.webp" alt="TWINT" />
+        <img
+          class="twint-logo"
+          data-bild="twintLogo"
+          src="assets/bilder/twint-logo.webp"
+          alt="TWINT"
+        />
 
         <img
           class="twint-code"
+          data-bild="twintCode"
           src="assets/bilder/twint-qr.png"
           alt="TWINT-QR-Code des Vereins Klostergärten Schweiz zum Abscannen"
         />
@@ -329,10 +341,13 @@
         <a
           class="knopf knopf-gross twint-knopf"
           href="https://www.twint.ch/info-qr-code/?sbsQrCode=02%3Af82d0548b6ba45e7947090ee3c0569ff%23a0515225bd43bf30bd3eeacc907c0f79d7c6065b%23"
-          ><span class="knopf-text">Mit TWINT bezahlen</span></a
+          data-ziel="twintZiel"
+          ><span class="knopf-text" data-inhalt="twintKnopfText"
+            >Mit TWINT bezahlen</span
+          ></a
         >
 
-        <p class="twint-hinweis">
+        <p class="twint-hinweis" data-inhalt="twintHinweis">
           Die Mitgliedschaft gilt ab Eingang des Beitrags. Überweisungen und
           Spenden sind auch unabhängig von einer Mitgliedschaft willkommen.
         </p>
@@ -344,32 +359,39 @@
          zuunterst das Copyright. -->
     <footer class="band dunkel fusszeile">
       <nav class="fuss-menue">
-        <a href="wissen-neu.html">Wissen</a>
-        <a href="mitgliedschaft-neu.html">Mitgliedschaft</a>
-        <a href="ueber-uns-neu.html">Über uns</a>
-        <a href="kontakt-neu.html">Kontakt</a>
+        <a href="wissen.html">Wissen</a>
+        <a href="mitgliedschaft.html">Mitgliedschaft</a>
+        <a href="ueber-uns.html">Über uns</a>
+        <a href="kontakt.html">Kontakt</a>
       </nav>
 
       <div class="fuss-angaben">
-        <p>
+        <p data-inhalt="fussProjekt">
           Projekt von: Iris Becher, Barbara van der Meulen, Nicolaj van der
           Meulen
         </p>
-        <p>Konzept und Design: nicolasbirrer.ch</p>
-        <p class="fuss-recht">© 2026 Klostergärten Schweiz. All rights reserved.</p>
+        <p data-inhalt="fussGestaltung">Konzept und Design: nicolasbirrer.ch</p>
+        <p class="fuss-recht" data-inhalt="fussRecht">
+          © 2026 Klostergärten Schweiz. All rights reserved.
+        </p>
       </div>
     </footer>
 
     <!-- Baut aus dem Formular eine fertige Mail -->
-    <script src="anmeldung.js"></script>
+    <script src="js/anmeldung.js"></script>
 
     <!-- Das Burger-Menue auf dem Handy -->
-    <script src="menue.js"></script>
+    <script src="js/menue.js"></script>
 
     <!-- Die Taste P oeffnet die Praesentation -->
-    <script src="praesentation.js"></script>
+    <script src="js/praesentation.js"></script>
 
     <!-- Ganz zum Schluss: schneidet die schiefen Kanten, wenn alles steht -->
-    <script src="schief.js"></script>
+    <script src="js/schief.js"></script>
+
+    <!-- Holt Texte und Bilder aus dem Sanity-Studio.
+         Muss nach schief.js und bilder.js stehen: inhalt.js ruft beide
+         noch einmal auf, sobald die Texte eingesetzt sind. -->
+    <script src="js/inhalt.js"></script>
   </body>
 </html>

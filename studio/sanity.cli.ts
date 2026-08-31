@@ -8,12 +8,12 @@ export default defineCliConfig({
   // https://klostergaerten.sanity.studio
   studioHost: 'klostergaerten',
 
-  // Feste App-ID, damit der Deploy nicht jedes Mal nachfragt
   deployment: {
+    // Feste App-ID, damit der Deploy nicht jedes Mal nachfragt
     appId: 'hlkrov348w233pxdz36h0s5y',
-  },
 
-  // Aus: sonst meldet der Dev-Server einen Versions-Fehler.
-  // Updates werden stattdessen ueber npm gemacht.
-  autoUpdates: false,
+    // Aus: sonst meldet der Dev-Server einen Versions-Fehler.
+    // Updates werden stattdessen ueber npm gemacht.
+    autoUpdates: false,
+  },
 })

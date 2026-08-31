@@ -1,7 +1,7 @@
 // Das Burger-Menue und die mitfahrende Kopfzeile.
 //
 // Der Knopf mit den drei Balken klappt das Menue auf und zu. Auf breiten
-// Schirmen ist er ausgeblendet (siehe redesign.css), dort stehen die
+// Schirmen ist er ausgeblendet (siehe css/style.css), dort stehen die
 // Knoepfe wie bisher nebeneinander.
 //
 // Die Kopfzeile faehrt beim Runterscrollen weg und beim Hochscrollen
@@ -33,10 +33,12 @@ if (burger) {
 
   // Nach einem Klick auf einen Menuepunkt schliesst sich das Menue.
   // Ohne das bliebe es beim Sprung zu einem Anker auf derselben Seite offen.
-  hauptmenue.querySelectorAll("a").forEach(function (link) {
-    link.addEventListener("click", function () {
-      schalte(false);
-    });
+  //
+  // Der Zuhoerer sitzt am Menue selbst, nicht an den einzelnen Links:
+  // inhalt.js baut die Punkte spaeter aus den Studio-Texten neu auf, und
+  // dabei gingen Zuhoerer an den alten Links verloren.
+  hauptmenue.addEventListener("click", function (ereignis) {
+    if (ereignis.target.closest("a")) schalte(false);
   });
 
   // Mit Escape schliessen

@@ -119,7 +119,7 @@ document.addEventListener("keydown", function (ereignis) {
   } else if (ereignis.key === "ArrowLeft" || ereignis.key === "ArrowUp") {
     zurueck();
   } else if (ereignis.key === "Escape") {
-    window.location.href = "redesign.html";
+    window.location.href = "index.html";
   }
 });
 

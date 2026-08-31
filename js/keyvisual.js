@@ -331,6 +331,13 @@ function starteKeyvisual(svg) {
   let folgtX = 0;
   let folgtY = 0;
 
+  // Steht neben dem Visual ein Absatz fuer den Klosterindex, bekommt er
+  // dieselben Zeilen. Auf dem Handy ist er die sichtbare Fassung - dort
+  // steht der Index unter der Zeichnung statt darin.
+  const indexFeld = svg.parentElement
+    ? svg.parentElement.querySelector(".garten-index")
+    : null;
+
   // Der Zustand der Beschriftung
   let zeilenElemente = []; // ein <tspan> pro Zeile
   let textBreite = 0; // gemessene Breite, 0 heisst "neu messen"
@@ -363,6 +370,18 @@ function starteKeyvisual(svg) {
       beschriftung.appendChild(zeile);
       zeilenElemente.push(zeile);
     });
+
+    // Dieselben Zeilen noch einmal ausserhalb der Zeichnung. Ein <span>
+    // pro Zeile, das CSS stellt sie untereinander.
+    if (indexFeld) {
+      indexFeld.textContent = "";
+
+      zeilen.forEach(function (text) {
+        const zeile = document.createElement("span");
+        zeile.textContent = text;
+        indexFeld.appendChild(zeile);
+      });
+    }
 
     // Die Schriftgroesse steht im CSS (dieselbe wie beim Vereinsnamen).
     // Von hier kommt der Zeilenabstand, deshalb wird sie ausgelesen.
@@ -509,6 +528,17 @@ function starteKeyvisual(svg) {
     // Ohne Beschriftung ist die Zeichnung hier fertig - das ist das Logo.
     if (zeilenElemente.length === 0) return;
 
+    // Auf dem Handy uebernimmt der Absatz unter der Zeichnung. Dann bleibt
+    // die Beschriftung im Bild leer - sonst stuende sie doppelt da.
+    const handy = window.innerWidth <= HANDY_BIS;
+
+    if (handy && indexFeld) {
+      beschriftung.style.display = "none";
+      return;
+    }
+
+    beschriftung.style.display = "";
+
     // Am liebsten steht sie seitlich auf der Hoehe der Kreismitte - genau
     // dort, wo der waagrechte Balken die Mauer zu einem Eingang oeffnet.
     // Dort liegt nie ein Mauerstueck hinter der Schrift.
@@ -537,9 +567,13 @@ function starteKeyvisual(svg) {
     let textX;
     let textY;
 
+    // Steht die Beschriftung doch im Bild - auf einem schmalen Schirm ohne
+    // eigenen Absatz daneben -, dann linksbuendig an der Mauer statt
+    // wandernd. Das betrifft die Praesentation, nicht die Startseite.
+    //
     // Mit data-text-mittig wird die seitliche Stellung uebersprungen: der
     // Text steht dann immer mittig ueber oder unter dem Kreis.
-    if (!textMittig && Math.max(platzLinks, platzRechts) >= textBreite) {
+    if (!handy && !textMittig && Math.max(platzLinks, platzRechts) >= textBreite) {
       // Genug Platz daneben: der Block steht mittig zur Kreismitte. Das
       // 0.35-fache der Schriftgroesse hebt die erste Grundlinie so an, dass
       // er optisch mittig sitzt und nicht zu tief haengt.
@@ -555,8 +589,15 @@ function starteKeyvisual(svg) {
       // Zu schmal daneben - dann ueber oder unter den Kreis. Dort steht die
       // ganze Bildbreite zur Verfuegung. Ohne diesen Ausweg wuerde der Text
       // beim Klemmen in den Rand auf dem Kreis landen.
-      anker = "middle";
-      textX = mitteX;
+      if (handy) {
+        // Links an der Mauer. Um die Mauerdicke eingerueckt, sonst saesse
+        // die Schrift auf der gruenen Linie.
+        anker = "start";
+        textX = wand;
+      } else {
+        anker = "middle";
+        textX = mitteX;
+      }
 
       if (platzUnten >= platzOben) {
         textY = mitteY + radius + luecke + schriftHoehe;

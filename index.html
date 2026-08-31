@@ -1,111 +1,294 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Klostergärten Schweiz</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Klostergärten Schweiz</title>
 
-  <!-- Schrift Montserrat von Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <!-- Noch nicht oeffentlich: haelt die Seite aus Suchmaschinen heraus -->
+    <meta name="robots" content="noindex, nofollow" />
 
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body data-seite="seite-start">
+    <!-- ===== Startbild: Kopfzeile, Keyvisual, Titel ===== -->
+    <section class="hero">
+      <header class="kopf">
+        <div class="kopf-name" data-inhalt="vereinsname">Verein Klostergärten Schweiz</div>
 
-  <!-- ===== Oberer Bereich: Foto, Menue-Blume und Titel ===== -->
-  <header class="hero">
+        <!-- Nur auf dem Handy sichtbar. Die drei Balken schneidet
+             schief.js leicht schraeg an, wie alles andere auch. -->
+        <button
+          class="burger"
+          id="burger"
+          aria-expanded="false"
+          aria-controls="hauptmenue"
+          aria-label="Menü öffnen"
+        >
+          <span class="burger-balken"></span>
+          <span class="burger-balken"></span>
+          <span class="burger-balken"></span>
+        </button>
 
-    <!-- Menue oben rechts: pinke Blume mit gelber Schrift darauf.
-         Die Punkte werden von inhalte.js aus Sanity ersetzt. -->
-    <nav class="menu-blume">
-      <img src="assets/flower_menu.png" alt="" class="menu-blume-bild">
-      <ul class="menu-links" id="menu-links">
-        <li><a href="wissen.html">wissen</a></li>
-        <li><a href="projekte.html">projekte</a></li>
-        <li><a href="ueber-uns.html">über uns</a></li>
-        <li><a href="kontakt.html">kontakt</a></li>
-      </ul>
-    </nav>
+        <nav id="hauptmenue" class="hauptmenue">
+          <ul class="kopf-menue">
+            <!-- Nur im Burger-Menue sichtbar: auf breiten Schirmen fuehrt
+                 der Vereinsname links zurueck auf die Startseite. -->
+            <li class="nur-menue">
+              <a href="index.html" class="knopf"
+                ><span class="knopf-text">Startseite</span></a
+              >
+            </li>
+            <li>
+              <a href="wissen.html" class="knopf"
+                ><span class="knopf-text">Wissen</span></a
+              >
+            </li>
+            <li>
+              <a href="mitgliedschaft.html" class="knopf"
+                ><span class="knopf-text">Mitgliedschaft</span></a
+              >
+            </li>
+            <li>
+              <a href="kontakt.html" class="knopf"
+                ><span class="knopf-text">Kontakt</span></a
+              >
+            </li>
+            <li>
+              <a href="ueber-uns.html" class="knopf"
+                ><span class="knopf-text">Über uns</span></a
+              >
+            </li>
+          </ul>
 
-  </header>
+        </nav>
+      </header>
 
-  <!-- Grosser Titel direkt unter dem Foto, gleiche Raender wie das Bild -->
-  <h1 class="hero-titel" id="hero-titel">Klostergärten Schweiz</h1>
+      <!-- Leer im HTML: keyvisual.js zeichnet bei jedem Laden eine neue Variante -->
+      <svg
+        class="keyvisual"
+        role="img"
+        aria-label="Abstrakter Klostergarten von oben"
+      ></svg>
 
-  <!-- ===== Textbereich mit der grossen Blume links ===== -->
-  <main class="inhalt">
+      <!-- Der Klosterindex auf dem Handy: dort steht er unter der
+           Zeichnung statt darin. keyvisual.js schreibt dieselben Zeilen
+           hier hinein, das CSS zeigt je nach Breite die eine oder die
+           andere Fassung. Leer im HTML, wie das Visual darüber. -->
+      <p class="garten-index"></p>
 
-    <!-- Grosse Passionsblume links, dreht sich langsam mit Perlin Noise -->
-    <img src="assets/flower_big.png" alt="" class="deko-blume" id="deko-blume">
+      <h1 class="titel" data-inhalt="titel">Klostergärten Schweiz</h1>
+    </section>
 
-    <!-- Zweite Passionsblume rechts, dreht sich in die andere Richtung -->
-    <img src="assets/flower_big_rechts.png" alt="" class="deko-blume-rechts" id="deko-blume-rechts">
+    <!-- ===== Was wir machen ===== -->
+    <section class="block was-wir-machen">
+      <p class="marke" data-inhalt="machenMarke">Was wir machen</p>
 
-    <div class="text-spalten">
+      <div class="machen-reihe">
+        <h2 class="aussage" data-inhalt="machenAussage">
+          Wir dokumentieren, erforschen und vermitteln die Klostergärten der
+          Schweiz als lebendige Orte von Wissen, Pflanzen- und Sozialkultur,
+          Ernährung und Spiritualität.
+        </h2>
 
-      <!-- Linke Spalte. Texte kommen aus Sanity, der Inhalt hier
-           ist nur Ersatz, falls das Laden scheitert. -->
-      <section class="spalte" id="spalte-links">
-        <h2>klostergärten schweiz</h2>
-        <div class="absaetze">
-          <p>Hier entsteht ein neues Projekt.</p>
-          <p>
-            Klostergärten Schweiz dokumentiert, erforscht und vermittelt die
-            Klostergärten der Schweiz als lebendige Archive von Wissen, Pflanzen-,
-            Sozialkultur, Ernährung und Spiritualität. In einem historischen
-            Zeitfenster sichern wir gefährdetes Erfahrungswissen, vernetzen
-            Menschen und Institutionen und machen dieses kulturelle Erbe für
-            kommende Generationen zugänglich.
-          </p>
+        <div class="machen-knopf">
+          <a
+            href="mitgliedschaft.html"
+            class="knopf knopf-gross"
+            data-ziel="machenKnopfZiel"
+            ><span class="knopf-text" data-inhalt="machenKnopfText"
+              >Werde Mitglied</span
+            ></a
+          >
         </div>
-        <!-- Fuehrt auf die neue Seite. Achtung: steht im Sanity-Studio ein
-             "kontaktLinkZiel", ueberschreibt inhalte.js dieses Ziel wieder. -->
-        <p><a href="redesign.html" class="text-link" id="kontakt-link">schreiben Sie uns!</a></p>
-      </section>
+      </div>
+    </section>
 
-      <!-- Rechte Spalte, ebenfalls aus Sanity -->
-      <section class="spalte" id="spalte-rechts">
-        <h2>unsere vision</h2>
-        <div class="absaetze">
-        <p>
+    <!-- ===== Grosses Bild mit Angaben ===== -->
+    <section class="schau">
+      <div class="schau-buehne bild">
+        <img
+          data-bild="schauBild"
+          src="assets/bilder/garten-gross.jpg"
+          alt="Klostergarten in voller Blüte"
+        />
+      </div>
+
+      <!-- Zwei Spalten, damit die Angaben rechts auf derselben Kante
+         beginnen wie die Fliesstexte weiter unten. -->
+      <div class="schau-fuss">
+        <div class="schau-info">
+          <div>Kloster Dornach, SO</div>
+          <div>Orden: Kapuziner</div>
+          <div>Stiftung 1972</div>
+        </div>
+
+        <p class="schau-text" data-inhalt="schauText">
           Klostergärten gehören zu den ältesten Kulturräumen der Schweiz.
         </p>
-        <p>
+      </div>
+    </section>
+
+    <!-- ===== Vision (dunkles Band) ===== -->
+    <section class="band block dunkel">
+      <p class="marke" data-inhalt="visionMarke">Vision</p>
+
+      <div class="zwei-spalten">
+        <h2 class="aussage" data-inhalt="visionAussage">
+          Das Projekt dokumentiert Klostergärten, ihre Geschichte und ihre
+          gegenwärtige Entwicklung.
+        </h2>
+
+        <p class="fliesstext" data-inhalt="visionFliesstext">
+          Zugleich schafft es einen Ort der Begegnung für Menschen, die sich für
+          Gartenkultur, Biodiversität, Kulinarik, Heilpflanzen, Spiritualität
+          und klösterliche Wissensgeschichte interessieren. So werden bestehende
+          Initiativen sichtbar gemacht, neue Kooperationen angeregt und Impulse
+          für den Erhalt und die Weiterentwicklung dieses einzigartigen
+          Kulturerbes gegeben.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Plattform ===== -->
+    <section class="block">
+      <p class="marke" data-inhalt="plattformMarke">Plattform</p>
+
+      <div class="zwei-spalten">
+        <h2 class="aussage" data-inhalt="plattformAussage">
+          Hier entsteht ein lebendiges Inventar und Kulturportal, das Forschung,
+          Vermittlung, Vernetzung und gesellschaftliches Engagement
+          zusammenführt.
+        </h2>
+
+        <p class="fliesstext tief" data-inhalt="plattformFliesstext">
           Über Jahrhunderte wurden hier Heilpflanzen kultiviert, Nahrung
           produziert, Wissen bewahrt und Erfahrungen weitergegeben. Heute
           befindet sich dieses kulturelle Erbe in einem tiefgreifenden Wandel.
-          Einige Klostergärten sind bereits verschwunden, andere müssen sich an
-          veränderte klimatische und gesellschaftliche Bedingungen anpassen.
+          Einige Klostergärten sind bereits verschwunden, andere haben sich über
+          Jahrhunderte immer wieder neu erfunden.
         </p>
-        <p>
-          Mit dem Projekt Klostergärten Schweiz entsteht ein lebendiges Inventar
-          und Kulturportal, das Forschung, Vermittlung, Vernetzung und
-          gesellschaftliches Engagement zusammenführt.
-        </p>
-        <p>
-          Das Projekt dokumentiert Klostergärten, ihre Geschichte und ihre
-          gegenwärtige Entwicklung. Zugleich schafft es einen Ort der Begegnung
-          für Menschen, die sich für Gartenkultur, Biodiversität, Kulinarik,
-          Heilpflanzen, Spiritualität und klösterliche Wissensgeschichte
-          interessieren. So werden bestehende Initiativen sichtbar gemacht, neue
-          Kooperationen angeregt und Impulse für den Erhalt und die
-          Weiterentwicklung dieses einzigartigen Kulturerbes gegeben.
-        </p>
+      </div>
+    </section>
+
+    <!-- ===== Eindruecke ===== -->
+    <section class="block">
+      <p class="marke" data-inhalt="eindrueckeMarke">Eindrücke</p>
+
+      <div class="bilder-raster">
+        <div class="bild bild-laedt">
+          <img
+            loading="lazy"
+            src="assets/bilder/eindruck-1.jpg"
+            alt="Eindruck aus einem Klostergarten"
+          />
         </div>
-      </section>
+        <div class="bild bild-laedt">
+          <img
+            loading="lazy"
+            src="assets/bilder/eindruck-2.jpg"
+            alt="Eindruck aus einem Klostergarten"
+          />
+        </div>
+        <div class="bild bild-laedt">
+          <img
+            loading="lazy"
+            src="assets/bilder/eindruck-3.jpg"
+            alt="Eindruck aus einem Klostergarten"
+          />
+        </div>
+        <div class="bild bild-laedt">
+          <img
+            loading="lazy"
+            src="assets/bilder/eindruck-4.jpg"
+            alt="Eindruck aus einem Klostergarten"
+          />
+        </div>
+        <div class="bild bild-laedt">
+          <img
+            loading="lazy"
+            src="assets/bilder/hauterive-1.jpg"
+            alt="Klostergarten Hauterive"
+          />
+        </div>
+        <div class="bild bild-laedt">
+          <img
+            loading="lazy"
+            src="assets/bilder/hauterive-2.jpg"
+            alt="Klostergarten Hauterive"
+          />
+        </div>
+      </div>
+    </section>
 
-    </div>
-  </main>
+    <!-- ===== Wandel (dunkles Band) ===== -->
+    <section class="band block dunkel">
+      <p class="marke" data-inhalt="wandelMarke">Wandel</p>
 
-  <!-- Holt die Texte aus dem Sanity CMS -->
-  <script src="inhalte.js"></script>
+      <h2 class="aussage aussage-halb" data-inhalt="wandelAussage">
+        Einige Klostergärten sind bereits verschwunden, andere müssen sich an
+        veränderte klimatische und gesellschaftliche Bedingungen anpassen.
+      </h2>
+    </section>
 
-  <!-- Animation der Blumen -->
-  <script src="script.js"></script>
+    <!-- ===== Aufruf ===== -->
+    <section class="block aufruf">
+      <p class="aussage aufruf-text" data-inhalt="aufrufText">
+        Klostergärten sind gefährdetes Kulturerbe.<br />
+        Wir dokumentieren sie erstmals<br />
+        umfassend, in einem Buch (2028).<br />
+        Mitglieder finanzieren, tragen und<br />
+        vernetzen dieses Projekt.
+      </p>
 
-  <!-- Taste "i" oeffnet die interne Seite -->
-  <script src="intern.js"></script>
-</body>
+      <a
+        href="mitgliedschaft.html"
+        class="knopf knopf-gross"
+        data-ziel="aufrufKnopfZiel"
+        ><span class="knopf-text" data-inhalt="aufrufKnopfText">Werde Mitglied</span></a
+      >
+    </section>
+
+    <!-- ===== Fusszeile (dunkles Band) =====
+         Von oben nach unten: Menue, Projektbeteiligte, Gestaltung,
+         zuunterst das Copyright. -->
+    <footer class="band dunkel fusszeile">
+      <nav class="fuss-menue">
+        <a href="wissen.html">Wissen</a>
+        <a href="mitgliedschaft.html">Mitgliedschaft</a>
+        <a href="ueber-uns.html">Über uns</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+
+      <div class="fuss-angaben">
+        <p data-inhalt="fussProjekt">
+          Projekt von: Iris Becher, Barbara van der Meulen, Nicolaj van der
+          Meulen
+        </p>
+        <p data-inhalt="fussGestaltung">Konzept und Design: nicolasbirrer.ch</p>
+        <p class="fuss-recht" data-inhalt="fussRecht">
+          © 2026 Klostergärten Schweiz. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Zuerst die Klosterliste, keyvisual.js greift darauf zu -->
+    <script src="js/kloester.js"></script>
+    <script src="js/keyvisual.js"></script>
+    <script src="js/bilder.js"></script>
+
+    <!-- Das Burger-Menue auf dem Handy -->
+    <script src="js/menue.js"></script>
+
+    <!-- Die Taste P oeffnet die Praesentation -->
+    <script src="js/praesentation.js"></script>
+
+    <!-- Ganz zum Schluss: schneidet die schiefen Kanten, wenn alles steht -->
+    <script src="js/schief.js"></script>
+
+    <!-- Holt Texte und Bilder aus dem Sanity-Studio.
+         Muss nach schief.js und bilder.js stehen: inhalt.js ruft beide
+         noch einmal auf, sobald die Texte eingesetzt sind. -->
+    <script src="js/inhalt.js"></script>
+  </body>
 </html>
