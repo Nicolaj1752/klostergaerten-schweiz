@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Klostergärten Schweiz – Präsentation</title>
+
+    <!-- Nicht oeffentlich: haelt die Seite aus Suchmaschinen heraus -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Schrift, Farben und der Reset kommen von der Website -->
+    <link rel="stylesheet" href="redesign.css" />
+    <link rel="stylesheet" href="praesentation.css" />
+
+    <!-- Montserrat fuer die Gegenueberstellung auf Folie 1. Sie kommt von
+         Google, genau wie im alten Design - anders als Satoshi liegt sie
+         nicht im Projekt. Diese eine Folie braucht darum Internet. -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="praesentation">
+    <!-- ===== Folie 1: die beiden Typografie-Systeme =====
+         Dieselben vier Zeilen zweimal gesetzt: zuerst wie bisher, auf
+         Knopfdruck im neuen System. Sichtbar ist immer nur eine der
+         beiden Fassungen - welche, entscheidet die Klasse "zeigt-neu"
+         am Abschnitt. -->
+    <section class="folie folie-typo" id="folie-typo">
+      <!-- Beide Muster liegen uebereinander, siehe praesentation.css -->
+      <div class="typo-paar">
+        <!-- Bisher: Montserrat, Pink auf Creme. Alle Werte aus style.css. -->
+        <div class="typo typo-alt">
+          <p class="typo-marke">Bisher</p>
+          <p class="typo-titel">Klostergärten Schweiz</p>
+          <p class="typo-aussage">Klostergärten sind gefährdetes Kulturerbe.</p>
+          <p class="typo-text">
+            Über Jahrhunderte wurden hier Heilpflanzen kultiviert, Nahrung
+            produziert und Wissen weitergegeben.
+          </p>
+          <p class="typo-angabe">
+            Montserrat 400 / 600
+            <span class="farbe farbe-pink"></span>#F5057F
+            <span class="farbe farbe-gelb"></span>#D4E82B
+            <span class="farbe farbe-creme-alt"></span>#F5EFE0
+          </p>
+        </div>
+
+        <!-- Neu: Satoshi, Dunkelgrün auf Creme. Alle Werte aus redesign.css. -->
+        <div class="typo typo-neu">
+          <p class="typo-marke">Neu</p>
+          <p class="typo-titel">Klostergärten Schweiz</p>
+          <p class="typo-aussage">Klostergärten sind gefährdetes Kulturerbe.</p>
+          <p class="typo-text">
+            Über Jahrhunderte wurden hier Heilpflanzen kultiviert, Nahrung
+            produziert und Wissen weitergegeben.
+          </p>
+          <p class="typo-angabe">
+            Satoshi 300–900
+            <span class="farbe farbe-gruen"></span>#082302
+            <span class="farbe farbe-creme"></span>#FDFFEA
+          </p>
+        </div>
+      </div>
+
+      <button class="knopf folie-knopf" id="typo-knopf" type="button">
+        <span class="knopf-text">Neues System</span>
+      </button>
+    </section>
+
+    <!-- ===== Folie 2: das Logo ===== -->
+    <section class="folie">
+      <div class="bild folie-bild">
+        <img
+          src="assets/bilder/praesentation-logo.png"
+          alt="Logo-Varianten Klostergärten Schweiz"
+        />
+      </div>
+    </section>
+
+    <!-- ===== Folie 3: drei Gaerten ===== -->
+    <section class="folie">
+      <div class="folie-reihe">
+        <div class="bild">
+          <img
+            src="assets/bilder/praesentation-1.jpg"
+            alt="Klostergarten von oben"
+          />
+        </div>
+        <div class="bild">
+          <img
+            src="assets/bilder/praesentation-2.jpg"
+            alt="Klostergarten mit Beeten"
+          />
+        </div>
+        <div class="bild">
+          <img
+            src="assets/bilder/praesentation-3.jpg"
+            alt="Klostergarten im Sommer"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Folie 4: das Keyvisual erklaert =====
+         Es steht still (data-still) und zeigt nur die Form, ohne
+         Klosternamen (data-ohne-text). Das sonst unsichtbare Kreuz
+         blendet hier grau ein und aus - so ist zu sehen, wie die vier
+         Eingaenge entstehen. Das macht praesentation.css. -->
+    <section class="folie folie-mitte">
+      <svg
+        class="keyvisual folie-visual"
+        data-still
+        data-ohne-text
+        data-kante-zeigen
+        role="img"
+        aria-label="Abstrakter Klostergarten von oben"
+      ></svg>
+    </section>
+
+    <!-- ===== Folie 5: die Prinzipien ===== -->
+    <section class="folie folie-punkte">
+      <p class="marke">Prinzipien</p>
+
+      <ul class="punkte">
+        <li>Unumstösslich</li>
+        <li>Immer gleich</li>
+        <li>Folgen alle demselben Prinzip</li>
+        <li>Eine gewisse Ernsthaftigkeit</li>
+      </ul>
+    </section>
+
+    <!-- ===== Folie 6: das Logo ===== -->
+    <section class="folie folie-mitte">
+      <div class="logo logo-gross">
+        <!-- Die Zeichnung steht in der Zeile, direkt hinter "Schweiz".
+             Ohne Beschriftung und ohne Uhr: das Logo wechselt nur
+             auf Knopfdruck. -->
+        <p class="logo-wort">
+          Klostergärten<br />Schweiz<svg
+            class="keyvisual logo-visual"
+            id="logo-visual"
+            data-ohne-uhr
+            data-ohne-text
+            data-strich="2.4"
+            role="img"
+            aria-label="Logo Klostergärten Schweiz"
+          ></svg>
+        </p>
+      </div>
+
+      <button class="knopf folie-knopf" id="logo-knopf" type="button">
+        <span class="knopf-text">Neu würfeln</span>
+      </button>
+    </section>
+
+    <!-- ===== Folie 7: sechs Logos im selben Takt =====
+         praesentation.js wuerfelt sie gemeinsam weiter, solange diese
+         Folie zu sehen ist. -->
+    <section class="folie" id="folie-logos">
+      <div class="logo-raster">
+        <div class="logo">
+          <p class="logo-wort">
+            Klostergärten<br />Schweiz<svg
+              class="keyvisual logo-visual"
+              data-ohne-uhr
+              data-ohne-text
+              data-strich="2.4"
+            ></svg>
+          </p>
+        </div>
+        <div class="logo">
+          <p class="logo-wort">
+            Klostergärten<br />Schweiz<svg
+              class="keyvisual logo-visual"
+              data-ohne-uhr
+              data-ohne-text
+              data-strich="2.4"
+            ></svg>
+          </p>
+        </div>
+        <div class="logo">
+          <p class="logo-wort">
+            Klostergärten<br />Schweiz<svg
+              class="keyvisual logo-visual"
+              data-ohne-uhr
+              data-ohne-text
+              data-strich="2.4"
+            ></svg>
+          </p>
+        </div>
+        <div class="logo">
+          <p class="logo-wort">
+            Klostergärten<br />Schweiz<svg
+              class="keyvisual logo-visual"
+              data-ohne-uhr
+              data-ohne-text
+              data-strich="2.4"
+            ></svg>
+          </p>
+        </div>
+        <div class="logo">
+          <p class="logo-wort">
+            Klostergärten<br />Schweiz<svg
+              class="keyvisual logo-visual"
+              data-ohne-uhr
+              data-ohne-text
+              data-strich="2.4"
+            ></svg>
+          </p>
+        </div>
+        <div class="logo">
+          <p class="logo-wort">
+            Klostergärten<br />Schweiz<svg
+              class="keyvisual logo-visual"
+              data-ohne-uhr
+              data-ohne-text
+              data-strich="2.4"
+            ></svg>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Folie 8: das Logo erklaert =====
+         Links das Logo, rechts die Ueberlegungen dahinter. Jede Zeile
+         traegt die Klasse "schritt": sie erscheint erst beim naechsten
+         Schritt vorwaerts, eine nach der anderen. -->
+    <section class="folie folie-erklaerung">
+      <div class="logo">
+        <p class="logo-wort">
+          Klostergärten<br />Schweiz<svg
+            class="keyvisual logo-visual"
+            data-ohne-uhr
+            data-ohne-text
+            data-strich="2.4"
+            role="img"
+            aria-label="Logo Klostergärten Schweiz"
+          ></svg>
+        </p>
+      </div>
+
+      <ul class="punkte">
+        <li class="schritt">Leicht betontes Kreuz</li>
+        <li class="schritt">Mind. ein rechter Winkel, Anpassung ans Gelände</li>
+        <li class="schritt">
+          Kamera-Metapher: verwandt mit dem Kamera-Fokus — das Kloster aufsuchen
+        </li>
+        <li class="schritt">Direktes Wort im Kontrast zu den Grundformen</li>
+        <li class="schritt">
+          Menge der Klöster betonen, Anspielung auf einen Index
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== Folie 9: das Keyvisual gross =====
+         Wie auf der Startseite, mit Klosternamen - nur grösser und
+         schneller: alle 2.5 Sekunden eine neue Variante.
+         Ohne Foliennummer, damit nichts vom Bild ablenkt. -->
+    <section class="folie ohne-zaehler">
+      <svg
+        class="keyvisual gross-visual"
+        data-pause="2500"
+        role="img"
+        aria-label="Abstrakter Klostergarten von oben"
+      ></svg>
+    </section>
+
+    <!-- Steht immer unten rechts, das Skript schreibt die Zahl hinein -->
+    <p class="folie-zaehler" id="folie-zaehler"></p>
+
+    <!-- Zuerst die Klosterliste, keyvisual.js greift darauf zu -->
+    <script src="kloester.js"></script>
+    <script src="keyvisual.js"></script>
+
+    <!-- Danach die Praesentation: sie steuert die fertigen Visuals -->
+    <script src="praesentation.js"></script>
+
+    <!-- Ganz zum Schluss: schneidet die schiefen Kanten der Bilder -->
+    <script src="schief.js"></script>
+  </body>
+</html>

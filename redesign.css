@@ -102,6 +102,31 @@
   box-sizing: border-box;
 }
 
+/* Spruenge gleiten, statt zu springen: das betrifft Links auf ein Ziel
+   auf derselben Seite und Aufrufe wie scrollIntoView - zum Beispiel die
+   Bestaetigung nach dem Absenden des Formulars (anmeldung.js).
+   Am Mausrad aendert das nichts, dort scrollt der Browser weiter so, wie
+   es im Betriebssystem eingestellt ist.
+
+   Die Regel steht auf BEIDEN Elementen, und das mit Absicht: das
+   overflow-x: hidden weiter unten macht den body zum scrollenden
+   Element (sobald eine Achse hidden ist, setzt der Browser die andere
+   auf auto). scroll-behavior wirkt aber nur dort, wo wirklich gescrollt
+   wird. Auf html allein bliebe es wirkungslos. */
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+/* Wer im Betriebssystem weniger Bewegung eingestellt hat, springt weiter
+   direkt ans Ziel - dieselbe Ruecksicht wie beim Keyvisual. */
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   font-family: var(--schrift);
   background-color: var(--creme);

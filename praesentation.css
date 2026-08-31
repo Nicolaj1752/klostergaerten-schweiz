@@ -1,0 +1,463 @@
+/* Die Praesentation.
+
+   Nur die Folien stehen hier. Schrift, Farben und der Reset kommen aus
+   redesign.css, das die Seite vorher laedt - so sieht die Praesentation
+   aus wie die Website. */
+
+/* ===== Die Buehne ===== */
+
+/* Beim Blaettern soll nichts scrollen: eine Folie ist genau ein Fenster. */
+.praesentation {
+  overflow: hidden;
+  cursor: pointer; /* ein Klick blaettert weiter */
+}
+
+/* Alle Folien liegen uebereinander, sichtbar ist immer nur eine.
+   100dvh statt 100vh wegen der Adressleiste auf dem Handy - dieselbe
+   Ueberlegung wie beim Startbild der Website. */
+.folie {
+  display: none;
+
+  height: 100vh;
+  height: 100dvh;
+
+  padding: var(--seitenrand);
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* Die eine Folie, die gerade dran ist */
+.folie-an {
+  display: flex;
+}
+
+/* ===== Einzelne Bilder ===== */
+
+/* Der Rahmen schmiegt sich ans Bild, damit die schiefe Kante aus
+   schief.js an der Bildkante sitzt und nicht im leeren Raum.
+
+   width und height muessen ausdruecklich auf "auto" stehen: redesign.css
+   fuellt sonst jedes Bild in einem .bild-Rahmen ganz aus (cover), und das
+   Logo wuerde verzerrt und angeschnitten. */
+.folie-bild img {
+  display: block;
+
+  width: auto;
+  height: auto;
+  object-fit: contain;
+
+  max-width: 100%;
+  max-height: calc(100dvh - 2 * var(--seitenrand));
+}
+
+/* ===== Mehrere Bilder nebeneinander ===== */
+
+/* Gleich breite Spalten auf gleicher Hoehe. Die Bilder haben sehr
+   verschiedene Formate, darum fuellen sie ihren Platz aus (cover) -
+   drei gleiche Flaechen wirken ruhiger als drei ungleiche. */
+.folie-reihe {
+  display: flex;
+  gap: 1.5vw;
+
+  width: 100%;
+  height: 70vh;
+}
+
+.folie-reihe .bild {
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+}
+
+.folie-reihe img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===== Folien mit Knopf darunter ===== */
+
+/* Der Inhalt steht mittig, der Knopf sitzt immer unten in der Mitte -
+   auf jeder Folie an derselben Stelle. Er liegt fest im Fenster und
+   nimmt darum keinen Platz vom Inhalt weg. */
+.folie-mitte {
+  flex-direction: column;
+}
+
+.folie-knopf {
+  position: fixed;
+  bottom: var(--seitenrand);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Ein Knopf ist auf der Website immer ein <a>. Hier ist es ein echter
+   Knopf, der sich seine Schrift und seinen Rahmen vom Browser holt -
+   beides muss weg. */
+button.knopf {
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ===== Die beiden Typografie-Systeme (Folie 1) ===== */
+
+/* Der Abschnitt traegt den Hintergrund des gezeigten Systems - so werden
+   die Farben mit gegenuebergestellt und nicht nur die Schrift. */
+.folie-typo {
+  flex-direction: column;
+  align-items: flex-start;
+
+  background-color: #f5efe0; /* Creme des alten Designs */
+}
+
+.folie-typo.zeigt-neu {
+  background-color: var(--creme);
+}
+
+/* Beide Muster liegen im selben Feld uebereinander (Zeile 1, Spalte 1).
+   Dadurch ist der Kasten immer so hoch wie das groessere von beiden und
+   beim Umschalten springt nichts. */
+.typo-paar {
+  display: grid;
+}
+
+.typo {
+  grid-area: 1 / 1;
+}
+
+/* Sichtbar ist immer nur eine der beiden Fassungen. Sie wird versteckt,
+   nicht ausgebaut - ihren Platz behaelt sie. */
+.typo-neu,
+.zeigt-neu .typo-alt {
+  visibility: hidden;
+}
+
+.zeigt-neu .typo-neu {
+  visibility: visible;
+}
+
+/* Etwas Luft zwischen den Mustern */
+.typo p {
+  margin-bottom: 2.2vh;
+}
+
+.typo-marke,
+.typo-angabe {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Ein Farbquadrat vor jedem Hexwert */
+.farbe {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+
+  margin-left: 1.4em;
+  margin-right: 0.4em;
+}
+
+.farbe-pink {
+  background-color: #f5057f;
+}
+.farbe-gelb {
+  background-color: #d4e82b;
+}
+.farbe-creme-alt {
+  background-color: #f5efe0;
+  outline: 1px solid currentColor; /* sonst verschwindet es im Hintergrund */
+}
+.farbe-gruen {
+  background-color: #082302;
+}
+.farbe-creme {
+  background-color: #fdffea;
+  outline: 1px solid currentColor;
+}
+
+/* --- Bisher: Montserrat, Pink auf Creme. Werte aus style.css. --- */
+
+.typo-alt {
+  font-family: "Montserrat", sans-serif;
+  color: #f5057f;
+}
+
+.typo-alt .typo-titel {
+  font-size: 6.55vw;
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+}
+
+.typo-alt .typo-aussage {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.typo-alt .typo-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+  max-width: 760px;
+}
+
+/* --- Neu: Satoshi, Dunkelgruen auf Creme. Werte aus redesign.css. --- */
+
+.typo-neu {
+  color: var(--gruen);
+}
+
+.typo-neu .typo-titel {
+  font-size: var(--titel-groesse);
+  font-weight: var(--titel-staerke);
+  line-height: var(--titel-zeile);
+  letter-spacing: var(--titel-sperrung);
+  white-space: nowrap;
+}
+
+.typo-neu .typo-aussage {
+  font-size: var(--aussage-groesse);
+  font-weight: var(--aussage-staerke);
+  line-height: var(--aussage-zeile);
+  letter-spacing: var(--aussage-sperrung);
+}
+
+.typo-neu .typo-text {
+  font-size: var(--text-groesse);
+  font-weight: var(--text-staerke);
+  line-height: var(--text-zeile);
+  max-width: var(--text-breite);
+}
+
+/* ===== Das erklaerte Keyvisual (Folie 4) ===== */
+
+/* redesign.css laesst das Visual seinen Platz ausfuellen (flex: 1).
+   Auf der Folie soll es stattdessen eine feste Form haben. */
+.folie-visual {
+  flex: none;
+  width: auto;
+  height: 56dvh;
+  max-width: 84vw;
+  aspect-ratio: 3 / 2;
+  min-height: 0;
+}
+
+/* Die beiden Balken, die die vier Eingaenge aus der Mauer schneiden, haben
+   sonst die Farbe des Hintergrunds und sind darum unsichtbar. Nur auf
+   dieser Folie sind sie gruen.
+
+   Sie bleiben dabei immer sichtbar: die Blende geht nur von 0.8 bis 1 und
+   ist damit ein leises Atmen, kein Auf und Ab. Faenden sie weiter unten
+   an, schiene die dunkle Mauer durch sie hindurch und die vier Eingaenge
+   gingen nicht mehr sauber auf.
+
+   linear, weil die Bewegung gleichmaessig sein soll: keine Beschleunigung
+   am Anfang, kein Abbremsen am Ende. */
+.folie-visual .kreuz-balken {
+  stroke: #7fb88c;
+  animation: kreuz-faden 6s linear infinite alternate;
+}
+
+@keyframes kreuz-faden {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Die eine schiefe Kante, hell rot.
+
+   Das Rot ist halb so stark - aber auf den Hintergrund gemischt statt
+   mit opacity aufgetragen. Die Kante liegt auf der Mauer: mit echter
+   Transparenz schlaegt deren Dunkelgruen durch und aus dem Rot wird
+   Braun. color-mix gibt genau die Farbe, die 50 % Rot auf Creme ergeben. */
+.folie-visual .schiefe-kante {
+  stroke: color-mix(in srgb, #e8776a 50%, var(--creme));
+}
+
+/* Wer im Betriebssystem weniger Bewegung eingestellt hat, sieht das Kreuz
+   ruhig stehen */
+@media (prefers-reduced-motion: reduce) {
+  .folie-visual .kreuz-balken {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ===== Die Prinzipien (Folie 5) ===== */
+
+.folie-punkte {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Der Reset in redesign.css nimmt der Liste schon Rand und Einzug weg,
+   hier faellt nur noch der Punkt davor weg - das Kaestchen kommt unten. */
+.punkte {
+  list-style: none;
+}
+
+/* Groesse und Staerke wie die Aussagesaetze der Website, nur etwas
+   groesser: auf einer Folie stehen vier kurze Zeilen allein. */
+.punkte li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+
+  font-size: 4vw;
+  font-weight: var(--aussage-staerke);
+  line-height: var(--aussage-zeile);
+  letter-spacing: var(--aussage-sperrung);
+
+  margin-bottom: 3vh;
+}
+
+/* Das gefuellte Kaestchen vor jeder Zeile - dieselbe Form wie die
+   Menue-Knoepfe der Website. Es sitzt auf der Grundlinie der Schrift. */
+.punkte li::before {
+  content: "";
+  display: block;
+  flex: none;
+
+  width: 0.3em;
+  height: 0.3em;
+  background-color: var(--gruen);
+}
+
+/* ===== Das Logo (Folien 6 und 7) ===== */
+
+/* Die Zeichnung steht in der zweiten Zeile, direkt hinter "Schweiz" - so
+   rueckt sie unter die laengere erste Zeile.
+
+   Alle Masse stehen in em und haengen damit an der Schriftgroesse:
+   dasselbe Logo wird gross und klein gebaut, indem nur font-size
+   geaendert wird. */
+.logo {
+  /* Die Hoehe der Zeichnung. Sie steht hier, weil zwei Regeln sie
+     brauchen - zum Anpassen genuegt diese eine Zahl. */
+  --visual-hoehe: 1.35em;
+}
+
+.logo-wort {
+  font-size: 1em;
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* Die Oberkante der Zeichnung liegt auf der x-Hoehe. Dafuer haengt sie um
+   ihre Hoehe minus die x-Hoehe unter die Grundlinie - ex ist genau diese
+   x-Hoehe, die Schrift bringt sie selbst mit. */
+.logo-visual {
+  display: inline-block;
+  width: auto;
+  height: var(--visual-hoehe);
+  aspect-ratio: 1.9;
+  min-height: 0;
+
+  vertical-align: calc(1ex - var(--visual-hoehe));
+  margin-left: 0.3em;
+}
+
+/* Das grosse Logo auf Folie 6 */
+.logo-gross {
+  font-size: 6vw;
+}
+
+/* Sechs Logos nebeneinander, zwei pro Reihe */
+.logo-raster {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: center;
+  align-content: center;
+  gap: 14vh 12vw;
+}
+
+/* Das ganze Logo haengt an dieser einen Zahl - Schrift und Zeichnung
+   rechnen beide in em. */
+.logo-raster .logo {
+  font-size: 2.8vw;
+}
+
+/* ===== Das erklaerte Logo (Folie 8) ===== */
+
+/* Logo links, die Ueberlegungen rechts daneben. */
+.folie-erklaerung {
+  gap: 6vw;
+}
+
+.folie-erklaerung .logo {
+  font-size: 3.4vw;
+  flex: none;
+}
+
+/* Fuenf laengere Zeilen: kleiner und enger gesetzt als die vier
+   Prinzipien, die allein auf ihrer Folie stehen. */
+.folie-erklaerung .punkte li {
+  font-size: 1.9vw;
+  margin-bottom: 2.4vh;
+}
+
+/* ===== Zeilen, die nacheinander erscheinen ===== */
+
+/* Der Platz ist von Anfang an da, nur die Zeile ist noch unsichtbar -
+   so rutscht beim Einblenden nichts nach. */
+.schritt {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.schritt-an {
+  opacity: 1;
+}
+
+/* Wer im Betriebssystem weniger Bewegung eingestellt hat, bekommt keine */
+@media (prefers-reduced-motion: reduce) {
+  .schritt {
+    transition: none;
+  }
+}
+
+/* ===== Das grosse Keyvisual (Folie 9) ===== */
+
+/* Es nimmt die ganze Flaeche der Folie. Die Zeichnung misst ihren Platz
+   selbst und fuellt ihn aus - eine feste Form braucht sie nicht.
+   Der Hintergrund ist das Creme der Seite, deshalb steht hier keine
+   Farbe: das Kreuz trifft damit von allein die richtige. */
+.gross-visual {
+  flex: none;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+/* ===== Der Zaehler ===== */
+
+.folie-zaehler {
+  position: fixed;
+  right: var(--seitenrand);
+  bottom: calc(var(--seitenrand) / 2);
+
+  font-size: var(--knopf-groesse);
+  font-weight: var(--knopf-staerke);
+
+  opacity: 0.5;
+}
+
+/* ===== Auf dem Handy ===== */
+
+/* Nebeneinander waeren drei Bilder hier fingerbreit. Untereinander
+   und darum auch niedriger, sonst passen sie nicht ins Fenster. */
+@media (max-width: 700px) {
+  .folie-reihe {
+    flex-direction: column;
+    height: 80vh;
+  }
+}

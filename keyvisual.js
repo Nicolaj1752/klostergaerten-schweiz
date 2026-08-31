@@ -191,6 +191,21 @@ function berechnePunkte(form, breite, hoehe) {
   return punkte;
 }
 
+// Welche der vier Kanten steht schief? Immer die, die von der versetzten
+// Ecke ausgeht: ist die Ecke nach oben oder unten gewandert, kippt die
+// waagrechte Kante, sonst die senkrechte.
+// Zurueck kommen die Nummern ihrer beiden Endpunkte - die Ecken sind im
+// Uhrzeigersinn nummeriert, 0 ist oben links.
+function schiefeKante(form) {
+  const istOben = form.ecke === 0 || form.ecke === 1;
+  const istLinks = form.ecke === 0 || form.ecke === 3;
+
+  if (form.senkrecht) {
+    return istOben ? [0, 1] : [3, 2];
+  }
+  return istLinks ? [3, 0] : [1, 2];
+}
+
 /* ===== Mausposition ===== */
 
 // Von -1 (links/oben) bis 1 (rechts/unten). Wird von allen Visuals geteilt.
@@ -205,6 +220,43 @@ window.addEventListener("mousemove", function (ereignis) {
 /* ===== Ein Visual zum Leben erwecken ===== */
 
 function starteKeyvisual(svg) {
+  // Schalter, die direkt am <svg> stehen koennen. Damit zeichnet dieselbe
+  // Funktion das grosse Visual der Startseite und die ruhigen Varianten in
+  // der Praesentation:
+  //
+  //   data-still        das Bild steht: kein Weiterwuerfeln von allein,
+  //                     keine Maus, keine Verwandlung.
+  //   data-ohne-uhr     wuerfelt nur auf Klick oder Knopfdruck weiter,
+  //                     die Verwandlung dorthin bleibt.
+  //   data-ohne-text    ohne die Beschriftung - so wird das Visual zum Logo.
+  //   data-text-mittig  die Beschriftung steht mittig ueber oder unter dem
+  //                     Kreis statt seitlich daneben.
+  //   data-strich="2.4" verstaerkt die Strichstaerke um diesen Faktor.
+  //   data-kante-zeigen zieht die eine schiefe Kante noch einmal nach,
+  //                     damit das CSS sie einfaerben kann.
+  //   data-pause="2500" wuerfelt schneller oder langsamer von allein
+  //                     weiter. Ohne Angabe gilt PAUSE (8 Sekunden).
+  const still = svg.hasAttribute("data-still");
+  const ohneUhr = still || svg.hasAttribute("data-ohne-uhr");
+  const ohneText = svg.hasAttribute("data-ohne-text");
+  const textMittig = svg.hasAttribute("data-text-mittig");
+
+  // Ruhig ist es entweder, weil das Betriebssystem es so will, oder weil
+  // dieses eine Visual stillstehen soll.
+  const ruhig = RUHIG || still;
+
+  // Die Strichstaerke wandert mit der Breite mit, die Linien sind also in
+  // jeder Groesse gleich fein. Im kleinen Logo ist genau das zu fein -
+  // dort verstaerkt data-strich sie, wie STRICH_HANDY auf dem Handy.
+  const strichFaktor = Number(svg.getAttribute("data-strich")) || 1;
+
+  function strichHier() {
+    return strich() * strichFaktor;
+  }
+
+  // Wie lange dieses Visual stehen bleibt, bevor es von allein weiterwuerfelt
+  const pause = Number(svg.getAttribute("data-pause")) || PAUSE;
+
   // Die vier Teile werden einmal erstellt und danach nur noch mit neuen
   // Werten gefuettert. Das ist fluessiger, als bei jedem Bild alles neu
   // aufzubauen. Die Reihenfolge ist wichtig: erst die Mauer, dann die
@@ -229,14 +281,41 @@ function starteKeyvisual(svg) {
     stroke: GRUEN,
     "clip-path": "url(#" + schnittId + ")",
   });
-  const balkenQuer = macheElement("line", { stroke: CREME });
-  const balkenHoch = macheElement("line", { stroke: CREME });
+  // Die Klasse braucht die Praesentation: dort wird das Kreuz zur
+  // Erklaerung sichtbar gemacht. Auf der Website hat sie keine Wirkung.
+  const balkenQuer = macheElement("line", {
+    class: "kreuz-balken",
+    stroke: CREME,
+  });
+  const balkenHoch = macheElement("line", {
+    class: "kreuz-balken",
+    stroke: CREME,
+  });
   const kreis = macheElement("circle", { fill: "none", stroke: GRUEN });
+
+  // Die eine schiefe Kante noch einmal nachgezogen, damit sie sich
+  // einfaerben laesst. Sie liegt genau auf der Mauer, mit demselben
+  // Schnitt und derselben Staerke - ohne Farbe aus dem CSS ist sie
+  // unsichtbar. Nur die Praesentation braucht das, deshalb entsteht sie
+  // gar nicht erst, wenn data-kante-zeigen fehlt.
+  let kante = null;
+
+  if (svg.hasAttribute("data-kante-zeigen")) {
+    kante = macheElement("line", {
+      class: "schiefe-kante",
+      "clip-path": "url(#" + schnittId + ")",
+    });
+  }
 
   // Die Beschriftung kommt zuletzt und liegt damit ueber allem anderen.
   const beschriftung = macheElement("text", { class: "garten-name" });
 
   svg.appendChild(mauerWeg);
+
+  // Nach der Mauer, aber vor den Balken: so schneiden die Eingaenge auch
+  // aus der eingefaerbten Kante heraus.
+  if (kante) svg.appendChild(kante);
+
   svg.appendChild(balkenQuer);
   svg.appendChild(balkenHoch);
   svg.appendChild(kreis);
@@ -291,15 +370,21 @@ function starteKeyvisual(svg) {
     textBreite = 0;
   }
 
-  waehleKloster();
+  // Das Logo traegt keine Beschriftung
+  if (!ohneText) waehleKloster();
 
   // Wuerfelt eine neue Variante. Der aktuelle Stand wird zum Startpunkt,
   // damit auch mitten in einer Bewegung nichts springt.
   function wuerfleNeu(zeit) {
-    vonPunkte = punkte;
+    // Nur mischen, wenn ueberhaupt schon einmal gezeichnet wurde. Auf einer
+    // versteckten Folie ist das nicht der Fall - dort gibt es keinen Stand,
+    // von dem aus sich etwas verwandeln koennte.
+    vonPunkte = punkte.length > 0 ? punkte : null;
+
     form = wuerfleForm();
     startZeit = zeit;
-    waehleKloster();
+
+    if (!ohneText) waehleKloster();
   }
 
   // Alle PAUSE Millisekunden wuerfelt das Visual von allein weiter.
@@ -307,11 +392,11 @@ function starteKeyvisual(svg) {
   let uhr = null;
 
   function starteUhr() {
-    if (RUHIG) return;
+    if (RUHIG || ohneUhr) return;
     clearInterval(uhr);
     uhr = setInterval(function () {
       wuerfleNeu(performance.now());
-    }, PAUSE);
+    }, pause);
   }
 
   svg.addEventListener("click", function () {
@@ -335,7 +420,10 @@ function starteKeyvisual(svg) {
 
       // Ziel ausrechnen und, falls eine Verwandlung laeuft, dorthin mischen
       const ziel = berechnePunkte(form, breite, hoehe);
-      const anteil = RUHIG ? 1 : (zeit - startZeit) / DAUER;
+      // Nie unter 0. Faellt der Zeitstempel dieses Bildes vor den Moment
+      // des Wurfs, rechnete die Mischung sonst ueber ihren Startpunkt
+      // hinaus - die Mauer kippt dann kurz zu einem Dreieck zusammen.
+      const anteil = ruhig ? 1 : Math.max(0, (zeit - startZeit) / DAUER);
 
       if (vonPunkte && anteil < 1) {
         punkte = mische(vonPunkte, ziel, bremse(anteil));
@@ -371,19 +459,33 @@ function starteKeyvisual(svg) {
 
     // Die Kreismitte wandert ein Stueck in Richtung Maus. Beide Achsen
     // rechnen mit der Breite, sonst wuerde die Bewegung oval.
-    const versatz = RUHIG ? 0 : breite * FOLGE;
+    // Ein Visual ohne Uhr steht auch der Maus gegenueber still.
+    const versatz = ruhig || ohneUhr ? 0 : breite * FOLGE;
     const mitteX = punkte[8] * breite + folgtX * versatz;
     const mitteY = punkte[9] * hoehe + folgtY * versatz;
 
     // Doppelte Dicke, davon wird die aeussere Haelfte weggeschnitten.
     mauerWeg.setAttribute("d", weg);
-    mauerWeg.setAttribute("stroke-width", 2 * strich() * faktor);
+    mauerWeg.setAttribute("stroke-width", 2 * strichHier() * faktor);
     schnittForm.setAttribute("d", weg);
+
+    // Die schiefe Kante liegt auf zwei der vier Eckpunkte
+    if (kante) {
+      const enden = schiefeKante(form);
+      const a = enden[0];
+      const b = enden[1];
+
+      kante.setAttribute("x1", punkte[a * 2] * breite);
+      kante.setAttribute("y1", punkte[a * 2 + 1] * hoehe);
+      kante.setAttribute("x2", punkte[b * 2] * breite);
+      kante.setAttribute("y2", punkte[b * 2 + 1] * hoehe);
+      kante.setAttribute("stroke-width", 2 * strichHier() * faktor);
+    }
 
     // Die Balken ragen ueber den Bildrand hinaus. Wuerden sie genau dort
     // enden wo die Mauer endet, blieben in den halb gedeckten Randpixeln
     // Reste der Mauer stehen - eine haarfeine Kante im Eingang.
-    const ueber = strich() * faktor;
+    const ueber = strichHier() * faktor;
 
     balkenQuer.setAttribute("x1", -ueber);
     balkenQuer.setAttribute("y1", mitteY);
@@ -400,9 +502,12 @@ function starteKeyvisual(svg) {
     kreis.setAttribute("cx", mitteX);
     kreis.setAttribute("cy", mitteY);
     kreis.setAttribute("r", RADIUS * faktor);
-    kreis.setAttribute("stroke-width", strich() * faktor);
+    kreis.setAttribute("stroke-width", strichHier() * faktor);
 
     // ===== Die Beschriftung beim Kreis =====
+
+    // Ohne Beschriftung ist die Zeichnung hier fertig - das ist das Logo.
+    if (zeilenElemente.length === 0) return;
 
     // Am liebsten steht sie seitlich auf der Hoehe der Kreismitte - genau
     // dort, wo der waagrechte Balken die Mauer zu einem Eingang oeffnet.
@@ -420,7 +525,7 @@ function starteKeyvisual(svg) {
 
     // Die Mauer waechst nach innen. Um diese Dicke bleibt die Schrift vom
     // Rand weg, sonst saesse sie bei langen Namen auf der gruenen Linie.
-    const wand = strich() * faktor;
+    const wand = strichHier() * faktor;
 
     // Der Platz zwischen Kreis und Mauer, auf allen vier Seiten
     const platzRechts = breite - wand - (mitteX + radius + luecke);
@@ -432,7 +537,9 @@ function starteKeyvisual(svg) {
     let textX;
     let textY;
 
-    if (Math.max(platzLinks, platzRechts) >= textBreite) {
+    // Mit data-text-mittig wird die seitliche Stellung uebersprungen: der
+    // Text steht dann immer mittig ueber oder unter dem Kreis.
+    if (!textMittig && Math.max(platzLinks, platzRechts) >= textBreite) {
       // Genug Platz daneben: der Block steht mittig zur Kreismitte. Das
       // 0.35-fache der Schriftgroesse hebt die erste Grundlinie so an, dass
       // er optisch mittig sitzt und nicht zu tief haengt.
@@ -489,6 +596,16 @@ function starteKeyvisual(svg) {
   }
 
   requestAnimationFrame(animiere);
+
+  // Ein Griff nach aussen. Die Praesentation braucht ihn, um ein Visual
+  // auf Knopfdruck neu zu wuerfeln.
+  return {
+    // Eine neue Variante, wie bei einem Klick
+    wuerfle: function () {
+      wuerfleNeu(performance.now());
+      starteUhr();
+    },
+  };
 }
 
 /* ===== Start ===== */
@@ -497,5 +614,7 @@ function starteKeyvisual(svg) {
 const visuals = document.querySelectorAll(".keyvisual");
 
 visuals.forEach(function (svg) {
-  starteKeyvisual(svg);
+  // Die Steuerung bleibt am Element haengen, damit andere Skripte - die
+  // Praesentation - dieses eine Visual ansprechen koennen.
+  svg.steuerung = starteKeyvisual(svg);
 });

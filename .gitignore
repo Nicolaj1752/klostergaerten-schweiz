@@ -15,6 +15,7 @@ studio/.sanity/
 
 # Originalfotos: nur die verkleinerten aus assets/bilder/ gehoeren ins Repo
 assets/images/
+assets/Präsentation/
 
 # Rohmaterial aus Figma
 new assets/

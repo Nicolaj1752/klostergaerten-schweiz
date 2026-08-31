@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Klostergärten Schweiz – Logo zum Einbetten</title>
+
+    <style>
+      /* ===== Schrift =====
+         Nur fuer die Wortmarke. Die Zeichnung selbst braucht keine
+         Schrift. Fehlt die Datei, faellt der Browser auf die
+         System-Grotesk zurueck. */
+      @font-face {
+        font-family: "Satoshi";
+        src: url("Satoshi-Variable.woff2") format("woff2");
+        font-weight: 300 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #fdffea;
+        font-family: "Satoshi", "Helvetica Neue", Arial, sans-serif;
+      }
+
+      /* ===== Das Logo =====
+
+         Wortmarke und Zeichnung stehen in derselben Zeile. Alle Masse
+         haengen an der Schriftgroesse: das ganze Logo waechst und
+         schrumpft, indem nur font-size geaendert wird.
+
+         color ist die Farbe von Mauer und Kreis, --logo-grund die des
+         Hintergrunds, auf dem das Logo steht. Fuer einen dunklen
+         Abschnitt genuegt es, diese zwei Werte zu tauschen. */
+      .logo {
+        font-size: 5vw;
+
+        color: #082302;
+        --logo-grund: #fdffea;
+
+        /* Die Hoehe der Zeichnung. Zwei Regeln brauchen sie, darum steht
+           sie hier - zum Anpassen genuegt diese eine Zahl. */
+        --visual-hoehe: 1.35em;
+      }
+
+      .logo-wort {
+        margin: 0;
+        font-size: 1em;
+        font-weight: 900;
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+      }
+
+      /* Die Oberkante der Zeichnung liegt auf der x-Hoehe der zweiten
+         Zeile: sie haengt um ihre Hoehe minus die x-Hoehe unter die
+         Grundlinie. ex ist genau diese x-Hoehe, die Schrift bringt sie
+         selbst mit. */
+      .logo-visual {
+        display: inline-block;
+        width: auto;
+        height: var(--visual-hoehe);
+        aspect-ratio: 1.9;
+
+        vertical-align: calc(1ex - var(--visual-hoehe));
+        margin-left: 0.3em;
+
+        cursor: pointer; /* ein Klick wuerfelt sofort weiter */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo">
+      <!-- Das SVG bleibt leer, keyvisual-logo.js zeichnet hinein -->
+      <p class="logo-wort">
+        Klostergärten<br />Schweiz<svg
+          class="logo-visual"
+          role="img"
+          aria-label="Klostergärten Schweiz"
+        ></svg>
+      </p>
+    </div>
+
+    <script src="keyvisual-logo.js"></script>
+  </body>
+</html>
