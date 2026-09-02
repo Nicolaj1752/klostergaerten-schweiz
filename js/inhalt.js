@@ -71,11 +71,18 @@ function bildAdresse(bild) {
 //
 // Warum nicht einfach innerHTML: so bleibt Text immer Text. Aus dem Studio
 // kann nichts in die Seite geraten, was dort nicht hingehoert.
+//
+// Vor jedem Umbruch steht ein Leerzeichen. Auf dem Handy blendet das CSS
+// die <br> im Aufruf aus, damit der Text von allein fliesst - ohne das
+// Leerzeichen wuerden die Woerter dann aneinanderkleben ("undvernetzen").
 function haengeText(element, text) {
   const zeilen = String(text).split("\n");
 
   zeilen.forEach(function (zeile, nummer) {
-    if (nummer > 0) element.appendChild(document.createElement("br"));
+    if (nummer > 0) {
+      element.appendChild(document.createTextNode(" "));
+      element.appendChild(document.createElement("br"));
+    }
     element.appendChild(document.createTextNode(zeile));
   });
 }
@@ -340,12 +347,14 @@ function zeigeAlles(allgemein, seite) {
   zeigeArten(daten.formularArten);
 }
 
-// schief.js und bilder.js laufen einmal beim Laden - da stehen noch die
-// Texte aus dem HTML. Nach dem Einsetzen sind Knoepfe und Baender anders
-// hoch und es gibt neue Bilder, deshalb muessen beide noch einmal ran.
+// schief.js, bilder.js und einblenden.js laufen einmal beim Laden - da
+// stehen noch die Texte aus dem HTML. Nach dem Einsetzen sind Knoepfe und
+// Baender anders hoch und es gibt neue Bilder, deshalb muessen alle drei
+// noch einmal ran.
 function nacharbeiten() {
   if (window.schneideAlles) window.schneideAlles();
   if (window.bilderBeobachten) window.bilderBeobachten();
+  if (window.einblendenStarten) window.einblendenStarten();
 }
 
 

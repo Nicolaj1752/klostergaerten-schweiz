@@ -141,9 +141,16 @@
     <!-- Ganz zum Schluss: schneidet die schiefen Kanten, wenn alles steht -->
     <script src="js/schief.js"></script>
 
+    <!-- GSAP liegt als Datei im Projekt, nicht in einer CDN: die Seite
+         soll sich per Doppelklick und ohne Netz oeffnen lassen. -->
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="js/einblenden.js"></script>
+
     <!-- Holt Texte und Bilder aus dem Sanity-Studio.
-         Muss nach schief.js und bilder.js stehen: inhalt.js ruft beide
-         noch einmal auf, sobald die Texte eingesetzt sind. -->
+         Muss nach schief.js, bilder.js und einblenden.js stehen:
+         inhalt.js ruft alle drei noch einmal auf, sobald die Texte
+         eingesetzt sind. -->
     <script src="js/inhalt.js"></script>
   </body>
 </html>

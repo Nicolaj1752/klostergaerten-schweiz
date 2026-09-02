@@ -667,6 +667,37 @@ body {
   }
 }
 
+
+/* ===== Einblenden beim Scrollen ===== */
+
+/* Bilder und Texte starten unsichtbar, einblenden.js holt sie herein.
+
+   Die Klasse steht am <html> und wird von einblenden.js selbst gesetzt.
+   Warum nicht einfach hier: ohne JavaScript - kein Netz, Datei per
+   Doppelklick, GSAP fehlt - wuerde die Seite sonst leer bleiben. So
+   versteckt sich nur etwas, wenn auch jemand da ist, der es wieder
+   hervorholt. */
+.blendet .bild,
+.blendet .marke,
+.blendet .aussage,
+.blendet .fliesstext,
+.blendet .feld,
+.blendet .person {
+  opacity: 0;
+}
+
+/* Wer weniger Bewegung eingestellt hat, sieht alles sofort. */
+@media (prefers-reduced-motion: reduce) {
+  .blendet .bild,
+  .blendet .marke,
+  .blendet .aussage,
+  .blendet .fliesstext,
+  .blendet .feld,
+  .blendet .person {
+    opacity: 1;
+  }
+}
+
 /* Das Raster der Eindruecke */
 .bilder-raster {
   display: grid;
@@ -1295,7 +1326,11 @@ body {
 
      Deshalb werden die festen Umbrueche hier abgeschaltet. Der Text
      fliesst dann von allein, und die Breite unten bestimmt, wie viele
-     Woerter auf eine Zeile kommen. */
+     Woerter auf eine Zeile kommen.
+
+     Damit die Woerter dabei nicht aneinanderkleben ("undvernetzen"),
+     steht im HTML vor jedem <br> ein Leerzeichen. Es bleibt stehen,
+     wenn der Umbruch hier verschwindet. */
   .aufruf-text br {
     display: none;
   }

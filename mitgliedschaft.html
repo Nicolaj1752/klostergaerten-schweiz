@@ -237,7 +237,7 @@
         <input
           type="hidden"
           name="access_key"
-          value="4e9ef021-1425-4fa0-885b-fd355c4e7b20"
+          value="c18bbfd7-5a97-4fd6-a560-267ee5b42f7b"
         />
 
         <!-- Betreff der Mail, die beim Verein ankommt -->
@@ -389,9 +389,16 @@
     <!-- Ganz zum Schluss: schneidet die schiefen Kanten, wenn alles steht -->
     <script src="js/schief.js"></script>
 
+    <!-- GSAP liegt als Datei im Projekt, nicht in einer CDN: die Seite
+         soll sich per Doppelklick und ohne Netz oeffnen lassen. -->
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="js/einblenden.js"></script>
+
     <!-- Holt Texte und Bilder aus dem Sanity-Studio.
-         Muss nach schief.js und bilder.js stehen: inhalt.js ruft beide
-         noch einmal auf, sobald die Texte eingesetzt sind. -->
+         Muss nach schief.js, bilder.js und einblenden.js stehen:
+         inhalt.js ruft alle drei noch einmal auf, sobald die Texte
+         eingesetzt sind. -->
     <script src="js/inhalt.js"></script>
   </body>
 </html>

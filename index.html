@@ -110,7 +110,7 @@
         <img
           data-bild="schauBild"
           src="assets/bilder/garten-gross.jpg"
-          alt="Klostergarten in voller Blüte"
+          alt="Holzlaube an der Klostermauer, umgeben von alten Bäumen und Wiese"
         />
       </div>
 
@@ -162,7 +162,7 @@
         </h2>
 
         <p class="fliesstext tief" data-inhalt="plattformFliesstext">
-          Über Jahrhunderte wurden hier Heilpflanzen kultiviert, Nahrung
+          Über Jahrhunderte wurden in Klostergärten Heilpflanzen kultiviert, Nahrung
           produziert, Wissen bewahrt und Erfahrungen weitergegeben. Heute
           befindet sich dieses kulturelle Erbe in einem tiefgreifenden Wandel.
           Einige Klostergärten sind bereits verschwunden, andere haben sich über
@@ -180,42 +180,42 @@
           <img
             loading="lazy"
             src="assets/bilder/eindruck-1.jpg"
-            alt="Eindruck aus einem Klostergarten"
+            alt="Klostergebäude mit roten Fensterläden hinter einer blühenden Obstwiese"
           />
         </div>
         <div class="bild bild-laedt">
           <img
             loading="lazy"
             src="assets/bilder/eindruck-2.jpg"
-            alt="Eindruck aus einem Klostergarten"
+            alt="Gotischer Kreuzgang mit Türmchen, davor der grüne Innenhof"
           />
         </div>
         <div class="bild bild-laedt">
           <img
             loading="lazy"
             src="assets/bilder/eindruck-3.jpg"
-            alt="Eindruck aus einem Klostergarten"
+            alt="Weg durch einen Kräutergarten mit geschnittenen Hecken neben dem Klosterhaus"
           />
         </div>
         <div class="bild bild-laedt">
           <img
             loading="lazy"
             src="assets/bilder/eindruck-4.jpg"
-            alt="Eindruck aus einem Klostergarten"
+            alt="Alte Steintreppe am Waldrand, davor eine Blumenwiese"
           />
         </div>
         <div class="bild bild-laedt">
           <img
             loading="lazy"
             src="assets/bilder/hauterive-1.jpg"
-            alt="Klostergarten Hauterive"
+            alt="Blick durch die Säulenbogen des Kreuzgangs in den Klosterhof"
           />
         </div>
         <div class="bild bild-laedt">
           <img
             loading="lazy"
             src="assets/bilder/hauterive-2.jpg"
-            alt="Klostergarten Hauterive"
+            alt="Kreuzgarten mit geschnittenen Buchshecken und Brunnen in der Mitte"
           />
         </div>
       </div>
@@ -234,10 +234,10 @@
     <!-- ===== Aufruf ===== -->
     <section class="block aufruf">
       <p class="aussage aufruf-text" data-inhalt="aufrufText">
-        Klostergärten sind gefährdetes Kulturerbe.<br />
-        Wir dokumentieren sie erstmals<br />
-        umfassend, in einem Buch (2028).<br />
-        Mitglieder finanzieren, tragen und<br />
+        Klostergärten sind ein gefährdetes Kulturerbe. <br />
+        Wir dokumentieren sie erstmals umfassend, <br />
+        in einer Buchpublikation (2028). <br />
+        Mitglieder finanzieren, tragen und <br />
         vernetzen dieses Projekt.
       </p>
 
@@ -286,9 +286,16 @@
     <!-- Ganz zum Schluss: schneidet die schiefen Kanten, wenn alles steht -->
     <script src="js/schief.js"></script>
 
+    <!-- GSAP liegt als Datei im Projekt, nicht in einer CDN: die Seite
+         soll sich per Doppelklick und ohne Netz oeffnen lassen. -->
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="js/einblenden.js"></script>
+
     <!-- Holt Texte und Bilder aus dem Sanity-Studio.
-         Muss nach schief.js und bilder.js stehen: inhalt.js ruft beide
-         noch einmal auf, sobald die Texte eingesetzt sind. -->
+         Muss nach schief.js, bilder.js und einblenden.js stehen:
+         inhalt.js ruft alle drei noch einmal auf, sobald die Texte
+         eingesetzt sind. -->
     <script src="js/inhalt.js"></script>
   </body>
 </html>

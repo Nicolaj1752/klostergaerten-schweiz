@@ -50,7 +50,7 @@ const KLOESTER = [
   { name: "Kloster Klingental", ort: "Basel, BS", orden: "" },
   { name: "Kloster Schöntal", ort: "Langenbruck/Schöntal, BL", orden: "" },
   { name: "Kloster Mariastein", ort: "Mariastein, SO", orden: "" },
-  { name: "Kloster Dornach", ort: "Dornach, SO", orden: "" },
+  { name: "Kloster Dornach", ort: "Dornach, SO", orden: "Kapuziner" },
   { name: "Orthodoxes Kloster Beinwil", ort: "Beinwil, SO", orden: "" },
   { name: "Kapuzinerkloster Solothurn", ort: "Solothurn, SO", orden: "Kapuziner" },
   { name: "Ehem. Kapuzinerkloster Olten", ort: "Olten, SO", orden: "Kapuziner" },
