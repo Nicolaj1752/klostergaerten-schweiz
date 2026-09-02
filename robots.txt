@@ -1,0 +1,8 @@
+# Suchmaschinen duerfen die ganze Seite lesen.
+User-agent: *
+Allow: /
+
+# Die interne Praesentation gehoert nicht in die Suche.
+Disallow: /praesentation.html
+
+Sitemap: https://xn--klostergrten-ncb.ch/sitemap.xml
