@@ -12,7 +12,7 @@
 /* ===== Einstellungen ===== */
 
 const ZIEL = "https://api.web3forms.com/submit";
-const ADRESSE = "info@klostergärten.ch"; // steht in den Meldungen unten
+const ADRESSE = "info@klostergärten.ch"; // steht in der Fehlermeldung unten
 
 /* ===== Das Formular ===== */
 
@@ -75,15 +75,6 @@ if (formular) {
     dank.className = "dank-titel";
     dank.textContent = "Vielen Dank für Ihre Anmeldung.";
     hinweis.appendChild(dank);
-
-    const schritt = document.createElement("p");
-    schritt.textContent =
-      "Sie erhalten unseren Newsletter ab der nächsten Ausgabe. " +
-      "Möchten Sie Mitglied werden, überweisen Sie den Jahresbeitrag " +
-      "mit TWINT und schreiben uns an " +
-      ADRESSE +
-      ".";
-    hinweis.appendChild(schritt);
   }
 
   // Bei einem Fehler nennen wir die Mailadresse: so geht niemand verloren,
