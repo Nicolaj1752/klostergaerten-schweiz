@@ -295,20 +295,6 @@ function zeigeBeitraege(beitraege) {
   });
 }
 
-// Das Auswahlfeld "Art der Mitgliedschaft" im Anmeldeformular
-function zeigeArten(arten) {
-  const auswahl = document.querySelector('select[name="art"]');
-  if (!auswahl || !arten) return;
-
-  auswahl.innerHTML = "";
-
-  arten.forEach(function (art) {
-    const eintrag = document.createElement("option");
-    eintrag.textContent = art;
-    auswahl.appendChild(eintrag);
-  });
-}
-
 
 /* ===== Alles zusammensetzen ===== */
 
@@ -344,7 +330,6 @@ function zeigeAlles(allgemein, seite) {
   zeigeFelder(daten.personen, "feld-name");
   zeigeVorteile(daten.vorteile);
   zeigeBeitraege(daten.beitraege);
-  zeigeArten(daten.formularArten);
 }
 
 // schief.js, bilder.js und einblenden.js laufen einmal beim Laden - da

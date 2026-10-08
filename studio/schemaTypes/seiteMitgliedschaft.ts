@@ -16,7 +16,7 @@ export const seiteMitgliedschaft = defineType({
     {name: 'vorteileAbschnitt', title: '3 – Ihre Vorteile', options: {collapsible: true}},
     {name: 'goenner', title: '4 – Gönnerinnen und Gönner', options: {collapsible: true}},
     {name: 'beitraegeAbschnitt', title: '5 – Mitgliederbeiträge', options: {collapsible: true}},
-    {name: 'anmeldung', title: '6 – Anmeldeformular', options: {collapsible: true}},
+    {name: 'anmeldung', title: '6 – Newsletter', options: {collapsible: true}},
     {name: 'twint', title: '7 – TWINT', options: {collapsible: true}},
   ],
 
@@ -131,7 +131,7 @@ export const seiteMitgliedschaft = defineType({
       fieldset: 'beitraegeAbschnitt',
     }),
 
-    // ----- 6 Anmeldeformular -----
+    // ----- 6 Newsletter -----
     defineField({
       name: 'anmeldungMarke',
       title: 'Kleine Überschrift',
@@ -146,12 +146,6 @@ export const seiteMitgliedschaft = defineType({
       fieldset: 'anmeldung',
     }),
     defineField({
-      name: 'anmeldungFliesstext',
-      title: 'Begleittext',
-      type: 'textMitLink',
-      fieldset: 'anmeldung',
-    }),
-    defineField({
       name: 'formularName',
       title: 'Beschriftung: Name',
       type: 'string',
@@ -160,39 +154,6 @@ export const seiteMitgliedschaft = defineType({
     defineField({
       name: 'formularMail',
       title: 'Beschriftung: E-Mail',
-      type: 'string',
-      fieldset: 'anmeldung',
-    }),
-    defineField({
-      name: 'formularStrasse',
-      title: 'Beschriftung: Strasse',
-      type: 'string',
-      fieldset: 'anmeldung',
-    }),
-    defineField({
-      name: 'formularOrt',
-      title: 'Beschriftung: PLZ und Ort',
-      type: 'string',
-      fieldset: 'anmeldung',
-    }),
-    defineField({
-      name: 'formularArt',
-      title: 'Beschriftung: Art der Mitgliedschaft',
-      type: 'string',
-      fieldset: 'anmeldung',
-    }),
-    defineField({
-      name: 'formularArten',
-      title: 'Auswahl: Art der Mitgliedschaft',
-      type: 'array',
-      of: [{type: 'string'}],
-      fieldset: 'anmeldung',
-      description:
-        'Die Einträge im Auswahlfeld. Genau dieser Text steht später in der Anmeldemail – am besten zu den Beiträgen unter Punkt 5 passend halten.',
-    }),
-    defineField({
-      name: 'formularBemerkung',
-      title: 'Beschriftung: Bemerkung',
       type: 'string',
       fieldset: 'anmeldung',
     }),
@@ -224,17 +185,12 @@ export const seiteMitgliedschaft = defineType({
       description: 'Erscheint nur auf breiten Bildschirmen. Auf dem Handy steht stattdessen der Knopf darunter.',
     }),
     defineField({
-      name: 'twintKnopfText',
-      title: 'Beschriftung des Knopfs',
-      type: 'string',
-      fieldset: 'twint',
-    }),
-    defineField({
       name: 'twintZiel',
       title: 'Ziel des Knopfs',
       type: 'string',
       fieldset: 'twint',
-      description: 'Die TWINT-Adresse des Vereins. Dieselbe steht auf der Kontaktseite unter "Spenden".',
+      description:
+        'Der Zahlungslink des Vereins (go.twint.ch). Derselbe steht auf der Kontaktseite unter "Spenden" – beide zusammen ändern. Die Beschriftung des Knopfs kommt aus dem TWINT-Bild und lässt sich nicht ändern.',
     }),
     defineField({
       name: 'twintHinweis',

@@ -1,4 +1,4 @@
-// Verschickt das Anmeldeformular über Web3Forms.
+// Verschickt das Newsletter-Formular über Web3Forms.
 //
 // Die Seite liegt auf GitHub Pages und hat keinen eigenen Server. Ein
 // Browser darf von sich aus keine Mail verschicken, deshalb nimmt der
@@ -16,7 +16,7 @@ const ADRESSE = "info@klostergärten.ch"; // steht in den Meldungen unten
 
 /* ===== Das Formular ===== */
 
-const formular = document.querySelector("#mitglied-formular");
+const formular = document.querySelector("#newsletter-formular");
 const hinweis = document.querySelector("#formular-hinweis");
 
 // Ohne Formular auf der Seite ist hier nichts zu tun
@@ -38,10 +38,6 @@ if (formular) {
 
     const daten = new FormData(formular);
 
-    // Die gewaehlte Mitgliedschaft merken, BEVOR das Formular geleert wird -
-    // der Betrag steht spaeter in der Bestaetigung.
-    const art = daten.get("art");
-
     fetch(ZIEL, {
       method: "POST",
       body: daten,
@@ -52,7 +48,7 @@ if (formular) {
       .then(function (ergebnis) {
         if (ergebnis.success) {
           formular.reset();
-          zeigeDank(art);
+          zeigeDank();
         } else {
           // Der Dienst hat geantwortet, aber etwas stimmt nicht - meist ein
           // fehlender oder falscher Schluessel.
@@ -69,13 +65,9 @@ if (formular) {
       });
   });
 
-  // Die Bestaetigung nach dem Absenden.
-  //
-  // Die Anmeldung allein macht noch kein Mitglied - der Beitrag muss noch
-  // ueberwiesen werden. Deshalb nennt die Bestaetigung den naechsten
-  // Schritt beim Namen, wiederholt den gewaehlten Betrag und fuehrt zur
-  // Zahlung. Ohne diesen Hinweis bliebe offen, dass noch etwas fehlt.
-  function zeigeDank(art) {
+  // Die Bestaetigung nach dem Absenden. Sie steht an der Stelle des
+  // Formulars, damit nach dem Klick sichtbar etwas passiert ist.
+  function zeigeDank() {
     hinweis.textContent = "";
     hinweis.hidden = false;
 
@@ -86,32 +78,12 @@ if (formular) {
 
     const schritt = document.createElement("p");
     schritt.textContent =
-      "Als Nächstes überweisen Sie den Jahresbeitrag" +
-      // Die Auswahl sieht so aus: "Paarmitgliedschaft – CHF 70.– pro Jahr".
-      // Fuer den Satz brauchen wir nur den Betrag hinter dem Gedankenstrich.
-      (art && art.indexOf("–") > -1
-        ? " (" + art.split("–").slice(1).join("–").trim() + ")"
-        : "") +
-      ". Die Mitgliedschaft gilt ab Zahlungseingang. " +
-      "Wir melden uns anschliessend bei Ihnen.";
+      "Sie erhalten unseren Newsletter ab der nächsten Ausgabe. " +
+      "Möchten Sie Mitglied werden, überweisen Sie den Jahresbeitrag " +
+      "mit TWINT und schreiben uns an " +
+      ADRESSE +
+      ".";
     hinweis.appendChild(schritt);
-
-    const knopfZuTwint = document.createElement("a");
-    knopfZuTwint.className = "knopf knopf-gross dank-knopf";
-    knopfZuTwint.href = "#twint";
-    const beschriftungTwint = document.createElement("span");
-    beschriftungTwint.className = "knopf-text";
-    beschriftungTwint.textContent = "Zur Zahlung";
-    knopfZuTwint.appendChild(beschriftungTwint);
-    hinweis.appendChild(knopfZuTwint);
-
-    // Der neue Knopf braucht seine schiefe Ecke wie alle anderen.
-    // schief.js lief schon, als es ihn noch nicht gab.
-    if (window.schneideNach) window.schneideNach(knopfZuTwint);
-
-    // Sanft zur Zahlung scrollen, damit der naechste Schritt sichtbar wird
-    const ziel = document.querySelector("#twint");
-    if (ziel) ziel.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
   // Bei einem Fehler nennen wir die Mailadresse: so geht niemand verloren,

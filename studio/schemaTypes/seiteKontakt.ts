@@ -70,7 +70,7 @@ export const seiteKontakt = defineType({
       type: 'string',
       fieldset: 'spenden',
       description:
-        'Die TWINT-Adresse des Vereins. Dieselbe steckt im QR-Code auf der Mitgliedschaft-Seite – beide zusammen ändern.',
+        'Der Zahlungslink des Vereins (go.twint.ch). Derselbe steht auf der Mitgliedschaft-Seite beim TWINT-Knopf – beide zusammen ändern.',
     }),
   ],
 

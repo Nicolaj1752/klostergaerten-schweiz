@@ -162,7 +162,9 @@
         <p class="fliesstext tief" data-textlink="vorteileNebentext">
           Die erste Exkursion findet voraussichtlich im Herbst 2027 statt und
           führt zu einem oder mehreren Klostergärten in der Schweiz.<br /><br />
-          <a href="mailto:info@klostergärten.ch?subject=Newsletter"
+          <!-- Fuehrt zum Formular weiter unten auf derselben Seite, nicht
+               mehr ins Mailprogramm. -->
+          <a href="#newsletter"
             >Abonnieren Sie unseren Newsletter</a
           >, um über Neuigkeiten und Veranstaltungen informiert zu bleiben.
         </p>
@@ -190,35 +192,87 @@
 
     <!-- ===== Beiträge =====
          Eine Beschreibungsliste: links die Art der Mitgliedschaft,
-         rechts der Betrag. -->
+         rechts der Betrag. Die Zahlung steht gleich daneben.
+
+         Die Betraege stehen NUR hier. Im Formular darunter werden sie
+         nicht wiederholt - zwei Listen mit denselben Zahlen laufen
+         frueher oder spaeter auseinander. -->
     <section class="block">
       <p class="marke" data-inhalt="beitraegeMarke">Mitgliederbeiträge</p>
 
-      <dl class="beitraege">
-        <div class="beitrag">
-          <dt>Einzelmitgliedschaft</dt>
-          <dd>CHF 45.– pro Jahr</dd>
+      <!-- Beitraege links, Zahlung rechts daneben. Auf dem Handy stehen
+           sie untereinander (siehe style.css ganz unten). -->
+      <div class="beitraege-reihe">
+        <dl class="beitraege">
+          <div class="beitrag">
+            <dt>Einzelmitgliedschaft</dt>
+            <dd>CHF 45.– pro Jahr</dd>
+          </div>
+          <div class="beitrag">
+            <dt>Paarmitgliedschaft</dt>
+            <dd>CHF 70.– pro Jahr</dd>
+          </div>
+          <div class="beitrag">
+            <dt>Juniormitgliedschaft</dt>
+            <dd>CHF 25.– pro Jahr</dd>
+          </div>
+          <div class="beitrag">
+            <dt>Mitgliedschaft für juristische Personen</dt>
+            <dd>CHF 120.– pro Jahr</dd>
+          </div>
+          <div class="beitrag">
+            <dt>Gönnermitgliedschaft</dt>
+            <dd>ab CHF 120.– pro Jahr</dd>
+          </div>
+        </dl>
+
+        <!-- ===== TWINT =====
+             Steht neben den Beitraegen: wer den Betrag gelesen hat, kann
+             ihn gleich ueberweisen. Beides gehoert zusammen und deshalb in
+             denselben Abschnitt.
+
+             Auf dem Handy waere der Code nutzlos - man kann ihn nicht mit
+             demselben Geraet scannen, auf dem er angezeigt wird. Dort
+             erscheint stattdessen der offizielle TWINT-Knopf, der den
+             Zahlungslink direkt oeffnet. -->
+        <div class="twint band dunkel" id="twint">
+          <p class="twint-titel" data-inhalt="twintTitel">Beitrag bezahlen</p>
+
+          <img
+            class="twint-logo"
+            data-bild="twintLogo"
+            src="assets/bilder/twint-logo.webp"
+            alt="TWINT"
+          />
+
+          <img
+            class="twint-code"
+            data-bild="twintCode"
+            src="assets/bilder/twint-qr.svg"
+            alt="TWINT-QR-Code des Vereins Klostergärten Schweiz zum Abscannen"
+          />
+
+          <!-- Der Knopf ist das offizielle Bild von TWINT. Es liegt lokal in
+               assets/bilder/, damit die Seite auch ohne Netz vollstaendig ist,
+               und wird nicht umgefaerbt - so verlangt es die Marke. -->
+          <a
+            class="twint-knopf"
+            href="https://go.twint.ch/1/e/tw?tw=acq.r4c9bLirSgObR9oK45R_Z-max9wjGzC1KJyBuCQCnnmsxtfXDqN6o0XWZOfoynuP."
+            target="_blank"
+            rel="noopener"
+            data-ziel="twintZiel"
+            ><img src="assets/bilder/twint-knopf.svg" alt="Mit TWINT bezahlen"
+          /></a>
+
+          <p class="twint-hinweis" data-inhalt="twintHinweis">
+            Die Mitgliedschaft gilt ab Eingang des Beitrags. Überweisungen und
+            Spenden sind auch unabhängig von einer Mitgliedschaft willkommen.
+          </p>
         </div>
-        <div class="beitrag">
-          <dt>Paarmitgliedschaft</dt>
-          <dd>CHF 70.– pro Jahr</dd>
-        </div>
-        <div class="beitrag">
-          <dt>Juniormitgliedschaft</dt>
-          <dd>CHF 25.– pro Jahr</dd>
-        </div>
-        <div class="beitrag">
-          <dt>Mitgliedschaft für juristische Personen</dt>
-          <dd>CHF 120.– pro Jahr</dd>
-        </div>
-        <div class="beitrag">
-          <dt>Gönnermitgliedschaft</dt>
-          <dd>ab CHF 120.– pro Jahr</dd>
-        </div>
-      </dl>
+      </div>
     </section>
 
-    <!-- ===== Anmeldung =====
+    <!-- ===== Newsletter =====
          Das Formular geht an Web3Forms. Der Dienst nimmt die Daten
          entgegen und schickt sie als Mail an die Vereinsadresse.
 
@@ -228,31 +282,27 @@
          Es braucht also immer eine Stelle, die die Mail entgegennimmt.
 
          Der Schluessel unten ist oeffentlich sichtbar und darf das auch
-         sein: er erlaubt nur, an die eine hinterlegte Adresse zu senden. -->
-    <section class="block" id="anmeldung">
-      <p class="marke" data-inhalt="anmeldungMarke">Jetzt Mitglied werden</p>
+         sein: er erlaubt nur, an die eine hinterlegte Adresse zu senden.
 
-      <div class="zwei-spalten">
-        <h2 class="aussage" data-inhalt="anmeldungAussage">
-          Möchten Sie Mitglied des Vereins Klostergärten Schweiz werden?
-        </h2>
+         Es fragt nur Name und Mailadresse. Die Mitgliedschaft selbst
+         laeuft ueber den Beitrag weiter oben und eine Mail an den
+         Verein - dafuer braucht es hier kein zweites Formular. -->
+    <section class="block" id="newsletter">
+      <p class="marke" data-inhalt="anmeldungMarke">Newsletter</p>
 
-        <p class="fliesstext tief" data-textlink="anmeldungFliesstext">
-          Füllen Sie das Formular aus und überweisen Sie anschliessend den
-          Jahresbeitrag – die Mitgliedschaft gilt ab Zahlungseingang. Oder
-          schreiben Sie uns direkt an
-          <a href="mailto:info@klostergärten.ch?subject=Mitgliedschaft"
-            >info@klostergärten.ch</a
-          >.
-        </p>
-      </div>
+      <!-- Ohne Begleittext daneben steht die Aussage allein. aussage-halb
+           haelt die Zeile kurz, damit sie nicht quer ueber die Seite laeuft. -->
+      <h2 class="aussage aussage-halb" data-inhalt="anmeldungAussage">
+        Bleiben Sie über unsere Projekte, Exkursionen und Veranstaltungen auf
+        dem Laufenden.
+      </h2>
 
       <!-- action und method stehen hier, damit das Formular auch ohne
            JavaScript abgeschickt wird. Dann zeigt der Browser die
            Antwortseite des Dienstes statt der Meldung auf dieser Seite. -->
       <form
         class="formular"
-        id="mitglied-formular"
+        id="newsletter-formular"
         action="https://api.web3forms.com/submit"
         method="POST"
       >
@@ -269,7 +319,7 @@
         <input
           type="hidden"
           name="subject"
-          value="Anmeldung Mitgliedschaft über klostergärten.ch"
+          value="Newsletter-Anmeldung über klostergärten.ch"
         />
 
         <!-- Honigtopf gegen Spam: ein Feld, das nur Roboter ausfuellen.
@@ -297,86 +347,13 @@
           </label>
         </div>
 
-        <div class="feld-reihe">
-          <label class="formular-feld">
-            <span class="formular-name" data-inhalt="formularStrasse">Strasse und Nummer</span>
-            <input
-              type="text"
-              name="strasse"
-              autocomplete="street-address"
-            />
-          </label>
-
-          <label class="formular-feld">
-            <span class="formular-name" data-inhalt="formularOrt">PLZ und Ort</span>
-            <input type="text" name="ort" autocomplete="postal-code" />
-          </label>
-        </div>
-
-        <label class="formular-feld">
-          <span class="formular-name" data-inhalt="formularArt">Art der Mitgliedschaft</span>
-          <select name="art">
-            <option>Einzelmitgliedschaft – CHF 45.– pro Jahr</option>
-            <option>Paarmitgliedschaft – CHF 70.– pro Jahr</option>
-            <option>Juniormitgliedschaft – CHF 25.– pro Jahr</option>
-            <option>Juristische Personen – CHF 120.– pro Jahr</option>
-            <option>Gönnermitgliedschaft – ab CHF 120.– pro Jahr</option>
-          </select>
-        </label>
-
-        <label class="formular-feld">
-          <span class="formular-name" data-inhalt="formularBemerkung">Bemerkung (freiwillig)</span>
-          <textarea name="bemerkung" rows="4"></textarea>
-        </label>
-
         <button type="submit" class="knopf knopf-gross">
-          <span class="knopf-text" data-inhalt="formularKnopf">Anmeldung senden</span>
+          <span class="knopf-text" data-inhalt="formularKnopf">Newsletter abonnieren</span>
         </button>
 
         <!-- Fuellt anmeldung.js nach dem Absenden -->
         <p class="formular-hinweis" id="formular-hinweis" hidden></p>
       </form>
-
-      <!-- ===== TWINT =====
-           Steht direkt unter dem Formular: die Zahlung ist der zweite
-           Schritt derselben Anmeldung und gehoert deshalb in denselben
-           Abschnitt, nicht in einen eigenen weiter unten.
-
-           Auf dem Handy waere der Code nutzlos - man kann ihn nicht mit
-           demselben Geraet scannen, auf dem er angezeigt wird. Dort
-           erscheint stattdessen ein Knopf mit derselben Adresse, die
-           auch im Code steckt. -->
-      <div class="twint band dunkel" id="twint">
-        <p class="twint-titel" data-inhalt="twintTitel">Beitrag bezahlen</p>
-
-        <img
-          class="twint-logo"
-          data-bild="twintLogo"
-          src="assets/bilder/twint-logo.webp"
-          alt="TWINT"
-        />
-
-        <img
-          class="twint-code"
-          data-bild="twintCode"
-          src="assets/bilder/twint-qr.png"
-          alt="TWINT-QR-Code des Vereins Klostergärten Schweiz zum Abscannen"
-        />
-
-        <a
-          class="knopf knopf-gross twint-knopf"
-          href="https://www.twint.ch/info-qr-code/?sbsQrCode=02%3Af82d0548b6ba45e7947090ee3c0569ff%23a0515225bd43bf30bd3eeacc907c0f79d7c6065b%23"
-          data-ziel="twintZiel"
-          ><span class="knopf-text" data-inhalt="twintKnopfText"
-            >Mit TWINT bezahlen</span
-          ></a
-        >
-
-        <p class="twint-hinweis" data-inhalt="twintHinweis">
-          Die Mitgliedschaft gilt ab Eingang des Beitrags. Überweisungen und
-          Spenden sind auch unabhängig von einer Mitgliedschaft willkommen.
-        </p>
-      </div>
     </section>
 
     <!-- ===== Fusszeile (dunkles Band) =====

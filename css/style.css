@@ -867,7 +867,20 @@ body {
    einer Linie zwischen den Zeilen. */
 .beitraege {
   border-top: 1px solid currentColor;
-  max-width: 46em;
+}
+
+/* Beitraege links, TWINT-Block rechts daneben. Es ist dasselbe Raster wie
+   bei .zwei-spalten, deshalb beginnt die Zahlung auf derselben Kante wie
+   die Begleittexte in den Abschnitten darueber.
+
+   align-items: start laesst den TWINT-Block oben stehen, statt ihn auf
+   die Hoehe der Liste zu ziehen. Auf dem Handy stehen beide wieder
+   untereinander (siehe ganz unten). */
+.beitraege-reihe {
+  display: grid;
+  grid-template-columns: var(--spalten);
+  gap: var(--spalten-abstand);
+  align-items: start;
 }
 
 .beitrag {
@@ -890,7 +903,13 @@ body {
   white-space: nowrap;
 }
 
-/* ===== Anmeldeformular ===== */
+/* ===== Newsletter-Formular ===== */
+
+/* Die Kopfzeile steht fest ueber der Seite. Ohne diesen Abstand landet
+   die Ueberschrift beim Sprung auf #newsletter darunter und ist weg. */
+#newsletter {
+  scroll-margin-top: 100px;
+}
 
 .formular {
   margin-top: 4vw;
@@ -993,10 +1012,6 @@ body {
   font-weight: var(--klein-staerke);
 }
 
-.dank-knopf {
-  margin-top: 1.5em;
-}
-
 /* Der kleine Hinweis unter dem Aufruf-Knopf */
 .aufruf-fuss {
   font-size: var(--klein-groesse);
@@ -1007,14 +1022,11 @@ body {
 /* Der TWINT-Block: gruene Flaeche mit Logo und Code.
    schief.js schneidet ihm als .band eine Ecke schraeg ab.
 
-   Er steht direkt unter dem Formular und ist gleich breit - so bilden
-   Anmeldung und Zahlung optisch einen Vorgang. Alles darin ist links
-   ausgerichtet, buendig mit den Formularfeldern darueber. */
+   Er fuellt die rechte Spalte neben den Beitraegen - so steht die
+   Zahlung direkt neben dem Betrag, den sie meint. Alles darin ist links
+   ausgerichtet, buendig mit der Oberkante der Liste. */
 .twint {
-  margin-top: 3vw;
   padding: 34px 32px 38px;
-
-  max-width: 46em;
   text-align: left;
 }
 
@@ -1047,17 +1059,20 @@ body {
   margin: 26px 0 0;
 }
 
-/* Der Code bleibt klein: gescannt wird er vom Handy aus naechster Naehe,
-   gross gesetzt truege er auf der Seite viel zu dick auf.
+/* Der Code ist eine SVG-Datei, also aus Rechtecken statt aus Bildpunkten.
+   Er bleibt dadurch in jeder Groesse scharf und scannt sicherer als ein
+   skaliertes Foto. Die Breite ist nach oben begrenzt: gescannt wird aus
+   naechster Naehe, bildschirmfuellend truege er viel zu dick auf.
 
-   Kein weisser Kasten mehr, der Code steht direkt auf dem Gruen:
+   Kein weisser Kasten, der Code steht direkt auf dem Gruen:
    invert() dreht das Bild um (schwarz wird weiss, weiss wird schwarz),
    und mix-blend-mode: screen laesst alles Schwarze verschwinden - uebrig
    bleiben die hellen Module auf der gruenen Flaeche.
    Keine Schraege und keine Verzerrung, sonst wird der Code unlesbar. */
 .twint-code {
   display: block;
-  width: 160px;
+  width: 100%;
+  max-width: 220px;
   height: auto;
 
   margin: 0;
@@ -1065,10 +1080,20 @@ body {
   mix-blend-mode: screen;
 }
 
-/* Der Knopf ersetzt den Code auf dem Handy (siehe ganz unten) */
+/* Der Knopf ersetzt den Code auf dem Handy (siehe ganz unten).
+
+   Es ist das offizielle Bild von TWINT, deshalb bekommt es weder die
+   schiefe Kante der anderen Knoepfe noch eine eigene Farbe. Die helle
+   Fassung passt zu den uebrigen Knoepfen auf dunklem Grund. */
 .twint-knopf {
   display: none;
   margin-top: 4px;
+}
+
+.twint-knopf img {
+  display: block;
+  width: auto;
+  height: 58px;
 }
 
 /* ===== Aufruf ===== */
@@ -1136,6 +1161,18 @@ body {
   :root {
     --seitenrand: 6vw;
     --rand-oben: 4vw; /* auf dem Handy nicht ganz so knapp */
+
+    /* Genau die Strichstaerke der Zeichnung, damit die Linie unter dem
+       Menue dieselbe Dicke hat wie Mauer und Kreis des Keyvisuals.
+
+       Die Rechnung steht so in js/keyvisual.js: STRICH (19.5) mal
+       STRICH_HANDY (1.35), bezogen auf die Referenzbreite 1400 und auf
+       die Breite der Zeichnung - die fuellt die Seite zwischen den
+       beiden Seitenraendern. Wird dort eine der Zahlen geaendert,
+       gehoert sie hier nachgezogen. */
+    --strich-linie: calc(
+      (100vw - 2 * var(--seitenrand)) * 19.5 * 1.35 / 1400
+    );
 
     /* Auf dem Handy stehen die beiden Woerter des Titels untereinander
        (siehe .titel weiter unten). Jede Zeile hat damit die ganze Breite
@@ -1215,18 +1252,27 @@ body {
 
   /* Aufgeklappt. Der Wert ist bewusst grosszuegig: max-height laesst sich
      nur zu einer festen Zahl hin weich bewegen, nicht zu "auto". Er muss
-     also groesser sein als das Menue je wird. */
+     also groesser sein als das Menue je wird.
+
+     Die Linie unten schliesst das Menue ab, so dick wie die Striche im
+     Keyvisual. Sie steht erst hier und nicht an .hauptmenue: ein Rahmen
+     wird von overflow und max-height nicht beschnitten und waere sonst
+     auch bei zugeklapptem Menue als Strich unter der Kopfzeile zu sehen. */
   .menue-offen .hauptmenue {
     max-height: 80vh;
+    border-bottom: var(--strich-linie) solid var(--gruen);
   }
 
-  /* Die Knoepfe untereinander, jeder ueber die ganze Breite */
+  /* Die Knoepfe untereinander, jeder ueber die ganze Breite.
+     Unten derselbe Abstand wie oben: ohne ihn klebt der letzte Knopf an
+     der Unterkante des aufgeklappten Menues. */
   .kopf-menue {
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
 
     padding-top: 18px;
+    padding-bottom: 18px;
   }
 
   .kopf-menue .knopf {
@@ -1253,6 +1299,7 @@ body {
   /* Alles untereinander statt nebeneinander */
   .zwei-spalten,
   .machen-reihe,
+  .beitraege-reihe,
   .felder {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -1313,8 +1360,20 @@ body {
     display: none;
   }
 
+  /* Untereinander braucht die Zahlung mehr Luft zur Liste darueber,
+     als der Abstand der Reihe hergibt. */
+  .twint {
+    margin-top: 2vw;
+  }
+
   .twint-knopf {
     display: inline-block;
+  }
+
+  /* Das TWINT-Logo steckt schon im Knopf. Zweimal uebereinander waere es
+     doppelt gemoppelt. */
+  .twint-logo {
+    display: none;
   }
 
   /* Der zentrierte Aufruf ganz unten.
