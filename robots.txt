@@ -5,4 +5,7 @@ Allow: /
 # Die interne Praesentation gehoert nicht in die Suche.
 Disallow: /praesentation.html
 
+# Die Animationsseite ebenso wenig: sie dient nur dem Aufzeichnen.
+Disallow: /animation.html
+
 Sitemap: https://xn--klostergrten-ncb.ch/sitemap.xml

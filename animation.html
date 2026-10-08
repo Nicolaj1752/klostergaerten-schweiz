@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Klostergärten Schweiz – Animationen</title>
+
+    <!-- Nicht oeffentlich: haelt die Seite aus Suchmaschinen heraus -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- Schrift, Farben und der Reset kommen von der Website -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animation.css" />
+  </head>
+  <body class="animationsseite">
+    <!-- Die Leinwand ist innen 1440 x 2560 Pixel gross - Hochformat 2K.
+         js/animation.js setzt diese Masse, hier steht nichts davon; beim
+         Export der Logo-Schleife wechselt sie kurz in andere Formate.
+         Nur diese Leinwand wird aufgezeichnet. -->
+    <div class="leinwand-feld">
+      <canvas class="leinwand" id="leinwand"></canvas>
+    </div>
+
+    <!-- Die Steuerung daneben. Sie erscheint im Film nicht. -->
+    <div class="steuerung">
+      <span class="aufnahme-punkt"></span>
+
+      <button class="knopf" id="aufnahme-knopf" type="button">
+        <span class="knopf-text">Aufnahme starten</span>
+      </button>
+
+      <!-- Nimmt das Logo mit fuenf Wuerfen als nahtlose Schleife auf,
+           nacheinander in allen vier Formaten -->
+      <button class="knopf" id="schleife-knopf" type="button">
+        <span class="knopf-text">Logo-Schleife exportieren</span>
+      </button>
+
+      <!-- Welche der drei Animationen gerade laeuft -->
+      <p class="steuerung-name" id="anzeige"></p>
+
+      <p class="steuerung-hinweis">
+        Pfeiltasten wechseln · R nimmt auf · S exportiert die Schleife ·
+        Esc zurück zur Website
+      </p>
+    </div>
+
+    <!-- Zuerst die Klosterliste, dann das Keyvisual: von dort kommen die
+         Regeln, nach denen der Garten entsteht -->
+    <script src="js/kloester.js"></script>
+    <script src="js/keyvisual.js"></script>
+
+    <!-- Danach die Animationen selbst -->
+    <script src="js/animation.js"></script>
+
+    <!-- Ganz zum Schluss: die schiefe Ecke am Aufnahme-Knopf -->
+    <script src="js/schief.js"></script>
+  </body>
+</html>

@@ -2,7 +2,8 @@
 //
 // Dieselbe Datei macht zwei Dinge, je nachdem, auf welcher Seite sie laeuft:
 //
-// - Auf den normalen Seiten der Website oeffnet die Taste P die Praesentation.
+// - Auf den normalen Seiten der Website oeffnet die Taste P die Praesentation
+//   und die Taste I die Animationsseite (animation.html).
 // - Auf der Praesentation selbst blaettern die Pfeiltasten, Escape fuehrt
 //   zurueck zur Website.
 //
@@ -105,10 +106,12 @@ document.addEventListener("keydown", function (ereignis) {
   // Tastenkuerzel des Browsers (Cmd-P zum Drucken) nicht abfangen
   if (ereignis.metaKey || ereignis.ctrlKey || ereignis.altKey) return;
 
-  // Auf der Website: P oeffnet die Praesentation
+  // Auf der Website: P oeffnet die Praesentation, I die Animationen
   if (folien.length === 0) {
     if (ereignis.key === "p" || ereignis.key === "P") {
       window.location.href = "praesentation.html";
+    } else if (ereignis.key === "i" || ereignis.key === "I") {
+      window.location.href = "animation.html";
     }
     return;
   }

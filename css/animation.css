@@ -1,0 +1,108 @@
+/* Die Animationsseite.
+
+   Nur die Buehne steht hier. Schrift, Farben, Knoepfe und der Reset
+   kommen aus css/style.css, das die Seite vorher laedt.
+
+   Wichtig: aufgezeichnet wird allein die Leinwand. Alles, was hier
+   gestaltet wird - Knopf, Anzeige, Hinweis -, steht daneben und
+   erscheint im Film nicht. */
+
+/* ===== Die Buehne ===== */
+
+/* Leinwand oben, die Steuerung darunter. Nichts scrollt. */
+.animationsseite {
+  overflow: hidden;
+
+  height: 100vh;
+  height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  padding: 20px var(--seitenrand) 24px;
+}
+
+/* Die Leinwand nimmt die Hoehe, die uebrig bleibt, und behaelt dabei
+   ihr Hochformat. Sie ist innen immer 1440 x 2560 Pixel gross - wie
+   gross sie hier erscheint, aendert an der Aufnahme nichts. */
+.leinwand-feld {
+  flex: 1 1 0;
+  min-height: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Die Leinwand behaelt ihr Format und passt sich in den Platz ein, der
+   da ist. Beide Masse stehen auf auto und werden nur nach oben begrenzt:
+   so bleibt das Seitenverhaeltnis erhalten, wenn der Export zwischendurch
+   auf Quadrat oder Querformat umstellt. */
+.leinwand {
+  display: block;
+
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+
+  /* Hintergrund und Leinwand sind beide creme. Die feine Linie zeigt,
+     wo das Bild aufhoert. */
+  outline: 1px solid var(--gruen);
+}
+
+/* ===== Die Steuerung ===== */
+
+.steuerung {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+/* Welche Animation gerade laeuft */
+.steuerung-name {
+  font-size: var(--name-groesse);
+  font-weight: var(--name-staerke);
+}
+
+/* Die Tastenkuerzel, ganz rechts und zurueckhaltend */
+.steuerung-hinweis {
+  margin-left: auto;
+
+  font-size: var(--fuss-groesse);
+  font-weight: var(--fuss-staerke);
+  opacity: 0.6;
+}
+
+/* Waehrend der Aufnahme blinkt ein Punkt vor dem Knopf */
+.aufnahme-punkt {
+  display: none;
+
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--gruen);
+}
+
+.nimmt-auf .aufnahme-punkt {
+  display: block;
+  animation: blinken 1s steps(2, start) infinite;
+}
+
+@keyframes blinken {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Wer im Betriebssystem weniger Bewegung eingestellt hat, bekommt
+   einen ruhigen Punkt statt eines blinkenden. */
+@media (prefers-reduced-motion: reduce) {
+  .nimmt-auf .aufnahme-punkt {
+    animation: none;
+  }
+}
