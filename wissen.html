@@ -43,7 +43,7 @@
     <section class="hero-innen hero-ohne-titel">
       <header class="kopf">
         <div class="kopf-name">
-          <a href="index.html" data-inhalt="vereinsname"
+          <a href="index.html" data-inhalt="vereinsname" data-text="GLOBAL_010"
             >Verein Klostergärten Schweiz</a
           >
         </div>
@@ -68,31 +68,79 @@
                  der Vereinsname links zurueck auf die Startseite. -->
             <li class="nur-menue">
               <a href="index.html" class="knopf"
-                ><span class="knopf-text">Startseite</span></a
+                ><span class="knopf-text" data-text="GLOBAL_001">Startseite</span></a
               >
             </li>
             <li>
               <a href="wissen.html" class="knopf"
-                ><span class="knopf-text">Wissen</span></a
+                ><span class="knopf-text" data-text="GLOBAL_002">Wissen</span></a
               >
             </li>
             <li>
               <a href="mitgliedschaft.html" class="knopf"
-                ><span class="knopf-text">Mitgliedschaft</span></a
+                ><span class="knopf-text" data-text="GLOBAL_003">Mitgliedschaft</span></a
               >
             </li>
             <li>
               <a href="kontakt.html" class="knopf"
-                ><span class="knopf-text">Kontakt</span></a
+                ><span class="knopf-text" data-text="GLOBAL_004">Kontakt</span></a
               >
             </li>
             <li>
               <a href="ueber-uns.html" class="knopf"
-                ><span class="knopf-text">Über uns</span></a
+                ><span class="knopf-text" data-text="GLOBAL_005">Über uns</span></a
               >
             </li>
           </ul>
 
+          <!-- ===== Sprachwahl =====
+               Vier Knoepfe: Deutsch, Italienisch, Franzoesisch, Englisch.
+               Der gewaehlte ist ein gefuelltes Kaestchen wie die
+               Menuepunkte, die anderen stehen als Schrift da.
+               js/sprache.js tauscht die Texte aus und merkt sich die
+               Wahl, damit sie auf der naechsten Seite stehen bleibt. -->
+          <div class="sprachwahl" role="group" aria-label="Sprache">
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="de"
+              lang="de"
+              aria-label="Deutsch"
+              aria-pressed="true"
+            >
+              <span class="knopf-text">DE</span>
+            </button>
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="it"
+              lang="it"
+              aria-label="Italiano"
+              aria-pressed="false"
+            >
+              <span class="knopf-text">IT</span>
+            </button>
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="fr"
+              lang="fr"
+              aria-label="Français"
+              aria-pressed="false"
+            >
+              <span class="knopf-text">FR</span>
+            </button>
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="en"
+              lang="en"
+              aria-label="English"
+              aria-pressed="false"
+            >
+              <span class="knopf-text">EN</span>
+            </button>
+          </div>
         </nav>
       </header>
 
@@ -101,12 +149,12 @@
     <!-- ===== Einleitung ===== -->
     <section class="block">
       <div class="zwei-spalten">
-        <h2 class="aussage" data-inhalt="einleitungAussage">
+        <h2 class="aussage" data-inhalt="einleitungAussage" data-text="KNOW_001">
           Hier entsteht ein Inventar zu den Klostergärten der Schweiz sowie eine
           Sammlung der hiermit verbundenen Wissensfelder.
         </h2>
 
-        <p class="fliesstext tief" data-inhalt="einleitungFliesstext">
+        <p class="fliesstext tief" data-inhalt="einleitungFliesstext" data-text="KNOW_002">
           Ästhetik &amp; Spiritualität, Klosterbotanik &amp; Heilpflanzen,
           Kulinarik &amp; Klosterküche sowie Transformation &amp; Entwicklung.
         </p>
@@ -117,13 +165,13 @@
          Der Leitsatz steht als grosse Aussage, wie das "Wandel"-Band auf
          der Startseite. -->
     <section class="band block dunkel band-ueber-bild">
-      <p class="marke" data-inhalt="geschichteMarke">Wissensgeschichte</p>
+      <p class="marke" data-inhalt="geschichteMarke" data-text="KNOW_003">Wissensgeschichte</p>
 
-      <h2 class="aussage aussage-halb" data-inhalt="geschichteAussage">
+      <h2 class="aussage aussage-halb" data-inhalt="geschichteAussage" data-text="KNOW_004">
         Klostergärten sind Orte der Wissensspeicherung und Wissensvermittlung.
       </h2>
 
-      <p class="fliesstext fliesstext-breit" data-inhalt="geschichteFliesstext">
+      <p class="fliesstext fliesstext-breit" data-inhalt="geschichteFliesstext" data-text="KNOW_005">
         Über Jahrhunderte wurden hier Kenntnisse über Pflanzen, Ernährung,
         Heilkunst, Landwirtschaft und Spiritualität bewahrt, weiterentwickelt
         und weitergegeben.
@@ -147,15 +195,15 @@
 
     <!-- ===== Klostergärten-Inventar ===== -->
     <section class="block">
-      <p class="marke" data-inhalt="inventarMarke">Klostergärten-Inventar</p>
+      <p class="marke" data-inhalt="inventarMarke" data-text="KNOW_006">Klostergärten-Inventar</p>
 
       <div class="zwei-spalten">
-        <h2 class="aussage" data-inhalt="inventarAussage">
+        <h2 class="aussage" data-inhalt="inventarAussage" data-text="KNOW_007">
           Das lebendige Inventar dokumentiert die Klostergärten der Schweiz als
           kulturelle, spirituelle, ökologische und historische Räume.
         </h2>
 
-        <p class="fliesstext tief" data-inhalt="inventarFliesstext">
+        <p class="fliesstext tief" data-inhalt="inventarFliesstext" data-text="KNOW_008">
           Es macht ihre Vielfalt für Gegenwart und Zukunft sichtbar.
         </p>
       </div>
@@ -170,9 +218,9 @@
          rechts, unten. Auf dem Handy stehen sie in genau dieser Folge
          untereinander, das Kreuz loest sich dort auf. -->
     <section class="block">
-      <p class="marke" data-inhalt="felderMarke">Wissensfelder</p>
+      <p class="marke" data-inhalt="felderMarke" data-text="KNOW_009">Wissensfelder</p>
 
-      <p class="fliesstext fliesstext-breit felder-einleitung" data-inhalt="felderEinleitung">
+      <p class="fliesstext fliesstext-breit felder-einleitung" data-inhalt="felderEinleitung" data-text="KNOW_010">
         Klostergärten waren seit jeher Experimentierfelder, in denen Wissen aus
         unterschiedlichen Disziplinen zusammengeführt und praktisch erprobt
         wurde. Als interdisziplinäre Kompetenzzentren schufen Klöster damit
@@ -182,8 +230,8 @@
 
       <div class="felder felder-kreuz">
         <article class="feld">
-          <h2 class="feld-titel">Ästhetik &amp; Spiritualität</h2>
-          <p class="fliesstext">
+          <h2 class="feld-titel" data-text="KNOW_011">Ästhetik &amp; Spiritualität</h2>
+          <p class="fliesstext" data-text="KNOW_012">
             Klostergärten verbinden Schönheit, Ordnung und Kontemplation. Sie
             sind Ausdruck einer Gartenkultur, in der Natur, Symbolik und
             Spiritualität seit Jahrhunderten miteinander verwoben sind.
@@ -191,8 +239,8 @@
         </article>
 
         <article class="feld">
-          <h2 class="feld-titel">Klosterbotanik &amp; Heilpflanzen</h2>
-          <p class="fliesstext">
+          <h2 class="feld-titel" data-text="KNOW_013">Klosterbotanik &amp; Heilpflanzen</h2>
+          <p class="fliesstext" data-text="KNOW_014">
             Klostergärten bewahren ein einzigartiges Wissen über Heilpflanzen,
             Kräuter, Kulturpflanzen und Biodiversität. Sie sind lebendige
             Archive botanischer Erfahrung und pflanzlicher Vielfalt.
@@ -200,8 +248,8 @@
         </article>
 
         <article class="feld">
-          <h2 class="feld-titel">Transformation &amp; Entwicklung</h2>
-          <p class="fliesstext">
+          <h2 class="feld-titel" data-text="KNOW_015">Transformation &amp; Entwicklung</h2>
+          <p class="fliesstext" data-text="KNOW_016">
             Einige Klostergärten der Schweiz befinden sich gegenwärtig in einem
             Transformationsprozess. Sie entwickeln sich zu lebendigen Orten
             sozialer Projekte, gemeinschaftlicher Bildung und neuer Formen des
@@ -211,8 +259,8 @@
         </article>
 
         <article class="feld">
-          <h2 class="feld-titel">Kulinarik &amp; Klosterküche</h2>
-          <p class="fliesstext">
+          <h2 class="feld-titel" data-text="KNOW_017">Kulinarik &amp; Klosterküche</h2>
+          <p class="fliesstext" data-text="KNOW_018">
             Von Heilkräutern über Fastenspeisen bis zu regionalen
             Spezialitäten: Die Klosterküchen der Schweiz erzählen eine
             Geschichte von Ernährung, Genuss, Selbstversorgung und kulturellem
@@ -227,19 +275,19 @@
          zuunterst das Copyright. -->
     <footer class="band dunkel fusszeile">
       <nav class="fuss-menue">
-        <a href="wissen.html">Wissen</a>
-        <a href="mitgliedschaft.html">Mitgliedschaft</a>
-        <a href="ueber-uns.html">Über uns</a>
-        <a href="kontakt.html">Kontakt</a>
+        <a href="wissen.html" data-text="GLOBAL_002">Wissen</a>
+        <a href="mitgliedschaft.html" data-text="GLOBAL_003">Mitgliedschaft</a>
+        <a href="ueber-uns.html" data-text="GLOBAL_005">Über uns</a>
+        <a href="kontakt.html" data-text="GLOBAL_004">Kontakt</a>
       </nav>
 
       <div class="fuss-angaben">
-        <p data-inhalt="fussProjekt">
+        <p data-inhalt="fussProjekt" data-text="FUSS_PROJEKT">
           Projekt von: Iris Becher, Barbara van der Meulen, Nicolaj van der
           Meulen
         </p>
-        <p data-inhalt="fussGestaltung">Konzept und Design: nicolasbirrer.ch</p>
-        <p class="fuss-recht" data-inhalt="fussRecht">
+        <p data-inhalt="fussGestaltung" data-text="FUSS_DESIGN">Konzept und Design: nicolasbirrer.ch</p>
+        <p class="fuss-recht" data-inhalt="fussRecht" data-text="FUSS_RECHT">
           © 2026 Klostergärten Schweiz. All rights reserved.
         </p>
       </div>
@@ -250,6 +298,12 @@
 
     <!-- Die Taste P oeffnet die Praesentation -->
     <script src="js/praesentation.js"></script>
+
+    <!-- Die Sprachwahl: zuerst die Uebersetzungen, dann das Skript, das
+         sie einsetzt. Beide vor schief.js - die schiefen Kanten sollen
+         die fertigen Texte messen. -->
+    <script src="js/uebersetzungen.js"></script>
+    <script src="js/sprache.js"></script>
 
     <!-- Ganz zum Schluss: schneidet die schiefen Kanten, wenn alles steht -->
     <script src="js/schief.js"></script>

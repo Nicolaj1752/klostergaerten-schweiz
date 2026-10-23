@@ -42,7 +42,7 @@
     <section class="hero-innen hero-ohne-titel">
       <header class="kopf">
         <div class="kopf-name">
-          <a href="index.html" data-inhalt="vereinsname"
+          <a href="index.html" data-inhalt="vereinsname" data-text="GLOBAL_010"
             >Verein Klostergärten Schweiz</a
           >
         </div>
@@ -67,31 +67,79 @@
                  der Vereinsname links zurueck auf die Startseite. -->
             <li class="nur-menue">
               <a href="index.html" class="knopf"
-                ><span class="knopf-text">Startseite</span></a
+                ><span class="knopf-text" data-text="GLOBAL_001">Startseite</span></a
               >
             </li>
             <li>
               <a href="wissen.html" class="knopf"
-                ><span class="knopf-text">Wissen</span></a
+                ><span class="knopf-text" data-text="GLOBAL_002">Wissen</span></a
               >
             </li>
             <li>
               <a href="mitgliedschaft.html" class="knopf"
-                ><span class="knopf-text">Mitgliedschaft</span></a
+                ><span class="knopf-text" data-text="GLOBAL_003">Mitgliedschaft</span></a
               >
             </li>
             <li>
               <a href="kontakt.html" class="knopf"
-                ><span class="knopf-text">Kontakt</span></a
+                ><span class="knopf-text" data-text="GLOBAL_004">Kontakt</span></a
               >
             </li>
             <li>
               <a href="ueber-uns.html" class="knopf"
-                ><span class="knopf-text">Über uns</span></a
+                ><span class="knopf-text" data-text="GLOBAL_005">Über uns</span></a
               >
             </li>
           </ul>
 
+          <!-- ===== Sprachwahl =====
+               Vier Knoepfe: Deutsch, Italienisch, Franzoesisch, Englisch.
+               Der gewaehlte ist ein gefuelltes Kaestchen wie die
+               Menuepunkte, die anderen stehen als Schrift da.
+               js/sprache.js tauscht die Texte aus und merkt sich die
+               Wahl, damit sie auf der naechsten Seite stehen bleibt. -->
+          <div class="sprachwahl" role="group" aria-label="Sprache">
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="de"
+              lang="de"
+              aria-label="Deutsch"
+              aria-pressed="true"
+            >
+              <span class="knopf-text">DE</span>
+            </button>
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="it"
+              lang="it"
+              aria-label="Italiano"
+              aria-pressed="false"
+            >
+              <span class="knopf-text">IT</span>
+            </button>
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="fr"
+              lang="fr"
+              aria-label="Français"
+              aria-pressed="false"
+            >
+              <span class="knopf-text">FR</span>
+            </button>
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="en"
+              lang="en"
+              aria-label="English"
+              aria-pressed="false"
+            >
+              <span class="knopf-text">EN</span>
+            </button>
+          </div>
         </nav>
       </header>
 
@@ -101,7 +149,7 @@
          Ohne Seitentitel: die beiden Untertitel gliedern die Seite allein.
          Beide Angaben stehen als grosse Aussage. -->
     <section class="block block-fuellt">
-      <p class="marke" data-inhalt="adresseMarke">Adresse</p>
+      <p class="marke" data-inhalt="adresseMarke" data-text="CONTACT_001">Adresse</p>
 
       <address class="anschrift aussage" data-inhalt="anschrift">
         Klostergärten Schweiz<br />
@@ -109,7 +157,7 @@
         CH-4223 Blauen
       </address>
 
-      <p class="marke marke-weiter" data-inhalt="mailMarke">Mail</p>
+      <p class="marke marke-weiter" data-inhalt="mailMarke" data-text="CONTACT_005">Mail</p>
 
       <address class="anschrift aussage">
         <a
@@ -122,13 +170,13 @@
 
       <!-- Derselbe Zahlungslink wie auf der Mitgliedschaft-Seite:
            er oeffnet direkt die Zahlung an den Verein. -->
-      <p class="marke marke-weiter" data-inhalt="spendenMarke">Spenden</p>
+      <p class="marke marke-weiter" data-inhalt="spendenMarke" data-text="CONTACT_007">Spenden</p>
 
       <address class="anschrift aussage">
         <a
           href="https://go.twint.ch/1/e/tw?tw=acq.r4c9bLirSgObR9oK45R_Z-max9wjGzC1KJyBuCQCnnmsxtfXDqN6o0XWZOfoynuP."
           data-ziel="spendenZiel"
-          data-inhalt="spendenText"
+          data-inhalt="spendenText" data-text="CONTACT_008"
           >Mit TWINT bezahlen</a
         >
       </address>
@@ -139,19 +187,19 @@
          zuunterst das Copyright. -->
     <footer class="band dunkel fusszeile">
       <nav class="fuss-menue">
-        <a href="wissen.html">Wissen</a>
-        <a href="mitgliedschaft.html">Mitgliedschaft</a>
-        <a href="ueber-uns.html">Über uns</a>
-        <a href="kontakt.html">Kontakt</a>
+        <a href="wissen.html" data-text="GLOBAL_002">Wissen</a>
+        <a href="mitgliedschaft.html" data-text="GLOBAL_003">Mitgliedschaft</a>
+        <a href="ueber-uns.html" data-text="GLOBAL_005">Über uns</a>
+        <a href="kontakt.html" data-text="GLOBAL_004">Kontakt</a>
       </nav>
 
       <div class="fuss-angaben">
-        <p data-inhalt="fussProjekt">
+        <p data-inhalt="fussProjekt" data-text="FUSS_PROJEKT">
           Projekt von: Iris Becher, Barbara van der Meulen, Nicolaj van der
           Meulen
         </p>
-        <p data-inhalt="fussGestaltung">Konzept und Design: nicolasbirrer.ch</p>
-        <p class="fuss-recht" data-inhalt="fussRecht">
+        <p data-inhalt="fussGestaltung" data-text="FUSS_DESIGN">Konzept und Design: nicolasbirrer.ch</p>
+        <p class="fuss-recht" data-inhalt="fussRecht" data-text="FUSS_RECHT">
           © 2026 Klostergärten Schweiz. All rights reserved.
         </p>
       </div>
@@ -162,6 +210,12 @@
 
     <!-- Die Taste P oeffnet die Praesentation -->
     <script src="js/praesentation.js"></script>
+
+    <!-- Die Sprachwahl: zuerst die Uebersetzungen, dann das Skript, das
+         sie einsetzt. Beide vor schief.js - die schiefen Kanten sollen
+         die fertigen Texte messen. -->
+    <script src="js/uebersetzungen.js"></script>
+    <script src="js/sprache.js"></script>
 
     <!-- Ganz zum Schluss: schneidet die schiefen Kanten, wenn alles steht -->
     <script src="js/schief.js"></script>

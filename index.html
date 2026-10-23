@@ -57,7 +57,7 @@
     <!-- ===== Startbild: Kopfzeile, Keyvisual, Titel ===== -->
     <section class="hero">
       <header class="kopf">
-        <div class="kopf-name" data-inhalt="vereinsname">Verein Klostergärten Schweiz</div>
+        <div class="kopf-name" data-inhalt="vereinsname" data-text="GLOBAL_010">Verein Klostergärten Schweiz</div>
 
         <!-- Nur auf dem Handy sichtbar. Die drei Balken schneidet
              schief.js leicht schraeg an, wie alles andere auch. -->
@@ -79,31 +79,79 @@
                  der Vereinsname links zurueck auf die Startseite. -->
             <li class="nur-menue">
               <a href="index.html" class="knopf"
-                ><span class="knopf-text">Startseite</span></a
+                ><span class="knopf-text" data-text="GLOBAL_001">Startseite</span></a
               >
             </li>
             <li>
               <a href="wissen.html" class="knopf"
-                ><span class="knopf-text">Wissen</span></a
+                ><span class="knopf-text" data-text="GLOBAL_002">Wissen</span></a
               >
             </li>
             <li>
               <a href="mitgliedschaft.html" class="knopf"
-                ><span class="knopf-text">Mitgliedschaft</span></a
+                ><span class="knopf-text" data-text="GLOBAL_003">Mitgliedschaft</span></a
               >
             </li>
             <li>
               <a href="kontakt.html" class="knopf"
-                ><span class="knopf-text">Kontakt</span></a
+                ><span class="knopf-text" data-text="GLOBAL_004">Kontakt</span></a
               >
             </li>
             <li>
               <a href="ueber-uns.html" class="knopf"
-                ><span class="knopf-text">Über uns</span></a
+                ><span class="knopf-text" data-text="GLOBAL_005">Über uns</span></a
               >
             </li>
           </ul>
 
+          <!-- ===== Sprachwahl =====
+               Vier Knoepfe: Deutsch, Italienisch, Franzoesisch, Englisch.
+               Der gewaehlte ist ein gefuelltes Kaestchen wie die
+               Menuepunkte, die anderen stehen als Schrift da.
+               js/sprache.js tauscht die Texte aus und merkt sich die
+               Wahl, damit sie auf der naechsten Seite stehen bleibt. -->
+          <div class="sprachwahl" role="group" aria-label="Sprache">
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="de"
+              lang="de"
+              aria-label="Deutsch"
+              aria-pressed="true"
+            >
+              <span class="knopf-text">DE</span>
+            </button>
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="it"
+              lang="it"
+              aria-label="Italiano"
+              aria-pressed="false"
+            >
+              <span class="knopf-text">IT</span>
+            </button>
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="fr"
+              lang="fr"
+              aria-label="Français"
+              aria-pressed="false"
+            >
+              <span class="knopf-text">FR</span>
+            </button>
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="en"
+              lang="en"
+              aria-label="English"
+              aria-pressed="false"
+            >
+              <span class="knopf-text">EN</span>
+            </button>
+          </div>
         </nav>
       </header>
 
@@ -120,15 +168,15 @@
            andere Fassung. Leer im HTML, wie das Visual darüber. -->
       <p class="garten-index"></p>
 
-      <h1 class="titel" data-inhalt="titel">Klostergärten Schweiz</h1>
+      <h1 class="titel" data-inhalt="titel" data-text="HOME_001">Klostergärten Schweiz</h1>
     </section>
 
     <!-- ===== Was wir machen ===== -->
     <section class="block was-wir-machen">
-      <p class="marke" data-inhalt="machenMarke">Was wir machen</p>
+      <p class="marke" data-inhalt="machenMarke" data-text="HOME_002">Was wir machen</p>
 
       <div class="machen-reihe">
-        <h2 class="aussage" data-inhalt="machenAussage">
+        <h2 class="aussage" data-inhalt="machenAussage" data-text="HOME_003">
           Wir dokumentieren, erforschen und vermitteln die Klostergärten der
           Schweiz als lebendige Orte von Wissen, Pflanzen- und Sozialkultur,
           Ernährung und Spiritualität.
@@ -139,7 +187,7 @@
             href="mitgliedschaft.html"
             class="knopf knopf-gross"
             data-ziel="machenKnopfZiel"
-            ><span class="knopf-text" data-inhalt="machenKnopfText"
+            ><span class="knopf-text" data-inhalt="machenKnopfText" data-text="GLOBAL_006"
               >Werde Mitglied</span
             ></a
           >
@@ -166,7 +214,7 @@
           <div>Stiftung 1972</div>
         </div>
 
-        <p class="schau-text" data-inhalt="schauText">
+        <p class="schau-text" data-inhalt="schauText" data-text="HOME_007">
           Klostergärten gehören zu den ältesten Kulturräumen der Schweiz.
         </p>
       </div>
@@ -174,15 +222,15 @@
 
     <!-- ===== Vision (dunkles Band) ===== -->
     <section class="band block dunkel">
-      <p class="marke" data-inhalt="visionMarke">Vision</p>
+      <p class="marke" data-inhalt="visionMarke" data-text="HOME_008">Vision</p>
 
       <div class="zwei-spalten">
-        <h2 class="aussage" data-inhalt="visionAussage">
+        <h2 class="aussage" data-inhalt="visionAussage" data-text="HOME_009">
           Das Projekt dokumentiert Klostergärten, ihre Geschichte und ihre
           gegenwärtige Entwicklung.
         </h2>
 
-        <p class="fliesstext" data-inhalt="visionFliesstext">
+        <p class="fliesstext" data-inhalt="visionFliesstext" data-text="HOME_010">
           Zugleich schafft es einen Ort der Begegnung für Menschen, die sich für
           Gartenkultur, Biodiversität, Kulinarik, Heilpflanzen, Spiritualität
           und klösterliche Wissensgeschichte interessieren. So werden bestehende
@@ -195,16 +243,16 @@
 
     <!-- ===== Plattform ===== -->
     <section class="block">
-      <p class="marke" data-inhalt="plattformMarke">Plattform</p>
+      <p class="marke" data-inhalt="plattformMarke" data-text="HOME_011">Plattform</p>
 
       <div class="zwei-spalten">
-        <h2 class="aussage" data-inhalt="plattformAussage">
+        <h2 class="aussage" data-inhalt="plattformAussage" data-text="HOME_012">
           Hier entsteht ein lebendiges Inventar und Kulturportal, das Forschung,
           Vermittlung, Vernetzung und gesellschaftliches Engagement
           zusammenführt.
         </h2>
 
-        <p class="fliesstext tief" data-inhalt="plattformFliesstext">
+        <p class="fliesstext tief" data-inhalt="plattformFliesstext" data-text="HOME_013">
           Über Jahrhunderte wurden in Klostergärten Heilpflanzen kultiviert, Nahrung
           produziert, Wissen bewahrt und Erfahrungen weitergegeben. Heute
           befindet sich dieses kulturelle Erbe in einem tiefgreifenden Wandel.
@@ -216,7 +264,7 @@
 
     <!-- ===== Eindruecke ===== -->
     <section class="block">
-      <p class="marke" data-inhalt="eindrueckeMarke">Eindrücke</p>
+      <p class="marke" data-inhalt="eindrueckeMarke" data-text="HOME_014">Eindrücke</p>
 
       <div class="bilder-raster">
         <div class="bild bild-laedt">
@@ -266,9 +314,9 @@
 
     <!-- ===== Wandel (dunkles Band) ===== -->
     <section class="band block dunkel">
-      <p class="marke" data-inhalt="wandelMarke">Wandel</p>
+      <p class="marke" data-inhalt="wandelMarke" data-text="HOME_015">Wandel</p>
 
-      <h2 class="aussage aussage-halb" data-inhalt="wandelAussage">
+      <h2 class="aussage aussage-halb" data-inhalt="wandelAussage" data-text="HOME_016">
         Einige Klostergärten sind bereits verschwunden, andere müssen sich an
         veränderte klimatische und gesellschaftliche Bedingungen anpassen.
       </h2>
@@ -276,7 +324,7 @@
 
     <!-- ===== Aufruf ===== -->
     <section class="block aufruf">
-      <p class="aussage aufruf-text" data-inhalt="aufrufText">
+      <p class="aussage aufruf-text" data-inhalt="aufrufText" data-text="HOME_017">
         Klostergärten sind ein gefährdetes Kulturerbe. <br />
         Wir dokumentieren sie erstmals umfassend, <br />
         in einer Buchpublikation (2028). <br />
@@ -288,7 +336,7 @@
         href="mitgliedschaft.html"
         class="knopf knopf-gross"
         data-ziel="aufrufKnopfZiel"
-        ><span class="knopf-text" data-inhalt="aufrufKnopfText">Werde Mitglied</span></a
+        ><span class="knopf-text" data-inhalt="aufrufKnopfText" data-text="GLOBAL_006">Werde Mitglied</span></a
       >
     </section>
 
@@ -297,19 +345,19 @@
          zuunterst das Copyright. -->
     <footer class="band dunkel fusszeile">
       <nav class="fuss-menue">
-        <a href="wissen.html">Wissen</a>
-        <a href="mitgliedschaft.html">Mitgliedschaft</a>
-        <a href="ueber-uns.html">Über uns</a>
-        <a href="kontakt.html">Kontakt</a>
+        <a href="wissen.html" data-text="GLOBAL_002">Wissen</a>
+        <a href="mitgliedschaft.html" data-text="GLOBAL_003">Mitgliedschaft</a>
+        <a href="ueber-uns.html" data-text="GLOBAL_005">Über uns</a>
+        <a href="kontakt.html" data-text="GLOBAL_004">Kontakt</a>
       </nav>
 
       <div class="fuss-angaben">
-        <p data-inhalt="fussProjekt">
+        <p data-inhalt="fussProjekt" data-text="FUSS_PROJEKT">
           Projekt von: Iris Becher, Barbara van der Meulen, Nicolaj van der
           Meulen
         </p>
-        <p data-inhalt="fussGestaltung">Konzept und Design: nicolasbirrer.ch</p>
-        <p class="fuss-recht" data-inhalt="fussRecht">
+        <p data-inhalt="fussGestaltung" data-text="FUSS_DESIGN">Konzept und Design: nicolasbirrer.ch</p>
+        <p class="fuss-recht" data-inhalt="fussRecht" data-text="FUSS_RECHT">
           © 2026 Klostergärten Schweiz. All rights reserved.
         </p>
       </div>
@@ -325,6 +373,12 @@
 
     <!-- Die Taste P oeffnet die Praesentation -->
     <script src="js/praesentation.js"></script>
+
+    <!-- Die Sprachwahl: zuerst die Uebersetzungen, dann das Skript, das
+         sie einsetzt. Beide vor schief.js - die schiefen Kanten sollen
+         die fertigen Texte messen. -->
+    <script src="js/uebersetzungen.js"></script>
+    <script src="js/sprache.js"></script>
 
     <!-- Ganz zum Schluss: schneidet die schiefen Kanten, wenn alles steht -->
     <script src="js/schief.js"></script>

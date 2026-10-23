@@ -56,6 +56,29 @@ Funktion auf. Sie erkennen ihren Platz an der CSS-Klasse (`.bilder-raster`,
 2. im HTML das passende `data-…="feldname"` setzen
 3. Inhalt im Studio eintragen und auf **Publish** klicken
 
+## Sanity liefert nur Deutsch
+
+Im Studio steht ausschliesslich der deutsche Text. Italienisch,
+Französisch und Englisch stehen in `js/uebersetzungen.js` und werden über
+ein zweites Attribut zugeordnet (siehe CLAUDE.md, Abschnitt „Sprachwahl“):
+
+```html
+<p class="marke" data-inhalt="machenMarke" data-text="HOME_002">Was wir machen</p>
+```
+
+Daraus folgt für die Arbeit am Studio:
+
+- **Ein neues Feld, das auch übersetzt werden soll, braucht zusätzlich
+  eine Kennung** `data-text="…"` im HTML und einen Eintrag in
+  `js/uebersetzungen.js`.
+- **Wird ein deutscher Text im Studio geändert, gehört die Übersetzung
+  mitgezogen.** Sonst steht auf der Seite in der einen Sprache das Neue
+  und in der anderen das Alte.
+- Bei den Listen (Menü, Vorteile, Beiträge, Wissensfelder, Personen) zählt
+  die **Reihenfolge**: `js/inhalt.js` gibt die Kennungen aus dem HTML der
+  Reihe nach weiter. Wird im Studio umsortiert oder etwas eingefügt,
+  gehört die Reihenfolge im HTML nachgezogen.
+
 ## Der Text im HTML bleibt stehen
 
 Die Texte stehen weiterhin im HTML. Sie sind die Rückfallebene: Wenn Sanity

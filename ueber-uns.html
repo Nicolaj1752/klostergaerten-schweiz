@@ -42,7 +42,7 @@
     <section class="hero-innen hero-ohne-titel">
       <header class="kopf">
         <div class="kopf-name">
-          <a href="index.html" data-inhalt="vereinsname"
+          <a href="index.html" data-inhalt="vereinsname" data-text="GLOBAL_010"
             >Verein Klostergärten Schweiz</a
           >
         </div>
@@ -67,47 +67,95 @@
                  der Vereinsname links zurueck auf die Startseite. -->
             <li class="nur-menue">
               <a href="index.html" class="knopf"
-                ><span class="knopf-text">Startseite</span></a
+                ><span class="knopf-text" data-text="GLOBAL_001">Startseite</span></a
               >
             </li>
             <li>
               <a href="wissen.html" class="knopf"
-                ><span class="knopf-text">Wissen</span></a
+                ><span class="knopf-text" data-text="GLOBAL_002">Wissen</span></a
               >
             </li>
             <li>
               <a href="mitgliedschaft.html" class="knopf"
-                ><span class="knopf-text">Mitgliedschaft</span></a
+                ><span class="knopf-text" data-text="GLOBAL_003">Mitgliedschaft</span></a
               >
             </li>
             <li>
               <a href="kontakt.html" class="knopf"
-                ><span class="knopf-text">Kontakt</span></a
+                ><span class="knopf-text" data-text="GLOBAL_004">Kontakt</span></a
               >
             </li>
             <li>
               <a href="ueber-uns.html" class="knopf"
-                ><span class="knopf-text">Über uns</span></a
+                ><span class="knopf-text" data-text="GLOBAL_005">Über uns</span></a
               >
             </li>
           </ul>
 
+          <!-- ===== Sprachwahl =====
+               Vier Knoepfe: Deutsch, Italienisch, Franzoesisch, Englisch.
+               Der gewaehlte ist ein gefuelltes Kaestchen wie die
+               Menuepunkte, die anderen stehen als Schrift da.
+               js/sprache.js tauscht die Texte aus und merkt sich die
+               Wahl, damit sie auf der naechsten Seite stehen bleibt. -->
+          <div class="sprachwahl" role="group" aria-label="Sprache">
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="de"
+              lang="de"
+              aria-label="Deutsch"
+              aria-pressed="true"
+            >
+              <span class="knopf-text">DE</span>
+            </button>
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="it"
+              lang="it"
+              aria-label="Italiano"
+              aria-pressed="false"
+            >
+              <span class="knopf-text">IT</span>
+            </button>
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="fr"
+              lang="fr"
+              aria-label="Français"
+              aria-pressed="false"
+            >
+              <span class="knopf-text">FR</span>
+            </button>
+            <button
+              type="button"
+              class="knopf sprache-knopf"
+              data-sprache="en"
+              lang="en"
+              aria-label="English"
+              aria-pressed="false"
+            >
+              <span class="knopf-text">EN</span>
+            </button>
+          </div>
         </nav>
       </header>
     </section>
 
     <!-- ===== Der Verein ===== -->
     <section class="block">
-      <p class="marke" data-inhalt="vereinMarke">Der Verein</p>
+      <p class="marke" data-inhalt="vereinMarke" data-text="ABOUT_001">Der Verein</p>
 
       <div class="zwei-spalten">
-        <h2 class="aussage" data-inhalt="vereinAussage">
+        <h2 class="aussage" data-inhalt="vereinAussage" data-text="ABOUT_002">
           Klostergärten Schweiz ist eine Initiative zur Erforschung,
           Dokumentation, Vernetzung und Vermittlung der Schweizer
           Klostergärten.
         </h2>
 
-        <p class="fliesstext tief" data-inhalt="vereinFliesstext">
+        <p class="fliesstext tief" data-inhalt="vereinFliesstext" data-text="ABOUT_003">
           Der Verein Klostergärten der Schweiz ist aktuell im Aufbau. Er bildet
           die Trägerschaft und schafft die Grundlage für eine langfristige
           Zusammenarbeit von Klöstern, Fachpersonen und Interessierten.
@@ -119,12 +167,12 @@
          Gleicher Aufbau wie die Wissensfelder: drei Spalten nebeneinander,
          auf dem Handy untereinander. -->
     <section class="block">
-      <p class="marke" data-inhalt="teamMarke">Projektteam</p>
+      <p class="marke" data-inhalt="teamMarke" data-text="ABOUT_004">Projektteam</p>
 
       <div class="felder">
         <article class="feld">
           <h2 class="feld-titel feld-name">Iris Becher</h2>
-          <p class="fliesstext">
+          <p class="fliesstext" data-text="ABOUT_008">
             Kunsthistorikerin und Literaturwissenschaftlerin in Basel, seit
             vielen Jahren im Schweizer Verlagswesen tätig. Als Autorin und
             Herausgeberin verbindet sie kulturhistorische Recherche mit
@@ -135,7 +183,7 @@
 
         <article class="feld">
           <h2 class="feld-titel feld-name">Barbara van der Meulen</h2>
-          <p class="fliesstext">
+          <p class="fliesstext" data-text="ABOUT_009">
             Kunsthistorikerin, Kuratorin und Kulturvermittlerin. Seit 2015
             leitet sie den Kulturbereich im Kloster Dornach und seit 2019
             dessen Klostergarten – sie verbindet damit kunsthistorische
@@ -146,7 +194,7 @@
 
         <article class="feld">
           <h2 class="feld-titel feld-name">Nicolaj van der Meulen</h2>
-          <p class="fliesstext">
+          <p class="fliesstext" data-text="ABOUT_010">
             Kunstwissenschaftler mit einer Habilitation zur Klosterkultur des
             18. Jahrhunderts und in der Hochschullehre tätig. Er forscht zu
             Sakralkunst, Bildtheorie und kulinarischer Ästhetik und verbindet
@@ -159,7 +207,7 @@
 
     <!-- ===== Aufruf ===== -->
     <section class="block aufruf">
-      <p class="aussage aufruf-text" data-inhalt="aufrufText">
+      <p class="aussage aufruf-text" data-inhalt="aufrufText" data-text="ABOUT_011">
         Wenn Sie an näheren Informationen <br />
         oder an einer Mitwirkung interessiert sind, <br />
         schreiben Sie uns.
@@ -169,7 +217,7 @@
         href="mailto:info@klostergärten.ch?subject=Klostergärten Schweiz"
         class="knopf knopf-gross"
         data-ziel="aufrufKnopfZiel"
-        ><span class="knopf-text" data-inhalt="aufrufKnopfText"
+        ><span class="knopf-text" data-inhalt="aufrufKnopfText" data-text="ABOUT_012"
           >Schreiben Sie uns</span
         ></a
       >
@@ -180,19 +228,19 @@
          zuunterst das Copyright. -->
     <footer class="band dunkel fusszeile">
       <nav class="fuss-menue">
-        <a href="wissen.html">Wissen</a>
-        <a href="mitgliedschaft.html">Mitgliedschaft</a>
-        <a href="ueber-uns.html">Über uns</a>
-        <a href="kontakt.html">Kontakt</a>
+        <a href="wissen.html" data-text="GLOBAL_002">Wissen</a>
+        <a href="mitgliedschaft.html" data-text="GLOBAL_003">Mitgliedschaft</a>
+        <a href="ueber-uns.html" data-text="GLOBAL_005">Über uns</a>
+        <a href="kontakt.html" data-text="GLOBAL_004">Kontakt</a>
       </nav>
 
       <div class="fuss-angaben">
-        <p data-inhalt="fussProjekt">
+        <p data-inhalt="fussProjekt" data-text="FUSS_PROJEKT">
           Projekt von: Iris Becher, Barbara van der Meulen, Nicolaj van der
           Meulen
         </p>
-        <p data-inhalt="fussGestaltung">Konzept und Design: nicolasbirrer.ch</p>
-        <p class="fuss-recht" data-inhalt="fussRecht">
+        <p data-inhalt="fussGestaltung" data-text="FUSS_DESIGN">Konzept und Design: nicolasbirrer.ch</p>
+        <p class="fuss-recht" data-inhalt="fussRecht" data-text="FUSS_RECHT">
           © 2026 Klostergärten Schweiz. All rights reserved.
         </p>
       </div>
@@ -203,6 +251,12 @@
 
     <!-- Die Taste P oeffnet die Praesentation -->
     <script src="js/praesentation.js"></script>
+
+    <!-- Die Sprachwahl: zuerst die Uebersetzungen, dann das Skript, das
+         sie einsetzt. Beide vor schief.js - die schiefen Kanten sollen
+         die fertigen Texte messen. -->
+    <script src="js/uebersetzungen.js"></script>
+    <script src="js/sprache.js"></script>
 
     <!-- Ganz zum Schluss: schneidet die schiefen Kanten, wenn alles steht -->
     <script src="js/schief.js"></script>

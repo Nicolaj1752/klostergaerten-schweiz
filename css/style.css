@@ -248,6 +248,15 @@ body {
   display: none;
 }
 
+/* Menuepunkte und Sprachwahl stehen in der Kopfzeile nebeneinander.
+   Auf dem Handy liegen sie im aufgeklappten Menue untereinander
+   (siehe Handy-Ansicht ganz unten). */
+.hauptmenue {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 /* Das SVG nimmt die Hoehe, die zwischen Kopfzeile und Titel uebrig bleibt.
    Die Zeichnung misst diese Flaeche selbst und fuellt sie ganz aus - deshalb
    hier kein festes Seitenverhaeltnis.
@@ -307,6 +316,25 @@ body {
 
   flex-shrink: 0; /* der Titel wird nie zusammengedrueckt */
   margin-top: 1.5vw;
+}
+
+/* Die anderen Sprachen schreiben den Projektnamen laenger, und der Titel
+   steht auf einer Zeile (nowrap). Darum bekommt jede Sprache ihre eigene
+   Groesse - gemessen so, dass die Zeile mit derselben Luft an den Rand
+   reicht wie "Klostergärten Schweiz" bei 8.5vw.
+
+   Die Sprache steht als lang am <html>, das setzt js/sprache.js.
+   Aendert sich der Titel, gehoeren diese Zahlen nachgezogen. */
+html[lang="it"] {
+  --titel-groesse: 5.9vw; /* Giardini monastici della Svizzera */
+}
+
+html[lang="fr"] {
+  --titel-groesse: 6.2vw; /* Jardins monastiques de Suisse */
+}
+
+html[lang="en"] {
+  --titel-groesse: 5.75vw; /* Monastic Gardens of Switzerland */
 }
 
 /* ===== Kopf der Unterseiten ===== */
@@ -524,6 +552,54 @@ body {
   font-size: var(--knopf-gross-groesse);
   font-weight: var(--knopf-gross-staerke);
   padding: 16px 26px;
+}
+
+/* ===== Sprachwahl =====
+
+   Vier kleine Knoepfe rechts neben dem Menue: DE, IT, FR, EN. Die
+   gewaehlte Sprache ist ein gefuelltes Kaestchen wie ein Menuepunkt, die
+   drei anderen stehen als Schrift da. Umgeschaltet wird ueber
+   aria-pressed, das js/sprache.js setzt - dasselbe Attribut sagt
+   Screenreadern, welche Sprache eingeschaltet ist.
+
+   Alle vier haben dasselbe Polster, auch der gefuellte: so bleibt die
+   Reihe beim Wechseln ruhig und nichts verrutscht. Es ist knapper als
+   bei den Menuepunkten, weil vier Knoepfe nebeneinander sonst zu viel
+   Platz in der Kopfzeile nehmen.
+
+   Dieser Abschnitt steht NACH .knopf: die Knoepfe tragen beide Klassen,
+   und bei gleicher Spezifitaet gewinnt die spaetere Regel. */
+.sprachwahl {
+  display: flex;
+  gap: 2px;
+}
+
+.sprache-knopf {
+  border: none;
+  cursor: pointer;
+
+  /* Ein <button> erbt die Schrift des Browsers, nicht die der Seite */
+  font-family: inherit;
+
+  padding: 7px 9px;
+
+  /* Kein Uebergang - .knopf bringt einen mit. Beim Umschalten soll das
+     Kaestchen sofort wandern: liefe die Farbe nach, waeren einen
+     Augenblick lang zwei Sprachen gefuellt. */
+  transition: none;
+}
+
+/* Nicht gewaehlt: nur Schrift, keine Flaeche. Die schiefe Ecke von
+   schief.js bleibt gesetzt, faellt ohne Flaeche aber nicht auf. */
+.sprache-knopf[aria-pressed="false"] {
+  background-color: transparent;
+  color: var(--gruen);
+}
+
+/* Beim Hover deutet sich die Flaeche an - so wie beim Menuepunkt, nur
+   umgekehrt: dort wird die gruene Flaeche heller, hier entsteht sie erst. */
+.sprache-knopf[aria-pressed="false"]:hover {
+  background-color: color-mix(in srgb, var(--creme) 88%, var(--gruen));
 }
 
 /* ===== Abschnitt "Was wir machen" ===== */
@@ -1179,6 +1255,26 @@ body {
     --titel-innen: 25vw;
   }
 
+  /* Hier bricht der Titel um, die Grenze setzt also nicht die ganze Zeile,
+     sondern die laengste. In den drei anderen Sprachen stehen ebenfalls
+     zwei Zeilen - dafuer muss die Schrift kleiner sein als die 13.5vw des
+     deutschen "Klostergärten".
+
+     Die Regeln stehen hier noch einmal: sie sind genauso spezifisch wie
+     die aus der breiten Ansicht, und bei gleichem Gewicht gewinnt die
+     spaetere Regel. Ein :root allein wuerde gegen html[lang] verlieren. */
+  html[lang="it"] {
+    --titel-groesse: 10vw; /* Giardini monastici / della Svizzera */
+  }
+
+  html[lang="fr"] {
+    --titel-groesse: 9vw; /* Jardins monastiques / de Suisse */
+  }
+
+  html[lang="en"] {
+    --titel-groesse: 8.9vw; /* Monastic Gardens of / Switzerland */
+  }
+
   /* ===== Kopfzeile mit Burger-Menue =====
 
      Vereinsname links, Burger-Knopf rechts daneben. Das Menue selbst
@@ -1258,20 +1354,44 @@ body {
     border-bottom: var(--strich-linie) solid var(--gruen);
   }
 
+  /* Im aufgeklappten Menue liegen Menuepunkte und Sprachwahl
+     untereinander, nicht nebeneinander wie in der breiten Ansicht.
+     Den Abstand setzen die beiden Bloecke selbst ueber ihr Polster -
+     deshalb hier kein gap. */
+  .hauptmenue {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
   /* Die Knoepfe untereinander, jeder ueber die ganze Breite.
-     Unten derselbe Abstand wie oben: ohne ihn klebt der letzte Knopf an
-     der Unterkante des aufgeklappten Menues. */
+     Unten weniger Abstand als oben: darunter kommt die Sprachwahl, die
+     ihren eigenen Abstand zur Unterkante mitbringt. */
   .kopf-menue {
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
 
     padding-top: 18px;
-    padding-bottom: 18px;
+    padding-bottom: 14px;
   }
 
   .kopf-menue .knopf {
     text-align: center;
+  }
+
+  /* Die Sprachwahl steht mittig unter den Menuepunkten. Die Knoepfe
+     bekommen mehr Polster: mit dem Finger getroffen werden sie hier,
+     nicht mit der Maus. */
+  .sprachwahl {
+    justify-content: center;
+    gap: 4px;
+
+    padding-bottom: 18px;
+  }
+
+  .sprache-knopf {
+    padding: 10px 14px;
   }
 
   /* Im Burger-Menue kommt der Startseiten-Knopf dazu */

@@ -8,6 +8,10 @@ CLAUDE.md
 Anleitung-Sanity-Studio.pdf
 a_LucaYuri_Logo.PNG
 
+# Die Uebersetzungstabelle ist ein Arbeitsdokument, kein Seiteninhalt.
+# Die freigegebenen Texte stehen in js/uebersetzungen.js.
+Klostergaerten_Uebersetzungen_DE_IT_FR_EN.xlsx
+
 # Sanity Studio
 node_modules/
 studio/dist/

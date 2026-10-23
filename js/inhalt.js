@@ -94,6 +94,32 @@ function setzeText(element, text) {
 }
 
 
+/* ===== Die Kennungen der Sprachwahl retten ===== */
+
+// js/sprache.js findet die Uebersetzung ueber data-text am Element. Die
+// Listen weiter unten werden aus dem Studio neu aufgebaut - dabei gingen
+// die Kennungen aus dem HTML verloren.
+//
+// Deshalb werden sie vorher gelesen und den neuen Eintraegen in derselben
+// Reihenfolge wieder mitgegeben. Die Reihenfolge im Studio ist dieselbe
+// wie im HTML; kommt im Studio ein Eintrag dazu, bleibt er unuebersetzt
+// und steht auf Deutsch da.
+function lieseKennungen(bereich, auswahl) {
+  const kennungen = [];
+
+  bereich.querySelectorAll(auswahl).forEach(function (element) {
+    kennungen.push(element.dataset.text || "");
+  });
+
+  return kennungen;
+}
+
+// Haengt eine Kennung an ein neu gebautes Element
+function setzeKennung(element, kennung) {
+  if (kennung) element.dataset.text = kennung;
+}
+
+
 /* ===== Einzelne Felder einsetzen ===== */
 
 // Jedes Element mit data-inhalt bekommt den Text des gleichnamigen Feldes
@@ -157,9 +183,11 @@ function zeigeKopfMenue(punkte) {
   const liste = document.querySelector(".kopf-menue");
   if (!liste || !punkte) return;
 
+  const kennungen = lieseKennungen(liste, ".knopf-text");
+
   liste.innerHTML = "";
 
-  punkte.forEach(function (punkt) {
+  punkte.forEach(function (punkt, nummer) {
     const eintrag = document.createElement("li");
 
     // Punkte, die auf breiten Schirmen doppelt waeren - etwa "Startseite",
@@ -174,6 +202,7 @@ function zeigeKopfMenue(punkte) {
     const text = document.createElement("span");
     text.className = "knopf-text";
     text.textContent = punkt.beschriftung;
+    setzeKennung(text, kennungen[nummer]);
 
     link.appendChild(text);
     eintrag.appendChild(link);
@@ -186,12 +215,15 @@ function zeigeFussMenue(punkte) {
   const bereich = document.querySelector(".fuss-menue");
   if (!bereich || !punkte) return;
 
+  const kennungen = lieseKennungen(bereich, "a");
+
   bereich.innerHTML = "";
 
-  punkte.forEach(function (punkt) {
+  punkte.forEach(function (punkt, nummer) {
     const link = document.createElement("a");
     link.href = punkt.ziel;
     link.textContent = punkt.beschriftung;
+    setzeKennung(link, kennungen[nummer]);
     bereich.appendChild(link);
   });
 }
@@ -238,19 +270,27 @@ function zeigeFelder(felder, zusatzKlasse) {
   const bereich = document.querySelector(".felder");
   if (!bereich || !felder) return;
 
+  // Titel und Text haben je eine eigene Kennung. Auf "Ueber uns" tragen
+  // nur die Texte eine: die Namen der Personen bleiben in allen Sprachen
+  // gleich.
+  const titelKennungen = lieseKennungen(bereich, ".feld-titel");
+  const textKennungen = lieseKennungen(bereich, ".fliesstext");
+
   bereich.innerHTML = "";
 
-  felder.forEach(function (eintrag) {
+  felder.forEach(function (eintrag, nummer) {
     const kasten = document.createElement("article");
     kasten.className = "feld";
 
     const titel = document.createElement("h2");
     titel.className = zusatzKlasse ? "feld-titel " + zusatzKlasse : "feld-titel";
     titel.textContent = eintrag.titel;
+    setzeKennung(titel, titelKennungen[nummer]);
 
     const text = document.createElement("p");
     text.className = "fliesstext";
     text.textContent = eintrag.text;
+    setzeKennung(text, textKennungen[nummer]);
 
     kasten.appendChild(titel);
     kasten.appendChild(text);
@@ -263,11 +303,14 @@ function zeigeVorteile(punkte) {
   const liste = document.querySelector(".vorteile");
   if (!liste || !punkte) return;
 
+  const kennungen = lieseKennungen(liste, "li");
+
   liste.innerHTML = "";
 
-  punkte.forEach(function (punkt) {
+  punkte.forEach(function (punkt, nummer) {
     const eintrag = document.createElement("li");
     eintrag.textContent = punkt;
+    setzeKennung(eintrag, kennungen[nummer]);
     liste.appendChild(eintrag);
   });
 }
@@ -277,17 +320,22 @@ function zeigeBeitraege(beitraege) {
   const liste = document.querySelector(".beitraege");
   if (!liste || !beitraege) return;
 
+  const artKennungen = lieseKennungen(liste, "dt");
+  const betragKennungen = lieseKennungen(liste, "dd");
+
   liste.innerHTML = "";
 
-  beitraege.forEach(function (eintrag) {
+  beitraege.forEach(function (eintrag, nummer) {
     const zeile = document.createElement("div");
     zeile.className = "beitrag";
 
     const art = document.createElement("dt");
     art.textContent = eintrag.bezeichnung;
+    setzeKennung(art, artKennungen[nummer]);
 
     const betrag = document.createElement("dd");
     betrag.textContent = eintrag.betrag;
+    setzeKennung(betrag, betragKennungen[nummer]);
 
     zeile.appendChild(art);
     zeile.appendChild(betrag);
@@ -332,11 +380,20 @@ function zeigeAlles(allgemein, seite) {
   zeigeBeitraege(daten.beitraege);
 }
 
-// schief.js, bilder.js und einblenden.js laufen einmal beim Laden - da
-// stehen noch die Texte aus dem HTML. Nach dem Einsetzen sind Knoepfe und
-// Baender anders hoch und es gibt neue Bilder, deshalb muessen alle drei
-// noch einmal ran.
+// sprache.js, schief.js, bilder.js und einblenden.js laufen einmal beim
+// Laden - da stehen noch die Texte aus dem HTML. Nach dem Einsetzen sind
+// Knoepfe und Baender anders hoch und es gibt neue Bilder, deshalb muessen
+// alle noch einmal ran.
 function nacharbeiten() {
+  // Die Sprachwahl zuerst: eben wurde ueberall Deutsch eingesetzt, auch
+  // dort, wo gerade Italienisch, Franzoesisch oder Englisch stand. Das
+  // true sagt sprache.js, dass es den deutschen Stand neu merken muss -
+  // der gemerkte von vorher ist jetzt veraltet.
+  //
+  // Und vor schief.js: die schiefen Kanten sollen die fertigen Texte
+  // messen, nicht die deutschen.
+  if (window.spracheAnwenden) window.spracheAnwenden(true);
+
   if (window.schneideAlles) window.schneideAlles();
   if (window.bilderBeobachten) window.bilderBeobachten();
   if (window.einblendenStarten) window.einblendenStarten();
