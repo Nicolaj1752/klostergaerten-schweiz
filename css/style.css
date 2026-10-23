@@ -1380,18 +1380,24 @@ html[lang="en"] {
     text-align: center;
   }
 
-  /* Die Sprachwahl steht mittig unter den Menuepunkten. Die Knoepfe
-     bekommen mehr Polster: mit dem Finger getroffen werden sie hier,
-     nicht mit der Maus. */
+  /* Die Sprachwahl steht links unter den Menuepunkten, auf derselben
+     Kante wie sie. */
   .sprachwahl {
-    justify-content: center;
+    justify-content: flex-start;
     gap: 4px;
 
     padding-bottom: 18px;
   }
 
+  /* Oben und unten mehr Polster als in der breiten Ansicht: getroffen
+     werden die Knoepfe hier mit dem Finger, nicht mit der Maus.
+
+     Links und rechts dagegen genau so viel wie bei einem Menuepunkt
+     (.knopf). Nur dann steht das D von "DE" auf derselben Kante wie das
+     S von "Startseite" darueber - und nicht nur die Kaestchen, sondern
+     auch die Schrift fluchtet. */
   .sprache-knopf {
-    padding: 10px 14px;
+    padding: 10px 12px;
   }
 
   /* Im Burger-Menue kommt der Startseiten-Knopf dazu */
