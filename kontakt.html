@@ -180,6 +180,29 @@
           >Mit TWINT bezahlen</a
         >
       </address>
+
+      <!-- Das Vereinskonto als zweiter Weg zu spenden, gleich unter dem
+           TWINT-Link - deshalb ohne eigene Ueberschrift: es ist dasselbe
+           Thema, nicht ein neues.
+
+           Klein gesetzt und ohne den Kontoinhaber (der steht als
+           Anschrift schon oben auf derselben Seite). Diese Seite soll
+           ohne Scrollen ins Fenster passen (.eine-seite), jede Zeile
+           zaehlt hier doppelt.
+
+           .marke und .fliesstext stehen zusaetzlich dran, damit der Block
+           mit seinen Nachbarn einblendet - einblenden.js kennt nur diese
+           Klassen. Im dunklen Zahlungsblock der Mitgliedschaft fehlen sie
+           mit Absicht: dort blendet nichts ein.
+
+           Dieselben Angaben stehen auf der Mitgliedschaft-Seite im
+           Zahlungsblock - beide zusammen aendern. -->
+      <p class="marke konto-marke" data-inhalt="kontoMarke" data-text="CONTACT_009">Vereinskonto</p>
+
+      <p class="fliesstext konto-angaben" data-inhalt="kontoAngaben">
+        IBAN CH34 8080 8009 7303 4652 4<br />
+        SWIFT-BIC RAIFCH22
+      </p>
     </section>
 
     <!-- ===== Fusszeile (dunkles Band) =====

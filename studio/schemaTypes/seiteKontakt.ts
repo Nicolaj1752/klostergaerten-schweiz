@@ -10,6 +10,7 @@ export const seiteKontakt = defineType({
     {name: 'adresse', title: '1 – Adresse', options: {collapsible: true}},
     {name: 'mail', title: '2 – Mail', options: {collapsible: true}},
     {name: 'spenden', title: '3 – Spenden', options: {collapsible: true}},
+    {name: 'konto', title: '4 – Vereinskonto', options: {collapsible: true}},
   ],
 
   fields: [
@@ -71,6 +72,23 @@ export const seiteKontakt = defineType({
       fieldset: 'spenden',
       description:
         'Der Zahlungslink des Vereins (go.twint.ch). Derselbe steht auf der Mitgliedschaft-Seite beim TWINT-Knopf – beide zusammen ändern.',
+    }),
+
+    // ----- 4 Vereinskonto -----
+    defineField({
+      name: 'kontoMarke',
+      title: 'Kleine Überschrift',
+      type: 'string',
+      fieldset: 'konto',
+    }),
+    defineField({
+      name: 'kontoAngaben',
+      title: 'Bankverbindung',
+      type: 'text',
+      rows: 3,
+      fieldset: 'konto',
+      description:
+        'Jede Zeile hier wird auch auf der Website zu einer eigenen Zeile. Dieselbe Verbindung steht auf der Mitgliedschaft-Seite im Zahlungsblock – beide zusammen ändern.',
     }),
   ],
 

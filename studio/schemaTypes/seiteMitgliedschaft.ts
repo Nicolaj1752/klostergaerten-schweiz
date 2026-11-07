@@ -193,6 +193,21 @@ export const seiteMitgliedschaft = defineType({
         'Der Zahlungslink des Vereins (go.twint.ch). Derselbe steht auf der Kontaktseite unter "Spenden" – beide zusammen ändern. Die Beschriftung des Knopfs kommt aus dem TWINT-Bild und lässt sich nicht ändern.',
     }),
     defineField({
+      name: 'kontoMarke',
+      title: 'Überschrift über der Bankverbindung',
+      type: 'string',
+      fieldset: 'twint',
+    }),
+    defineField({
+      name: 'kontoAngaben',
+      title: 'Bankverbindung',
+      type: 'text',
+      rows: 3,
+      fieldset: 'twint',
+      description:
+        'Jede Zeile hier wird auch auf der Website zu einer eigenen Zeile. Dieselbe Verbindung steht auf der Kontaktseite unter "Vereinskonto" – beide zusammen ändern.',
+    }),
+    defineField({
       name: 'twintHinweis',
       title: 'Hinweis unter dem Knopf',
       type: 'text',

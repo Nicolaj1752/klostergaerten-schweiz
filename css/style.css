@@ -1167,6 +1167,49 @@ html[lang="en"] {
   height: 58px;
 }
 
+/* ===== Bankverbindung =====
+
+   Zweimal auf der Website: im dunklen Zahlungsblock der Mitgliedschaft
+   unter TWINT, und auf der Kontaktseite unter "Spenden". */
+
+/* Die kleine Ueberschrift ueber den Kontoangaben im Zahlungsblock. Sie
+   sieht aus wie die Ueberschrift des Blocks darueber, steht aber mit
+   Luft davor - sonst liest sie sich als Teil des TWINT-Knopfs. */
+.konto-marke {
+  font-size: var(--klein-groesse);
+  font-weight: var(--klein-staerke);
+  margin: 30px 0 10px;
+}
+
+/* Die Kontoangaben selbst, in der Groesse des Begleittexts.
+
+   tabular-nums stellt die Ziffern auf gleiche Breite. Dadurch stehen die
+   Vierergruppen der IBAN ruhig, auch wenn die Zeile auf einem schmalen
+   Schirm umbricht. */
+.konto-angaben {
+  font-size: var(--text-groesse);
+  font-weight: var(--text-staerke);
+  line-height: var(--text-zeile);
+
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+
+  /* Keine begrenzte Zeilenbreite: eine Kontonummer gehoert auf eine
+     Zeile, solange der Platz reicht. Auf der Kontaktseite steht
+     .fliesstext mit daran - dessen 32ch wuerden mitten in die Nummer
+     schneiden. */
+  max-width: none;
+}
+
+/* Auf der Kontaktseite rueckt die Ueberschrift naeher an den TWINT-Link.
+   Diese Seite soll ohne Scrollen ins Fenster passen (.eine-seite), und
+   die drei Zeilen des Kontos sind dort das Letzte, was noch hineingeht -
+   jeder Pixel Polster fehlt am Ende unten. Im dunklen Zahlungsblock der
+   Mitgliedschaft bleiben die 30px, dort ist Platz. */
+.eine-seite .konto-marke {
+  margin-top: 18px;
+}
+
 /* ===== Aufruf ===== */
 
 .aufruf {

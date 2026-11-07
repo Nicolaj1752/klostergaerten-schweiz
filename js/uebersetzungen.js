@@ -638,6 +638,13 @@ const UEBERSETZUNGEN = {
     en: "Subscribe to the newsletter"
   },
 
+  // Oder auf das Vereinskonto
+  MEM_037: {
+    it: "Oppure sul conto dell’associazione",
+    fr: "Ou sur le compte de l’association",
+    en: "Or to the association’s account"
+  },
+
 
   /* ===== Über uns – ueber-uns.html ===== */
 
@@ -747,5 +754,12 @@ const UEBERSETZUNGEN = {
     it: "Effettua una donazione con TWINT",
     fr: "Faire un don avec TWINT",
     en: "Donate with TWINT"
+  },
+
+  // Vereinskonto
+  CONTACT_009: {
+    it: "Conto dell’associazione",
+    fr: "Compte de l’association",
+    en: "Association account"
   }
 };
