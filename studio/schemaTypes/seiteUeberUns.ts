@@ -78,7 +78,7 @@ export const seiteUeberUns = defineType({
       title: 'Ziel des Knopfs',
       type: 'string',
       fieldset: 'aufruf',
-      description: 'Zum Beispiel mailto:info@klostergärten.ch?subject=Klostergärten Schweiz',
+      description: 'Zum Beispiel mailto:info@klostergaerten.ch?subject=Klostergärten Schweiz',
     }),
   ],
 

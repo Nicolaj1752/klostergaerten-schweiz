@@ -12,7 +12,7 @@
 /* ===== Einstellungen ===== */
 
 const ZIEL = "https://api.web3forms.com/submit";
-const ADRESSE = "info@klostergärten.ch"; // steht in der Fehlermeldung unten
+const ADRESSE = "info@klostergaerten.ch"; // steht in der Fehlermeldung unten
 
 /* ===== Das Formular ===== */
 

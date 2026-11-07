@@ -33,7 +33,7 @@ export const textMitLink = defineType({
       name: 'linkZiel',
       title: 'Ziel des Links',
       type: 'string',
-      description: 'Zum Beispiel mailto:info@klostergärten.ch oder https://…',
+      description: 'Zum Beispiel mailto:info@klostergaerten.ch oder https://…',
     }),
 
     defineField({
