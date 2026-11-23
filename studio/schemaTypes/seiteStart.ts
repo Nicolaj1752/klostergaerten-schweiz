@@ -85,7 +85,7 @@ export const seiteStart = defineType({
       type: 'array',
       of: [{type: 'string'}],
       fieldset: 'schau',
-      description: 'Jede Zeile einzeln, zum Beispiel "Kloster Dornach, SO".',
+      description: 'Jede Zeile einzeln, zum Beispiel "Benediktinerinnenkloster Au, SZ".',
     }),
     defineField({
       name: 'schauText',
